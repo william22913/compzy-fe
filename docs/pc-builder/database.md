@@ -1,12 +1,18 @@
 ---
 feature_code: pc-builder
 service: compzy
-version: 1
+version: 2
 status: complete
-spec_version: 1
+spec_version: 2
 sources: []
-pr_url: https://github.com/william22913/sandbox-docs/pull/76
+pr_history:
+  - url: https://github.com/william22913/sandbox-docs/pull/76
+    version: 1
+  - url: https://github.com/william22913/sandbox-docs/pull/80
+    version: 2
+pr_url: https://github.com/william22913/sandbox-docs/pull/80
 last_updated: 2026-11-16
+open_questions: []
 ---
 
 # pc-builder — Data design (compzy)
@@ -17,6 +23,11 @@ migration plan, all recorded in this document) and the house database design
 standards. The gate's working notes are deliberately not committed: this file
 and `compzy/ERD.md` are the stage's deliverables, and `/go-dev` reads them. **No DDL is written here**: `/go-dev` writes
 the migration files in the batch order below.
+
+This is the v2 revision for spec v2. It adds **one column** to `customers`
+(`preferred_language`), the `updated_at` column that column's first writer
+needs, and one appended migration batch (`0005`); it adds no table, no
+relationship and no index, and changes none of batches `0001`–`0004`.
 
 Six domain tables plus the runner's bookkeeping table (seven tables in all):
 
@@ -63,7 +74,9 @@ erDiagram
         text full_name "trimmed, 2..100 chars, case preserved"
         text email UK "trimmed lowercase, <= 254"
         text password_hash "bcrypt over SHA-256"
+        text preferred_language "en or id, NOT NULL, default id"
         timestamptz created_at "UTC"
+        timestamptz updated_at "UTC, set when the language changes"
     }
 
     sessions {
@@ -135,7 +148,17 @@ keep their own snapshot and `order_items.part_id` becomes NULL.
 | `full_name` | `text` | no | Stored `btrim`ed; CHECK trimmed length 2..100; internal spacing and case preserved (REQ-034) |
 | `email` | `text` | no | Stored trimmed and lower-cased; UNIQUE; CHECK `email = lower(email)`, `email = btrim(email)`, length ≤ 254 (REQ-032, REQ-033) |
 | `password_hash` | `text` | no | CHECK non-empty; bcrypt (cost 12) over a SHA-256 of the password |
+| `preferred_language` | `text` | no | The customer's interface language: exactly `en` or `id`, CHECK `preferred_language IN ('en','id')` named `customers_preferred_language_check`; default `'id'`; never empty (REQ-058, REQ-059) |
 | `created_at` | `timestamptz` | no | default `now()` |
+| `updated_at` | `timestamptz` | no | default `now()`; written by the language update (`PUT /api/v1/auth/me/language`) |
+
+`preferred_language` is `text` with a two-value `CHECK` rather than a
+PostgreSQL `enum`: a new language would need `ALTER TYPE … ADD VALUE`, which
+cannot run inside the runner's per-file transaction on older releases and is a
+schema change for a value the business may add without one. Two values, a
+named constraint and a default that doubles as the backfill is the whole
+design — no `customer_preferences` table, no key/value store (REQ-058,
+REQ-060).
 
 No password-reset, verification or profile columns: all are non-goals.
 
@@ -210,6 +233,7 @@ Created by the runner with `IF NOT EXISTS` before it reads applied versions.
 | `customers_email_lower_check` | `email = lower(email)` AND `email = btrim(email)` | Case-insensitive identity by construction |
 | `customers_email_length_check` | `char_length(email) <= 254` | REQ-032 |
 | `customers_full_name_check` | `char_length(btrim(full_name)) BETWEEN 2 AND 100` | REQ-034 |
+| `customers_preferred_language_check` | `preferred_language IN ('en','id')` | REQ-058; the source of truth for the two-value rule, so no application path can store `fr`, `EN` or `''` |
 | `sessions_pkey` | PK `(token_hash)` | Every authenticated request and sign-out |
 | `sessions_token_hash_check` | `octet_length(token_hash) = 32` | SHA-256 only; no raw token stored |
 | `sessions_customer_id_fkey` | FK → `customers(id)` CASCADE | Removing an account removes its sessions |
@@ -231,10 +255,13 @@ Created by the runner with `IF NOT EXISTS` before it reads applied versions.
 
 **Deliberately not indexed:** `parts.price_rupiah`, `parts.created_at`,
 `orders.created_at`, `order_items.category_code`, `categories.is_required`,
-`sessions.last_used_at`. No v1 query sorts or filters on them, the catalogue is
+`sessions.last_used_at`, `customers.preferred_language`, `customers.updated_at`.
+No v1 query sorts or filters on them, the catalogue is
 21 rows and orders are a few thousand a year. No separate
 `parts_category_code_idx` or `order_items_order_id_idx` either — the leftmost
-column of each unique constraint already covers those paths.
+column of each unique constraint already covers those paths. The language
+update is addressed by `customers` primary key and filters on nothing else, so
+it needs no index of its own.
 
 ## Normalization decisions
 
@@ -256,6 +283,13 @@ All deliberate; none is an unreviewed redundancy.
   FK-validated `parts` row.
 - **No `builds` table.** The build is browser state; the spec has no saved
   builds and a visitor has no identity to key them on.
+- **The account language is a column, not a preferences table.** It is one
+  attribute with a fixed two-value domain that every account has from creation,
+  so `customers.preferred_language` with a `CHECK` and a default is
+  first-normal-form; a `customer_preferences(customer_id, key, value)` table
+  would add a join, a key vocabulary and a "row missing" state that the
+  requirement forbids (REQ-059, REQ-054). Real preferences (notifications,
+  currency) would still not need it at this size.
 - **No soft delete.** Hard delete plus snapshot; no delete capability exists
   for accounts or orders in v1.
 
@@ -270,9 +304,13 @@ Recorded rather than silently taken:
   `sessions.token_hash` are natural-key PKs (7 immutable reference rows; the
   hash is the only address and is never exposed). `order_items` keeps a bigint
   identity PK because nothing addresses it externally.
-- **Audit columns.** Only `created_at` is present where rows are created.
-  `updated_at` was dropped from `parts` and `customers` because neither has a
-  writer in v1; `created_by`/`updated_by`/`deleted_by` are omitted because
+- **Audit columns.** `created_at` is present where rows are created, and
+  `customers.updated_at` is present in v2 because `customers` now has a writer
+  other than the insert — the language update (REQ-048). It is written
+  explicitly by that one statement (`SET …, updated_at = now()`), not by a
+  trigger, since there is exactly one mutation path. `parts` keeps no
+  `updated_at` (still insert-only), and
+  `created_by`/`updated_by`/`deleted_by` are omitted because
   there is no admin actor and no delete path, so they would be permanently
   NULL. Add them with the first admin or edit feature. Timestamps are
   `timestamptz` in UTC.
@@ -288,7 +326,7 @@ Who may see or manage what, at the data layer:
 | Data | Read | Write |
 |---|---|---|
 | `categories`, `parts` | Any caller via `GET /api/v1/catalogue` (public) | Nobody in v1 — seed data only; a later price/part change is a forward migration |
-| `customers` | The customer themself (`GET /auth/me`); the API never lists customers | The customer, at registration only |
+| `customers` | The customer themself (`GET /auth/me`); the API never lists customers | The customer, at registration, and for **their own** `preferred_language` afterwards (`PUT /api/v1/auth/me/language`); no other column is writable by any endpoint |
 | `sessions` | The caller themself, by presenting the raw token | Created at sign-in/registration, deleted at sign-out |
 | `orders`, `order_items` | Only the customer who placed the order, filtered by `customer_id` in the SQL and returning `404` for anything else | Created only by that customer at checkout |
 
@@ -318,10 +356,20 @@ restoring the pre-deployment backup.
 - **Batch 4 — `0004_order_items.sql`.** Create `order_items` (identity PK,
   order FK CASCADE, snapshot columns, nullable part FK SET NULL, unique
   category per order, part index).
+- **Batch 5 — `0005_customers_preferred_language.sql`** (added by this
+  revision). One `ALTER TABLE customers` with three actions: add
+  `preferred_language text NOT NULL DEFAULT 'id'`, add
+  `CONSTRAINT customers_preferred_language_check CHECK (preferred_language IN ('en','id'))`,
+  and add `updated_at timestamptz NOT NULL DEFAULT now()`. No data-moving
+  `UPDATE` is needed: a `NOT NULL` column with a constant default fills every
+  existing row inside the same statement, so every pre-revision account is
+  Indonesian when the transaction commits (REQ-054, REQ-059, TC-087). No index,
+  no backfill script, no trigger, and nothing in `0001`–`0004` changes.
 
 Ordering rationale: categories before parts, customers before sessions and
-orders, orders and parts before order_items. Each batch leaves the database
-valid and queryable on its own.
+orders, orders and parts before order_items; batch 5 comes after batch 1
+because `customers` must exist, and it touches no other table. Each batch
+leaves the database valid and queryable on its own.
 
 ### Seed data — categories
 
@@ -380,6 +428,13 @@ every category sums to Rp 14.500.000.
 - **Email normalisation** is both a storage rule (`customers_email_lower_check`)
   and an application rule: registration and sign-in trim and lower-case the
   input before storing or looking it up.
+- **The language write is one row and idempotent.** `UPDATE customers SET
+  preferred_language = $1, updated_at = now() WHERE id = $2` with `$2` taken
+  from the session, never from the request body. Writing the same value twice
+  is a no-op that still succeeds, last write wins, and there is no history row.
+  The database is the authority on the two values (`customers_preferred_language_check`);
+  the application validates first so the customer gets a `422` rather than a
+  constraint error.
 
 ## Risks carried into implementation
 
@@ -398,3 +453,11 @@ every category sums to Rp 14.500.000.
 - **R-8 — total/items divergence.** They are written in one transaction from
   one set of validated prices; the service asserts `total == sum(items)`
   before commit.
+- **R-9 — a language value the schema would reject arrives anyway.** The
+  `NOT NULL` column and its `CHECK` make a missing or non-`en`/`id` value
+  impossible through any SQL write, so the API's read-time coercion to `id`
+  (REQ-054, TC-086) is defensive, not routine: it covers a row restored from a
+  pre-0005 dump with constraints disabled, a hand-edited database, or a future
+  migration that widens the domain. `TC-086` plants such a value by disabling
+  the constraint in its fixture, which is why the read path must still answer
+  Indonesian instead of failing the sign-in.

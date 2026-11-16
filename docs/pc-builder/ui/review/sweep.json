@@ -1,15 +1,17 @@
 {
- "at": "2026-11-16T07:20:48.328Z",
+ "at": "2026-11-16T12:04:02.070Z",
  "lastRun": {
   "widths": [
    1440,
-   1000,
-   720,
+   1180,
+   1024,
+   768,
+   430,
    390
   ],
   "motion": false,
-  "seconds": 103.8,
-  "screens": 23
+  "seconds": 245.6,
+  "screens": 24
  },
  "results": [
   {
@@ -18,37 +20,63 @@
    "state": "Nothing chosen, visitor",
    "width": 1440,
    "file": "builder-empty-1440.png",
-   "hash": "0329df6769b36e18",
+   "hash": "c611897a691ff7e7",
    "changed": false,
    "overImage": 1,
    "findings": [
-    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
    ]
   },
   {
    "id": "builder-empty",
    "page": "Builder",
    "state": "Nothing chosen, visitor",
-   "width": 1000,
-   "file": "builder-empty-1000.png",
-   "hash": "b59ea460c00c359c",
+   "width": 1180,
+   "file": "builder-empty-1180.png",
+   "hash": "415865624e071ae8",
    "changed": false,
    "overImage": 1,
    "findings": [
-    "focus ring 1.12:1 (needs 3) on <a> \"Build a PC\""
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
    ]
   },
   {
    "id": "builder-empty",
    "page": "Builder",
    "state": "Nothing chosen, visitor",
-   "width": 720,
-   "file": "builder-empty-720.png",
-   "hash": "93acfd83c433d028",
+   "width": 1024,
+   "file": "builder-empty-1024.png",
+   "hash": "ce5d55cfe974f79b",
    "changed": false,
    "overImage": 1,
    "findings": [
-    "focus ring 1.12:1 (needs 3) on <a> \"Build a PC\""
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
+   ]
+  },
+  {
+   "id": "builder-empty",
+   "page": "Builder",
+   "state": "Nothing chosen, visitor",
+   "width": 768,
+   "file": "builder-empty-768.png",
+   "hash": "206cb321a66171ac",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1.12:1 (needs 3) on <a> \"Rakit PC\""
+   ]
+  },
+  {
+   "id": "builder-empty",
+   "page": "Builder",
+   "state": "Nothing chosen, visitor",
+   "width": 430,
+   "file": "builder-empty-430.png",
+   "hash": "da58c8066b3d4e8a",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1.12:1 (needs 3) on <a> \"Rakit PC\""
    ]
   },
   {
@@ -57,11 +85,11 @@
    "state": "Nothing chosen, visitor",
    "width": 390,
    "file": "builder-empty-390.png",
-   "hash": "684d43858ecd90be",
+   "hash": "8c1bdf2532029f41",
    "changed": false,
    "overImage": 1,
    "findings": [
-    "focus ring 1.12:1 (needs 3) on <a> \"Build a PC\""
+    "focus ring 1.12:1 (needs 3) on <a> \"Rakit PC\""
    ]
   },
   {
@@ -70,37 +98,63 @@
    "state": "Three parts chosen, visitor",
    "width": 1440,
    "file": "builder-partial-1440.png",
-   "hash": "2d7a87cb3377e6d7",
+   "hash": "d4aa1f7ad1822892",
    "changed": false,
    "overImage": 1,
    "findings": [
-    "focus ring 1.53:1 (needs 3) on <a> \"Build a PC\""
+    "focus ring 1.53:1 (needs 3) on <a> \"Rakit PC\""
    ]
   },
   {
    "id": "builder-partial",
    "page": "Builder",
    "state": "Three parts chosen, visitor",
-   "width": 1000,
-   "file": "builder-partial-1000.png",
-   "hash": "5cb285252758e1cc",
+   "width": 1180,
+   "file": "builder-partial-1180.png",
+   "hash": "88d5a5665d51342f",
    "changed": false,
    "overImage": 1,
    "findings": [
-    "focus ring 1.12:1 (needs 3) on <a> \"Build a PC\""
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
    ]
   },
   {
    "id": "builder-partial",
    "page": "Builder",
    "state": "Three parts chosen, visitor",
-   "width": 720,
-   "file": "builder-partial-720.png",
-   "hash": "d708f50c0306895a",
+   "width": 1024,
+   "file": "builder-partial-1024.png",
+   "hash": "14a8655aa0b72a42",
    "changed": false,
    "overImage": 1,
    "findings": [
-    "focus ring 1.12:1 (needs 3) on <a> \"Build a PC\""
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
+   ]
+  },
+  {
+   "id": "builder-partial",
+   "page": "Builder",
+   "state": "Three parts chosen, visitor",
+   "width": 768,
+   "file": "builder-partial-768.png",
+   "hash": "3baabb0bd57a90a1",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1.12:1 (needs 3) on <a> \"Rakit PC\""
+   ]
+  },
+  {
+   "id": "builder-partial",
+   "page": "Builder",
+   "state": "Three parts chosen, visitor",
+   "width": 430,
+   "file": "builder-partial-430.png",
+   "hash": "0ca297c8ebed9b62",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1.12:1 (needs 3) on <a> \"Rakit PC\""
    ]
   },
   {
@@ -109,11 +163,11 @@
    "state": "Three parts chosen, visitor",
    "width": 390,
    "file": "builder-partial-390.png",
-   "hash": "af3a353f79b60e34",
+   "hash": "1ce9bec4bf4a9fd8",
    "changed": false,
    "overImage": 1,
    "findings": [
-    "focus ring 1.12:1 (needs 3) on <a> \"Build a PC\""
+    "focus ring 1.12:1 (needs 3) on <a> \"Rakit PC\""
    ]
   },
   {
@@ -122,37 +176,63 @@
    "state": "Complete build, visitor",
    "width": 1440,
    "file": "builder-complete-1440.png",
-   "hash": "40480f7c67a7e1c0",
+   "hash": "52936011b1e77481",
    "changed": false,
    "overImage": 1,
    "findings": [
-    "focus ring 1.53:1 (needs 3) on <a> \"Build a PC\""
+    "focus ring 1.53:1 (needs 3) on <a> \"Rakit PC\""
    ]
   },
   {
    "id": "builder-complete",
    "page": "Builder",
    "state": "Complete build, visitor",
-   "width": 1000,
-   "file": "builder-complete-1000.png",
-   "hash": "a3f82453650b5959",
+   "width": 1180,
+   "file": "builder-complete-1180.png",
+   "hash": "66a94f470c87fe4f",
    "changed": false,
    "overImage": 1,
    "findings": [
-    "focus ring 1.12:1 (needs 3) on <a> \"Build a PC\""
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
    ]
   },
   {
    "id": "builder-complete",
    "page": "Builder",
    "state": "Complete build, visitor",
-   "width": 720,
-   "file": "builder-complete-720.png",
-   "hash": "3c293ed015e6a6cb",
+   "width": 1024,
+   "file": "builder-complete-1024.png",
+   "hash": "e62e28f1ee595966",
    "changed": false,
    "overImage": 1,
    "findings": [
-    "focus ring 1.12:1 (needs 3) on <a> \"Build a PC\""
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
+   ]
+  },
+  {
+   "id": "builder-complete",
+   "page": "Builder",
+   "state": "Complete build, visitor",
+   "width": 768,
+   "file": "builder-complete-768.png",
+   "hash": "22fe8911a50f8fc7",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1.12:1 (needs 3) on <a> \"Rakit PC\""
+   ]
+  },
+  {
+   "id": "builder-complete",
+   "page": "Builder",
+   "state": "Complete build, visitor",
+   "width": 430,
+   "file": "builder-complete-430.png",
+   "hash": "c33398a803eba554",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1.12:1 (needs 3) on <a> \"Rakit PC\""
    ]
   },
   {
@@ -161,11 +241,11 @@
    "state": "Complete build, visitor",
    "width": 390,
    "file": "builder-complete-390.png",
-   "hash": "ad694d4f79a7b12e",
+   "hash": "15216f27dc8ed00b",
    "changed": false,
    "overImage": 1,
    "findings": [
-    "focus ring 1.12:1 (needs 3) on <a> \"Build a PC\""
+    "focus ring 1.12:1 (needs 3) on <a> \"Rakit PC\""
    ]
   },
   {
@@ -174,37 +254,63 @@
    "state": "Complete build, signed in",
    "width": 1440,
    "file": "builder-signed-in-1440.png",
-   "hash": "684eea196320e8c5",
+   "hash": "eb3a57b4d86e92b9",
    "changed": false,
    "overImage": 1,
    "findings": [
-    "focus ring 1.53:1 (needs 3) on <a> \"Build a PC\""
+    "focus ring 1.53:1 (needs 3) on <a> \"Rakit PC\""
    ]
   },
   {
    "id": "builder-signed-in",
    "page": "Builder",
    "state": "Complete build, signed in",
-   "width": 1000,
-   "file": "builder-signed-in-1000.png",
-   "hash": "d4cc15adb58cb2f2",
+   "width": 1180,
+   "file": "builder-signed-in-1180.png",
+   "hash": "4a250a964bd753ac",
    "changed": false,
    "overImage": 1,
    "findings": [
-    "focus ring 1.12:1 (needs 3) on <a> \"Build a PC\""
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
    ]
   },
   {
    "id": "builder-signed-in",
    "page": "Builder",
    "state": "Complete build, signed in",
-   "width": 720,
-   "file": "builder-signed-in-720.png",
-   "hash": "42cdc85f5565b9f7",
+   "width": 1024,
+   "file": "builder-signed-in-1024.png",
+   "hash": "d0f5e8bc41cc80e3",
    "changed": false,
    "overImage": 1,
    "findings": [
-    "focus ring 1.12:1 (needs 3) on <a> \"Build a PC\""
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
+   ]
+  },
+  {
+   "id": "builder-signed-in",
+   "page": "Builder",
+   "state": "Complete build, signed in",
+   "width": 768,
+   "file": "builder-signed-in-768.png",
+   "hash": "ca10851b2b9e19ff",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1.12:1 (needs 3) on <a> \"Rakit PC\""
+   ]
+  },
+  {
+   "id": "builder-signed-in",
+   "page": "Builder",
+   "state": "Complete build, signed in",
+   "width": 430,
+   "file": "builder-signed-in-430.png",
+   "hash": "e4fd51cd9086f934",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1.12:1 (needs 3) on <a> \"Rakit PC\""
    ]
   },
   {
@@ -213,11 +319,11 @@
    "state": "Complete build, signed in",
    "width": 390,
    "file": "builder-signed-in-390.png",
-   "hash": "6b12f5a70795a48a",
+   "hash": "f3d2571022beef5a",
    "changed": false,
    "overImage": 1,
    "findings": [
-    "focus ring 1.12:1 (needs 3) on <a> \"Build a PC\""
+    "focus ring 1.12:1 (needs 3) on <a> \"Rakit PC\""
    ]
   },
   {
@@ -226,37 +332,63 @@
    "state": "Signed out with the build kept",
    "width": 1440,
    "file": "builder-signed-out-1440.png",
-   "hash": "678ec483ee8bbb2d",
+   "hash": "876bed1c309b38e0",
    "changed": false,
    "overImage": 1,
    "findings": [
-    "focus ring 1.53:1 (needs 3) on <a> \"Build a PC\""
+    "focus ring 1.53:1 (needs 3) on <a> \"Rakit PC\""
    ]
   },
   {
    "id": "builder-signed-out",
    "page": "Builder",
    "state": "Signed out with the build kept",
-   "width": 1000,
-   "file": "builder-signed-out-1000.png",
-   "hash": "68734631706c1652",
+   "width": 1180,
+   "file": "builder-signed-out-1180.png",
+   "hash": "4534603914c0fbd5",
    "changed": false,
    "overImage": 1,
    "findings": [
-    "focus ring 1.12:1 (needs 3) on <a> \"Build a PC\""
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
    ]
   },
   {
    "id": "builder-signed-out",
    "page": "Builder",
    "state": "Signed out with the build kept",
-   "width": 720,
-   "file": "builder-signed-out-720.png",
-   "hash": "3567bbf6b7c7246f",
+   "width": 1024,
+   "file": "builder-signed-out-1024.png",
+   "hash": "e2334f19f88430f6",
    "changed": false,
    "overImage": 1,
    "findings": [
-    "focus ring 1.12:1 (needs 3) on <a> \"Build a PC\""
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
+   ]
+  },
+  {
+   "id": "builder-signed-out",
+   "page": "Builder",
+   "state": "Signed out with the build kept",
+   "width": 768,
+   "file": "builder-signed-out-768.png",
+   "hash": "d410ae1a3238cf7c",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1.12:1 (needs 3) on <a> \"Rakit PC\""
+   ]
+  },
+  {
+   "id": "builder-signed-out",
+   "page": "Builder",
+   "state": "Signed out with the build kept",
+   "width": 430,
+   "file": "builder-signed-out-430.png",
+   "hash": "0313e3f0e6f43304",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1.12:1 (needs 3) on <a> \"Rakit PC\""
    ]
   },
   {
@@ -265,11 +397,11 @@
    "state": "Signed out with the build kept",
    "width": 390,
    "file": "builder-signed-out-390.png",
-   "hash": "eb570d1bde77ffbd",
+   "hash": "36b6bd799ba76cf8",
    "changed": false,
    "overImage": 1,
    "findings": [
-    "focus ring 1.12:1 (needs 3) on <a> \"Build a PC\""
+    "focus ring 1.12:1 (needs 3) on <a> \"Rakit PC\""
    ]
   },
   {
@@ -278,37 +410,63 @@
    "state": "Checkout refused, categories named",
    "width": 1440,
    "file": "builder-checkout-refused-1440.png",
-   "hash": "ef5d27601916c098",
+   "hash": "a7f113d2433c3674",
    "changed": false,
    "overImage": 1,
    "findings": [
-    "focus ring 1.53:1 (needs 3) on <a> \"Build a PC\""
+    "focus ring 1.53:1 (needs 3) on <a> \"Rakit PC\""
    ]
   },
   {
    "id": "builder-checkout-refused",
    "page": "Builder",
    "state": "Checkout refused, categories named",
-   "width": 1000,
-   "file": "builder-checkout-refused-1000.png",
-   "hash": "4c5845a4b00044b3",
+   "width": 1180,
+   "file": "builder-checkout-refused-1180.png",
+   "hash": "fa99dfce003dd40d",
    "changed": false,
    "overImage": 1,
    "findings": [
-    "focus ring 1.12:1 (needs 3) on <a> \"Build a PC\""
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
    ]
   },
   {
    "id": "builder-checkout-refused",
    "page": "Builder",
    "state": "Checkout refused, categories named",
-   "width": 720,
-   "file": "builder-checkout-refused-720.png",
-   "hash": "40f00787616a14ad",
+   "width": 1024,
+   "file": "builder-checkout-refused-1024.png",
+   "hash": "5ec6318ab2c0c5f7",
    "changed": false,
    "overImage": 1,
    "findings": [
-    "focus ring 1.12:1 (needs 3) on <a> \"Build a PC\""
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
+   ]
+  },
+  {
+   "id": "builder-checkout-refused",
+   "page": "Builder",
+   "state": "Checkout refused, categories named",
+   "width": 768,
+   "file": "builder-checkout-refused-768.png",
+   "hash": "b42f2f0bda0b729a",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1.12:1 (needs 3) on <a> \"Rakit PC\""
+   ]
+  },
+  {
+   "id": "builder-checkout-refused",
+   "page": "Builder",
+   "state": "Checkout refused, categories named",
+   "width": 430,
+   "file": "builder-checkout-refused-430.png",
+   "hash": "9ef5c76b07f33ccf",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1.12:1 (needs 3) on <a> \"Rakit PC\""
    ]
   },
   {
@@ -317,11 +475,11 @@
    "state": "Checkout refused, categories named",
    "width": 390,
    "file": "builder-checkout-refused-390.png",
-   "hash": "e77ea80fbb46690c",
+   "hash": "f5a445813ed9436b",
    "changed": false,
    "overImage": 1,
    "findings": [
-    "focus ring 1.12:1 (needs 3) on <a> \"Build a PC\""
+    "focus ring 1.12:1 (needs 3) on <a> \"Rakit PC\""
    ]
   },
   {
@@ -330,37 +488,63 @@
    "state": "A chosen part went away while signed in",
    "width": 1440,
    "file": "builder-part-gone-1440.png",
-   "hash": "40898e27d0afebf1",
+   "hash": "d107c78dd7157a64",
    "changed": false,
    "overImage": 1,
    "findings": [
-    "focus ring 1.53:1 (needs 3) on <a> \"Build a PC\""
+    "focus ring 1.53:1 (needs 3) on <a> \"Rakit PC\""
    ]
   },
   {
    "id": "builder-part-gone",
    "page": "Builder",
    "state": "A chosen part went away while signed in",
-   "width": 1000,
-   "file": "builder-part-gone-1000.png",
-   "hash": "4daaa06cbd1ac0ff",
+   "width": 1180,
+   "file": "builder-part-gone-1180.png",
+   "hash": "43904e8e8649bef6",
    "changed": false,
    "overImage": 1,
    "findings": [
-    "focus ring 1.12:1 (needs 3) on <a> \"Build a PC\""
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
    ]
   },
   {
    "id": "builder-part-gone",
    "page": "Builder",
    "state": "A chosen part went away while signed in",
-   "width": 720,
-   "file": "builder-part-gone-720.png",
-   "hash": "f3f8475bd7c1b6d8",
+   "width": 1024,
+   "file": "builder-part-gone-1024.png",
+   "hash": "b497ae7b75f336d1",
    "changed": false,
    "overImage": 1,
    "findings": [
-    "focus ring 1.12:1 (needs 3) on <a> \"Build a PC\""
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
+   ]
+  },
+  {
+   "id": "builder-part-gone",
+   "page": "Builder",
+   "state": "A chosen part went away while signed in",
+   "width": 768,
+   "file": "builder-part-gone-768.png",
+   "hash": "b7b411c2274058e1",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1.12:1 (needs 3) on <a> \"Rakit PC\""
+   ]
+  },
+  {
+   "id": "builder-part-gone",
+   "page": "Builder",
+   "state": "A chosen part went away while signed in",
+   "width": 430,
+   "file": "builder-part-gone-430.png",
+   "hash": "5c41a69c2285e993",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1.12:1 (needs 3) on <a> \"Rakit PC\""
    ]
   },
   {
@@ -369,11 +553,11 @@
    "state": "A chosen part went away while signed in",
    "width": 390,
    "file": "builder-part-gone-390.png",
-   "hash": "e5f9341be394552d",
+   "hash": "3289c8082fe14489",
    "changed": false,
    "overImage": 1,
    "findings": [
-    "focus ring 1.12:1 (needs 3) on <a> \"Build a PC\""
+    "focus ring 1.12:1 (needs 3) on <a> \"Rakit PC\""
    ]
   },
   {
@@ -382,20 +566,46 @@
    "state": "Catalogue loading",
    "width": 1440,
    "file": "builder-loading-1440.png",
-   "hash": "0f630a0242584f71",
+   "hash": "2ab310c7b5a61bc7",
    "changed": false,
    "overImage": 1,
    "findings": [
-    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
    ]
   },
   {
    "id": "builder-loading",
    "page": "Builder",
    "state": "Catalogue loading",
-   "width": 1000,
-   "file": "builder-loading-1000.png",
-   "hash": "a6e7a2a1d979d294",
+   "width": 1180,
+   "file": "builder-loading-1180.png",
+   "hash": "75375c8129b14c5f",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
+   ]
+  },
+  {
+   "id": "builder-loading",
+   "page": "Builder",
+   "state": "Catalogue loading",
+   "width": 1024,
+   "file": "builder-loading-1024.png",
+   "hash": "80840e08e6c1b1aa",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
+   ]
+  },
+  {
+   "id": "builder-loading",
+   "page": "Builder",
+   "state": "Catalogue loading",
+   "width": 768,
+   "file": "builder-loading-768.png",
+   "hash": "7dd9ed3675a427d7",
    "changed": false,
    "overImage": 1,
    "findings": []
@@ -404,12 +614,14 @@
    "id": "builder-loading",
    "page": "Builder",
    "state": "Catalogue loading",
-   "width": 720,
-   "file": "builder-loading-720.png",
-   "hash": "37071099196bf66c",
+   "width": 430,
+   "file": "builder-loading-430.png",
+   "hash": "bcbae4bcb06e0809",
    "changed": false,
    "overImage": 1,
-   "findings": []
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
+   ]
   },
   {
    "id": "builder-loading",
@@ -417,11 +629,11 @@
    "state": "Catalogue loading",
    "width": 390,
    "file": "builder-loading-390.png",
-   "hash": "ba55d940b222fa9e",
+   "hash": "cf19fbf1be7ec1ee",
    "changed": false,
    "overImage": 1,
    "findings": [
-    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
    ]
   },
   {
@@ -430,20 +642,46 @@
    "state": "Catalogue failed to load",
    "width": 1440,
    "file": "builder-error-1440.png",
-   "hash": "5bd973a8ad0c964c",
+   "hash": "c511e0d22d6ece87",
    "changed": false,
    "overImage": 1,
    "findings": [
-    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
    ]
   },
   {
    "id": "builder-error",
    "page": "Builder",
    "state": "Catalogue failed to load",
-   "width": 1000,
-   "file": "builder-error-1000.png",
-   "hash": "41ea38e747813115",
+   "width": 1180,
+   "file": "builder-error-1180.png",
+   "hash": "ff5dab9ab49e08d6",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
+   ]
+  },
+  {
+   "id": "builder-error",
+   "page": "Builder",
+   "state": "Catalogue failed to load",
+   "width": 1024,
+   "file": "builder-error-1024.png",
+   "hash": "7892a62258244128",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
+   ]
+  },
+  {
+   "id": "builder-error",
+   "page": "Builder",
+   "state": "Catalogue failed to load",
+   "width": 768,
+   "file": "builder-error-768.png",
+   "hash": "d80d76f4c74c5b63",
    "changed": false,
    "overImage": 1,
    "findings": []
@@ -452,12 +690,14 @@
    "id": "builder-error",
    "page": "Builder",
    "state": "Catalogue failed to load",
-   "width": 720,
-   "file": "builder-error-720.png",
-   "hash": "45609f2e5d069f42",
+   "width": 430,
+   "file": "builder-error-430.png",
+   "hash": "c06f5b0d9638662f",
    "changed": false,
    "overImage": 1,
-   "findings": []
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
+   ]
   },
   {
    "id": "builder-error",
@@ -465,11 +705,11 @@
    "state": "Catalogue failed to load",
    "width": 390,
    "file": "builder-error-390.png",
-   "hash": "7691a27611225da6",
+   "hash": "9016ad0ccd9da11a",
    "changed": false,
    "overImage": 1,
    "findings": [
-    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
    ]
   },
   {
@@ -478,20 +718,46 @@
    "state": "Ready",
    "width": 1440,
    "file": "signin-default-1440.png",
-   "hash": "c6121d6a4e457a0b",
+   "hash": "2f4a2910ab8df519",
    "changed": false,
    "overImage": 1,
    "findings": [
-    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
    ]
   },
   {
    "id": "signin-default",
    "page": "Sign in",
    "state": "Ready",
-   "width": 1000,
-   "file": "signin-default-1000.png",
-   "hash": "1a458b12b952c50c",
+   "width": 1180,
+   "file": "signin-default-1180.png",
+   "hash": "b825e42a19a1a75a",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
+   ]
+  },
+  {
+   "id": "signin-default",
+   "page": "Sign in",
+   "state": "Ready",
+   "width": 1024,
+   "file": "signin-default-1024.png",
+   "hash": "c07b6004093d84c3",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
+   ]
+  },
+  {
+   "id": "signin-default",
+   "page": "Sign in",
+   "state": "Ready",
+   "width": 768,
+   "file": "signin-default-768.png",
+   "hash": "900207b1648824f1",
    "changed": false,
    "overImage": 1,
    "findings": []
@@ -500,9 +766,9 @@
    "id": "signin-default",
    "page": "Sign in",
    "state": "Ready",
-   "width": 720,
-   "file": "signin-default-720.png",
-   "hash": "b031e1353b93f119",
+   "width": 430,
+   "file": "signin-default-430.png",
+   "hash": "b08f57c131347af4",
    "changed": false,
    "overImage": 1,
    "findings": []
@@ -513,10 +779,12 @@
    "state": "Ready",
    "width": 390,
    "file": "signin-default-390.png",
-   "hash": "c72c4e36456c2f5d",
+   "hash": "d56c346c1d72a7b4",
    "changed": false,
    "overImage": 1,
-   "findings": []
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
+   ]
   },
   {
    "id": "signin-validation",
@@ -524,34 +792,64 @@
    "state": "Submitted empty",
    "width": 1440,
    "file": "signin-validation-1440.png",
-   "hash": "9f81144f38a9f56c",
+   "hash": "d106f4edf922c071",
    "changed": false,
    "overImage": 1,
    "findings": [
-    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+    "focus ring 1:1 (needs 3) on <a.textlink> \"Buat akun\""
    ]
   },
   {
    "id": "signin-validation",
    "page": "Sign in",
    "state": "Submitted empty",
-   "width": 1000,
-   "file": "signin-validation-1000.png",
-   "hash": "e2ad8a38b4a93ecf",
+   "width": 1180,
+   "file": "signin-validation-1180.png",
+   "hash": "192e57f8d5e98e33",
    "changed": false,
    "overImage": 1,
-   "findings": []
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
+   ]
   },
   {
    "id": "signin-validation",
    "page": "Sign in",
    "state": "Submitted empty",
-   "width": 720,
-   "file": "signin-validation-720.png",
-   "hash": "98a0bce7f2fae05e",
+   "width": 1024,
+   "file": "signin-validation-1024.png",
+   "hash": "e1aa59cd6eb2088d",
    "changed": false,
    "overImage": 1,
-   "findings": []
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
+   ]
+  },
+  {
+   "id": "signin-validation",
+   "page": "Sign in",
+   "state": "Submitted empty",
+   "width": 768,
+   "file": "signin-validation-768.png",
+   "hash": "8453cff887fc9350",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
+   ]
+  },
+  {
+   "id": "signin-validation",
+   "page": "Sign in",
+   "state": "Submitted empty",
+   "width": 430,
+   "file": "signin-validation-430.png",
+   "hash": "fd85b0f6e5254971",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
+   ]
   },
   {
    "id": "signin-validation",
@@ -559,10 +857,12 @@
    "state": "Submitted empty",
    "width": 390,
    "file": "signin-validation-390.png",
-   "hash": "17ff776dbcdb65e3",
+   "hash": "6c771d4035d145c9",
    "changed": false,
    "overImage": 1,
-   "findings": []
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
+   ]
   },
   {
    "id": "signin-invalid",
@@ -570,35 +870,63 @@
    "state": "Wrong email or password",
    "width": 1440,
    "file": "signin-invalid-1440.png",
-   "hash": "f79756432b60e927",
+   "hash": "44ec6babaa22ea57",
    "changed": false,
    "overImage": 1,
    "findings": [
-    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+    "focus ring 1.12:1 (needs 3) on <a> \"Rakit PC\""
    ]
   },
   {
    "id": "signin-invalid",
    "page": "Sign in",
    "state": "Wrong email or password",
-   "width": 1000,
-   "file": "signin-invalid-1000.png",
-   "hash": "cfbfc86adaaf23a2",
+   "width": 1180,
+   "file": "signin-invalid-1180.png",
+   "hash": "51757964b759bbaa",
    "changed": false,
    "overImage": 1,
-   "findings": []
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a.textlink> \"Buat akun\""
+   ]
   },
   {
    "id": "signin-invalid",
    "page": "Sign in",
    "state": "Wrong email or password",
-   "width": 720,
-   "file": "signin-invalid-720.png",
-   "hash": "f4855bb08f715578",
+   "width": 1024,
+   "file": "signin-invalid-1024.png",
+   "hash": "722bdb150866eafc",
    "changed": false,
    "overImage": 1,
    "findings": [
-    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+    "focus ring 1:1 (needs 3) on <a.textlink> \"Buat akun\""
+   ]
+  },
+  {
+   "id": "signin-invalid",
+   "page": "Sign in",
+   "state": "Wrong email or password",
+   "width": 768,
+   "file": "signin-invalid-768.png",
+   "hash": "cc41e9c9dafd42b6",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
+   ]
+  },
+  {
+   "id": "signin-invalid",
+   "page": "Sign in",
+   "state": "Wrong email or password",
+   "width": 430,
+   "file": "signin-invalid-430.png",
+   "hash": "ee031ffc3568c061",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
    ]
   },
   {
@@ -607,11 +935,11 @@
    "state": "Wrong email or password",
    "width": 390,
    "file": "signin-invalid-390.png",
-   "hash": "ba2879d506c28303",
+   "hash": "85c75507bc2efc5f",
    "changed": false,
    "overImage": 1,
    "findings": [
-    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
    ]
   },
   {
@@ -620,20 +948,46 @@
    "state": "Submitting",
    "width": 1440,
    "file": "signin-loading-1440.png",
-   "hash": "337e92c2df1602f6",
+   "hash": "fd46c73c1350b728",
    "changed": false,
    "overImage": 1,
    "findings": [
-    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
    ]
   },
   {
    "id": "signin-loading",
    "page": "Sign in",
    "state": "Submitting",
-   "width": 1000,
-   "file": "signin-loading-1000.png",
-   "hash": "3e3a2e95a80bcb18",
+   "width": 1180,
+   "file": "signin-loading-1180.png",
+   "hash": "fac612c7b0820f18",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
+   ]
+  },
+  {
+   "id": "signin-loading",
+   "page": "Sign in",
+   "state": "Submitting",
+   "width": 1024,
+   "file": "signin-loading-1024.png",
+   "hash": "840f6c421d14428d",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
+   ]
+  },
+  {
+   "id": "signin-loading",
+   "page": "Sign in",
+   "state": "Submitting",
+   "width": 768,
+   "file": "signin-loading-768.png",
+   "hash": "cf01c762838c6a52",
    "changed": false,
    "overImage": 1,
    "findings": []
@@ -642,9 +996,9 @@
    "id": "signin-loading",
    "page": "Sign in",
    "state": "Submitting",
-   "width": 720,
-   "file": "signin-loading-720.png",
-   "hash": "c47be5df80892fa2",
+   "width": 430,
+   "file": "signin-loading-430.png",
+   "hash": "05e28af10c2e001c",
    "changed": false,
    "overImage": 1,
    "findings": []
@@ -655,10 +1009,12 @@
    "state": "Submitting",
    "width": 390,
    "file": "signin-loading-390.png",
-   "hash": "210a543e04a91466",
+   "hash": "30ca5fbcdbf80058",
    "changed": false,
    "overImage": 1,
-   "findings": []
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
+   ]
   },
   {
    "id": "signin-session-expired",
@@ -666,35 +1022,63 @@
    "state": "Session ended at confirmation",
    "width": 1440,
    "file": "signin-session-expired-1440.png",
-   "hash": "90c1d0c98c575ddc",
+   "hash": "2acee3ce2dce604c",
    "changed": false,
    "overImage": 1,
    "findings": [
-    "focus ring 1:1 (needs 3) on <a.textlink> \"Create an account\""
+    "focus ring 1.12:1 (needs 3) on <a> \"Rakit PC\""
    ]
   },
   {
    "id": "signin-session-expired",
    "page": "Sign in",
    "state": "Session ended at confirmation",
-   "width": 1000,
-   "file": "signin-session-expired-1000.png",
-   "hash": "fd5eeabc42502098",
+   "width": 1180,
+   "file": "signin-session-expired-1180.png",
+   "hash": "3c212a463200daf8",
    "changed": false,
    "overImage": 1,
-   "findings": []
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
+   ]
   },
   {
    "id": "signin-session-expired",
    "page": "Sign in",
    "state": "Session ended at confirmation",
-   "width": 720,
-   "file": "signin-session-expired-720.png",
-   "hash": "45f640f72bd9fef9",
+   "width": 1024,
+   "file": "signin-session-expired-1024.png",
+   "hash": "b86c9eb847fe6f6e",
    "changed": false,
    "overImage": 1,
    "findings": [
-    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+    "focus ring 1:1 (needs 3) on <a.textlink> \"Buat akun\""
+   ]
+  },
+  {
+   "id": "signin-session-expired",
+   "page": "Sign in",
+   "state": "Session ended at confirmation",
+   "width": 768,
+   "file": "signin-session-expired-768.png",
+   "hash": "a0e7b160b1702c0f",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
+   ]
+  },
+  {
+   "id": "signin-session-expired",
+   "page": "Sign in",
+   "state": "Session ended at confirmation",
+   "width": 430,
+   "file": "signin-session-expired-430.png",
+   "hash": "e2fee403f1557dd9",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
    ]
   },
   {
@@ -703,11 +1087,11 @@
    "state": "Session ended at confirmation",
    "width": 390,
    "file": "signin-session-expired-390.png",
-   "hash": "096ae15fceecb838",
+   "hash": "374713a113f09967",
    "changed": false,
    "overImage": 1,
    "findings": [
-    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+    "focus ring 1:1 (needs 3) on <a.textlink> \"Buat akun\""
    ]
   },
   {
@@ -716,37 +1100,64 @@
    "state": "Ready",
    "width": 1440,
    "file": "signup-default-1440.png",
-   "hash": "1d09177a84f78284",
+   "hash": "cf1c9b47df21e794",
    "changed": false,
    "overImage": 1,
    "findings": [
-    "focus ring 1:1 (needs 3) on <a> \"BUILD A PC\""
+    "focus ring 1:1 (needs 3) on <a> \"RAKIT PC\""
    ]
   },
   {
    "id": "signup-default",
    "page": "Create account",
    "state": "Ready",
-   "width": 1000,
-   "file": "signup-default-1000.png",
-   "hash": "32e0aafe4dd9af9e",
+   "width": 1180,
+   "file": "signup-default-1180.png",
+   "hash": "8ea847db0984a538",
    "changed": false,
    "overImage": 1,
    "findings": [
-    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+    "focus ring 1:1 (needs 3) on <a.textlink> \"Masuk\"",
+    "focus ring 1:1 (needs 3) on <a> \"MASUK\""
    ]
   },
   {
    "id": "signup-default",
    "page": "Create account",
    "state": "Ready",
-   "width": 720,
-   "file": "signup-default-720.png",
-   "hash": "f9e8d76bfd59ab9d",
+   "width": 1024,
+   "file": "signup-default-1024.png",
+   "hash": "19a8c029144b41f9",
    "changed": false,
    "overImage": 1,
    "findings": [
-    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+    "focus ring 1:1 (needs 3) on <a.textlink> \"Masuk\""
+   ]
+  },
+  {
+   "id": "signup-default",
+   "page": "Create account",
+   "state": "Ready",
+   "width": 768,
+   "file": "signup-default-768.png",
+   "hash": "2b1dc661c17123e7",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
+   ]
+  },
+  {
+   "id": "signup-default",
+   "page": "Create account",
+   "state": "Ready",
+   "width": 430,
+   "file": "signup-default-430.png",
+   "hash": "1f1da8ed1ae4c37b",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
    ]
   },
   {
@@ -755,11 +1166,11 @@
    "state": "Ready",
    "width": 390,
    "file": "signup-default-390.png",
-   "hash": "eee91c118b26fb7d",
+   "hash": "104e9ef720e879f7",
    "changed": false,
    "overImage": 1,
    "findings": [
-    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+    "focus ring 1:1 (needs 3) on <a.textlink> \"Masuk\""
    ]
   },
   {
@@ -768,39 +1179,64 @@
    "state": "Submitted empty",
    "width": 1440,
    "file": "signup-validation-1440.png",
-   "hash": "47613eb0bbd9733f",
+   "hash": "4a8652c8a636e250",
    "changed": false,
    "overImage": 1,
    "findings": [
-    "focus ring 1:1 (needs 3) on <a> \"BUILD A PC\""
+    "focus ring 1:1 (needs 3) on <a> \"RAKIT PC\""
    ]
   },
   {
    "id": "signup-validation",
    "page": "Create account",
    "state": "Submitted empty",
-   "width": 1000,
-   "file": "signup-validation-1000.png",
-   "hash": "aa85eee8a90d76e5",
+   "width": 1180,
+   "file": "signup-validation-1180.png",
+   "hash": "f6ab5b1a3e5680db",
    "changed": false,
    "overImage": 1,
    "findings": [
-    "focus ring 1:1 (needs 3) on <a.textlink> \"Sign in\"",
-    "focus ring 1:1 (needs 3) on <a> \"BUILD A PC\""
+    "focus ring 1:1 (needs 3) on <a> \"RAKIT PC\""
    ]
   },
   {
    "id": "signup-validation",
    "page": "Create account",
    "state": "Submitted empty",
-   "width": 720,
-   "file": "signup-validation-720.png",
-   "hash": "ddf8d7ea60322fef",
+   "width": 1024,
+   "file": "signup-validation-1024.png",
+   "hash": "1fbb4d59029a20a1",
    "changed": false,
    "overImage": 1,
    "findings": [
-    "focus ring 1:1 (needs 3) on <a.textlink> \"Sign in\"",
-    "focus ring 1:1 (needs 3) on <a> \"BUILD A PC\""
+    "focus ring 1:1 (needs 3) on <a> \"RAKIT PC\""
+   ]
+  },
+  {
+   "id": "signup-validation",
+   "page": "Create account",
+   "state": "Submitted empty",
+   "width": 768,
+   "file": "signup-validation-768.png",
+   "hash": "d1e7087c600400d3",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a.textlink> \"Masuk\"",
+    "focus ring 1:1 (needs 3) on <a> \"RAKIT PC\""
+   ]
+  },
+  {
+   "id": "signup-validation",
+   "page": "Create account",
+   "state": "Submitted empty",
+   "width": 430,
+   "file": "signup-validation-430.png",
+   "hash": "ae0155aa1eb18028",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a.textlink> \"Masuk\""
    ]
   },
   {
@@ -809,11 +1245,11 @@
    "state": "Submitted empty",
    "width": 390,
    "file": "signup-validation-390.png",
-   "hash": "8bed8b5e08a4fee7",
+   "hash": "e2caa40b1e957db2",
    "changed": false,
    "overImage": 1,
    "findings": [
-    "focus ring 1:1 (needs 3) on <a.textlink> \"Sign in\""
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
    ]
   },
   {
@@ -822,37 +1258,64 @@
    "state": "Password does not meet the rule",
    "width": 1440,
    "file": "signup-password-1440.png",
-   "hash": "da6311186c71df51",
+   "hash": "0fb19a309d950c30",
    "changed": false,
    "overImage": 1,
    "findings": [
-    "focus ring 1:1 (needs 3) on <a> \"BUILD A PC\""
+    "focus ring 1:1 (needs 3) on <a> \"RAKIT PC\""
    ]
   },
   {
    "id": "signup-password",
    "page": "Create account",
    "state": "Password does not meet the rule",
-   "width": 1000,
-   "file": "signup-password-1000.png",
-   "hash": "418e834d79e860bf",
+   "width": 1180,
+   "file": "signup-password-1180.png",
+   "hash": "bb8944ae88c01ae3",
    "changed": false,
    "overImage": 1,
    "findings": [
-    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+    "focus ring 1:1 (needs 3) on <a.textlink> \"Masuk\"",
+    "focus ring 1:1 (needs 3) on <a> \"MASUK\""
    ]
   },
   {
    "id": "signup-password",
    "page": "Create account",
    "state": "Password does not meet the rule",
-   "width": 720,
-   "file": "signup-password-720.png",
-   "hash": "dea5da5da1c41d59",
+   "width": 1024,
+   "file": "signup-password-1024.png",
+   "hash": "c56b7e42857a0e24",
    "changed": false,
    "overImage": 1,
    "findings": [
-    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+    "focus ring 1:1 (needs 3) on <a.textlink> \"Masuk\""
+   ]
+  },
+  {
+   "id": "signup-password",
+   "page": "Create account",
+   "state": "Password does not meet the rule",
+   "width": 768,
+   "file": "signup-password-768.png",
+   "hash": "007ff2a3dfe751aa",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
+   ]
+  },
+  {
+   "id": "signup-password",
+   "page": "Create account",
+   "state": "Password does not meet the rule",
+   "width": 430,
+   "file": "signup-password-430.png",
+   "hash": "bea99bfcd03727da",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
    ]
   },
   {
@@ -861,11 +1324,11 @@
    "state": "Password does not meet the rule",
    "width": 390,
    "file": "signup-password-390.png",
-   "hash": "36e54a7e94d327e2",
+   "hash": "081173cadf1a296b",
    "changed": false,
    "overImage": 1,
    "findings": [
-    "focus ring 1:1 (needs 3) on <a.textlink> \"Sign in\""
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
    ]
   },
   {
@@ -874,39 +1337,63 @@
    "state": "Email already has an account",
    "width": 1440,
    "file": "signup-duplicate-1440.png",
-   "hash": "9b3171ad34769577",
+   "hash": "727b7a42324f994a",
    "changed": false,
    "overImage": 1,
    "findings": [
-    "focus ring 1:1 (needs 3) on <a> \"BUILD A PC\""
+    "focus ring 1:1 (needs 3) on <a> \"RAKIT PC\""
    ]
   },
   {
    "id": "signup-duplicate",
    "page": "Create account",
    "state": "Email already has an account",
-   "width": 1000,
-   "file": "signup-duplicate-1000.png",
-   "hash": "bb1f8202d3f61f61",
+   "width": 1180,
+   "file": "signup-duplicate-1180.png",
+   "hash": "d821f6ccd5f5231c",
    "changed": false,
    "overImage": 1,
    "findings": [
-    "focus ring 1:1 (needs 3) on <a.textlink> \"Sign in\"",
-    "focus ring 1:1 (needs 3) on <a> \"BUILD A PC\""
+    "focus ring 1:1 (needs 3) on <a> \"RAKIT PC\""
    ]
   },
   {
    "id": "signup-duplicate",
    "page": "Create account",
    "state": "Email already has an account",
-   "width": 720,
-   "file": "signup-duplicate-720.png",
-   "hash": "d7da3db8f31741b2",
+   "width": 1024,
+   "file": "signup-duplicate-1024.png",
+   "hash": "0d3ea39c17444f57",
    "changed": false,
    "overImage": 1,
    "findings": [
-    "focus ring 1:1 (needs 3) on <a.textlink> \"Sign in\"",
-    "focus ring 1:1 (needs 3) on <a> \"BUILD A PC\""
+    "focus ring 1:1 (needs 3) on <a.textlink> \"Masuk\""
+   ]
+  },
+  {
+   "id": "signup-duplicate",
+   "page": "Create account",
+   "state": "Email already has an account",
+   "width": 768,
+   "file": "signup-duplicate-768.png",
+   "hash": "140571c768adaf22",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
+   ]
+  },
+  {
+   "id": "signup-duplicate",
+   "page": "Create account",
+   "state": "Email already has an account",
+   "width": 430,
+   "file": "signup-duplicate-430.png",
+   "hash": "c6a0b6445235ae6a",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a.textlink> \"Masuk\""
    ]
   },
   {
@@ -915,11 +1402,11 @@
    "state": "Email already has an account",
    "width": 390,
    "file": "signup-duplicate-390.png",
-   "hash": "6f61104571c34779",
+   "hash": "2e25c6e0b0255bbf",
    "changed": false,
    "overImage": 1,
    "findings": [
-    "focus ring 1:1 (needs 3) on <a.textlink> \"Sign in\""
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
    ]
   },
   {
@@ -928,37 +1415,63 @@
    "state": "Complete build, ready to place",
    "width": 1440,
    "file": "review-default-1440.png",
-   "hash": "d6c96ecb00b0866b",
+   "hash": "b3d6ad15eeea1acc",
    "changed": false,
    "overImage": 0,
    "findings": [
-    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
    ]
   },
   {
    "id": "review-default",
    "page": "Order review",
    "state": "Complete build, ready to place",
-   "width": 1000,
-   "file": "review-default-1000.png",
-   "hash": "40b5684924612e81",
+   "width": 1180,
+   "file": "review-default-1180.png",
+   "hash": "839bc42ec817f2dc",
    "changed": false,
    "overImage": 0,
    "findings": [
-    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
    ]
   },
   {
    "id": "review-default",
    "page": "Order review",
    "state": "Complete build, ready to place",
-   "width": 720,
-   "file": "review-default-720.png",
-   "hash": "d6484b77c667a0e2",
+   "width": 1024,
+   "file": "review-default-1024.png",
+   "hash": "4de89864b9da973b",
    "changed": false,
    "overImage": 0,
    "findings": [
-    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
+   ]
+  },
+  {
+   "id": "review-default",
+   "page": "Order review",
+   "state": "Complete build, ready to place",
+   "width": 768,
+   "file": "review-default-768.png",
+   "hash": "e6b7fd469efd236d",
+   "changed": false,
+   "overImage": 0,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
+   ]
+  },
+  {
+   "id": "review-default",
+   "page": "Order review",
+   "state": "Complete build, ready to place",
+   "width": 430,
+   "file": "review-default-430.png",
+   "hash": "8aedcd9a0be9dff3",
+   "changed": false,
+   "overImage": 0,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
    ]
   },
   {
@@ -967,11 +1480,11 @@
    "state": "Complete build, ready to place",
    "width": 390,
    "file": "review-default-390.png",
-   "hash": "c59d4f42b018733d",
+   "hash": "fdb27bca0f957731",
    "changed": false,
    "overImage": 0,
    "findings": [
-    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
    ]
   },
   {
@@ -980,37 +1493,63 @@
    "state": "Placing the order",
    "width": 1440,
    "file": "review-submitting-1440.png",
-   "hash": "afbf100269b50644",
+   "hash": "6f0cc699f07fdae5",
    "changed": false,
    "overImage": 0,
    "findings": [
-    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
    ]
   },
   {
    "id": "review-submitting",
    "page": "Order review",
    "state": "Placing the order",
-   "width": 1000,
-   "file": "review-submitting-1000.png",
-   "hash": "8645166312e9d392",
+   "width": 1180,
+   "file": "review-submitting-1180.png",
+   "hash": "ece58051ced33f24",
    "changed": false,
    "overImage": 0,
    "findings": [
-    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
    ]
   },
   {
    "id": "review-submitting",
    "page": "Order review",
    "state": "Placing the order",
-   "width": 720,
-   "file": "review-submitting-720.png",
-   "hash": "2cf14cbabd8f74c8",
+   "width": 1024,
+   "file": "review-submitting-1024.png",
+   "hash": "8924a9394e7a73ca",
    "changed": false,
    "overImage": 0,
    "findings": [
-    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
+   ]
+  },
+  {
+   "id": "review-submitting",
+   "page": "Order review",
+   "state": "Placing the order",
+   "width": 768,
+   "file": "review-submitting-768.png",
+   "hash": "b5c973d163c6f8aa",
+   "changed": false,
+   "overImage": 0,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
+   ]
+  },
+  {
+   "id": "review-submitting",
+   "page": "Order review",
+   "state": "Placing the order",
+   "width": 430,
+   "file": "review-submitting-430.png",
+   "hash": "7dc308d83f986a5c",
+   "changed": false,
+   "overImage": 0,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
    ]
   },
   {
@@ -1019,11 +1558,11 @@
    "state": "Placing the order",
    "width": 390,
    "file": "review-submitting-390.png",
-   "hash": "fbb4ea673be5b648",
+   "hash": "62173f4518ce8aff",
    "changed": false,
    "overImage": 0,
    "findings": [
-    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
    ]
   },
   {
@@ -1032,37 +1571,63 @@
    "state": "A chosen part is gone at submit",
    "width": 1440,
    "file": "review-part-gone-1440.png",
-   "hash": "a143af69029a75f1",
+   "hash": "2cce95a482b0c3fb",
    "changed": false,
    "overImage": 0,
    "findings": [
-    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
    ]
   },
   {
    "id": "review-part-gone",
    "page": "Order review",
    "state": "A chosen part is gone at submit",
-   "width": 1000,
-   "file": "review-part-gone-1000.png",
-   "hash": "32c026941bc12963",
+   "width": 1180,
+   "file": "review-part-gone-1180.png",
+   "hash": "105e7cd78b91fb72",
    "changed": false,
    "overImage": 0,
    "findings": [
-    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
    ]
   },
   {
    "id": "review-part-gone",
    "page": "Order review",
    "state": "A chosen part is gone at submit",
-   "width": 720,
-   "file": "review-part-gone-720.png",
-   "hash": "74f922a6e6f9a410",
+   "width": 1024,
+   "file": "review-part-gone-1024.png",
+   "hash": "066c5b234f895c79",
    "changed": false,
    "overImage": 0,
    "findings": [
-    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
+   ]
+  },
+  {
+   "id": "review-part-gone",
+   "page": "Order review",
+   "state": "A chosen part is gone at submit",
+   "width": 768,
+   "file": "review-part-gone-768.png",
+   "hash": "b1c7f259b40e3c25",
+   "changed": false,
+   "overImage": 0,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
+   ]
+  },
+  {
+   "id": "review-part-gone",
+   "page": "Order review",
+   "state": "A chosen part is gone at submit",
+   "width": 430,
+   "file": "review-part-gone-430.png",
+   "hash": "f7b8afbc78434659",
+   "changed": false,
+   "overImage": 0,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
    ]
   },
   {
@@ -1071,11 +1636,11 @@
    "state": "A chosen part is gone at submit",
    "width": 390,
    "file": "review-part-gone-390.png",
-   "hash": "e726b822c27e6693",
+   "hash": "bb6342542f300758",
    "changed": false,
    "overImage": 0,
    "findings": [
-    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
    ]
   },
   {
@@ -1084,37 +1649,63 @@
    "state": "Session ended at confirm",
    "width": 1440,
    "file": "review-session-expired-1440.png",
-   "hash": "39d7dc025b5bc55e",
+   "hash": "c7b035a5f3e972ce",
    "changed": false,
    "overImage": 0,
    "findings": [
-    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
    ]
   },
   {
    "id": "review-session-expired",
    "page": "Order review",
    "state": "Session ended at confirm",
-   "width": 1000,
-   "file": "review-session-expired-1000.png",
-   "hash": "77b42973508b9d3c",
+   "width": 1180,
+   "file": "review-session-expired-1180.png",
+   "hash": "ac9dccd2df4f0422",
    "changed": false,
    "overImage": 0,
    "findings": [
-    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
    ]
   },
   {
    "id": "review-session-expired",
    "page": "Order review",
    "state": "Session ended at confirm",
-   "width": 720,
-   "file": "review-session-expired-720.png",
-   "hash": "982fb90f28fb528b",
+   "width": 1024,
+   "file": "review-session-expired-1024.png",
+   "hash": "480814b37c422414",
    "changed": false,
    "overImage": 0,
    "findings": [
-    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
+   ]
+  },
+  {
+   "id": "review-session-expired",
+   "page": "Order review",
+   "state": "Session ended at confirm",
+   "width": 768,
+   "file": "review-session-expired-768.png",
+   "hash": "d313ea42b1da4ae9",
+   "changed": false,
+   "overImage": 0,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
+   ]
+  },
+  {
+   "id": "review-session-expired",
+   "page": "Order review",
+   "state": "Session ended at confirm",
+   "width": 430,
+   "file": "review-session-expired-430.png",
+   "hash": "6b24ad0c9a03dadb",
+   "changed": false,
+   "overImage": 0,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
    ]
   },
   {
@@ -1123,11 +1714,11 @@
    "state": "Session ended at confirm",
    "width": 390,
    "file": "review-session-expired-390.png",
-   "hash": "62ae18ad37375bbe",
+   "hash": "03dc7e0b2499c843",
    "changed": false,
    "overImage": 0,
    "findings": [
-    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+    "focus ring 1:1 (needs 3) on <a> \"Rakit PC\""
    ]
   },
   {
@@ -1136,7 +1727,7 @@
    "state": "Order placed",
    "width": 1440,
    "file": "confirm-default-1440.png",
-   "hash": "bd4dfebffdc654ff",
+   "hash": "09a37692de35b2b4",
    "changed": false,
    "overImage": 0,
    "findings": []
@@ -1145,9 +1736,9 @@
    "id": "confirm-default",
    "page": "Order confirmation",
    "state": "Order placed",
-   "width": 1000,
-   "file": "confirm-default-1000.png",
-   "hash": "d75e78b3b737dc7b",
+   "width": 1180,
+   "file": "confirm-default-1180.png",
+   "hash": "7d81046fcf2ee441",
    "changed": false,
    "overImage": 0,
    "findings": []
@@ -1156,9 +1747,31 @@
    "id": "confirm-default",
    "page": "Order confirmation",
    "state": "Order placed",
-   "width": 720,
-   "file": "confirm-default-720.png",
-   "hash": "7364f18876ede4b7",
+   "width": 1024,
+   "file": "confirm-default-1024.png",
+   "hash": "1ff2843708a506fb",
+   "changed": false,
+   "overImage": 0,
+   "findings": []
+  },
+  {
+   "id": "confirm-default",
+   "page": "Order confirmation",
+   "state": "Order placed",
+   "width": 768,
+   "file": "confirm-default-768.png",
+   "hash": "87c9b570661eed40",
+   "changed": false,
+   "overImage": 0,
+   "findings": []
+  },
+  {
+   "id": "confirm-default",
+   "page": "Order confirmation",
+   "state": "Order placed",
+   "width": 430,
+   "file": "confirm-default-430.png",
+   "hash": "d35add9dd6c95acc",
    "changed": false,
    "overImage": 0,
    "findings": []
@@ -1169,7 +1782,73 @@
    "state": "Order placed",
    "width": 390,
    "file": "confirm-default-390.png",
-   "hash": "c4043ac5e2b4e707",
+   "hash": "c10ef941caa959b7",
+   "changed": false,
+   "overImage": 0,
+   "findings": []
+  },
+  {
+   "id": "notfound-default",
+   "page": "Not found",
+   "state": "Unknown address",
+   "width": 1440,
+   "file": "notfound-default-1440.png",
+   "hash": "e76c8a1fb3996662",
+   "changed": false,
+   "overImage": 0,
+   "findings": []
+  },
+  {
+   "id": "notfound-default",
+   "page": "Not found",
+   "state": "Unknown address",
+   "width": 1180,
+   "file": "notfound-default-1180.png",
+   "hash": "03b13373069b534f",
+   "changed": false,
+   "overImage": 0,
+   "findings": []
+  },
+  {
+   "id": "notfound-default",
+   "page": "Not found",
+   "state": "Unknown address",
+   "width": 1024,
+   "file": "notfound-default-1024.png",
+   "hash": "f27478427e85fdb4",
+   "changed": false,
+   "overImage": 0,
+   "findings": []
+  },
+  {
+   "id": "notfound-default",
+   "page": "Not found",
+   "state": "Unknown address",
+   "width": 768,
+   "file": "notfound-default-768.png",
+   "hash": "1414c10861c5b662",
+   "changed": false,
+   "overImage": 0,
+   "findings": []
+  },
+  {
+   "id": "notfound-default",
+   "page": "Not found",
+   "state": "Unknown address",
+   "width": 430,
+   "file": "notfound-default-430.png",
+   "hash": "9bef36ef1341d2b6",
+   "changed": false,
+   "overImage": 0,
+   "findings": []
+  },
+  {
+   "id": "notfound-default",
+   "page": "Not found",
+   "state": "Unknown address",
+   "width": 390,
+   "file": "notfound-default-390.png",
+   "hash": "c442caa0b846a2ce",
    "changed": false,
    "overImage": 0,
    "findings": []

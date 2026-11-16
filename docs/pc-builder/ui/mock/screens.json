@@ -168,6 +168,13 @@
       "state": "Order placed",
       "route": "/order-confirmation",
       "user": "in"
+    },
+    {
+      "id": "notfound-default",
+      "page": "Not found",
+      "state": "Unknown address",
+      "route": "*",
+      "user": "guest"
     }
   ],
   "anchors": [

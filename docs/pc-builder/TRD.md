@@ -1,7 +1,7 @@
 ---
 feature_code: pc-builder
 service: compzy
-locked_version: 1
+locked_version: 2
 last_updated: 2026-11-16
 ---
 
@@ -18,19 +18,28 @@ frontend (`compzy-fe`) that renders the Builder, Sign in, Create account, Order
 review and Confirmation screens, reverse-proxied to the API on one origin by
 nginx.
 
-Seven routes under `/api/v1` carry the product: the parts catalogue, register,
-sign in, sign out, the signed-in customer, order submission and one order read.
-The catalogue is public; order submission and the order read require a valid
+The v2 revision adds one thing to the live v1 app: the interface switches
+between English and Indonesian on every page, a first-time visitor sees
+Indonesian, a visitor's choice is remembered on the device, and a signed-in
+customer's language is stored with their account. It adds one column, one
+migration batch and one authenticated endpoint; it keeps the API single-language
+on the wire and puts every localized string in the frontend.
+
+Eight routes under `/api/v1` carry the product: the parts catalogue, register,
+sign in, sign out, the signed-in customer, that customer's language, order
+submission and one order read. The catalogue is public; the account routes,
+the language change, order submission and the order read require a valid
 session, and an order read is scoped to its owner in the SQL itself. There is no
 sign-up confirmation mail, no admin, no saved or named build, no order history,
 no search, filter or pagination, and no third party of any kind.
 
 Data is six domain tables — `categories`, `parts`, `customers`, `sessions`,
 `orders`, `order_items` — plus the migration runner's bookkeeping, created by
-four migration batches. The catalogue is seeded: 7 fixed categories and 21 parts
-with real rupiah prices. There is no `builds` table: a build belongs to a
-browser, kept in `localStorage`, and the API only validates a submitted set of
-part ids.
+five migration batches (`0005` adds `customers.preferred_language` and
+`updated_at` to the four v1 batches). The catalogue is seeded: 7 fixed
+categories and 21 parts with real rupiah prices. There is no `builds` table: a
+build belongs to a browser, kept in `localStorage`, and the API only validates a
+submitted set of part ids.
 
 Two constraints shape the build and are not open questions: the manager's stack
 decision (Go without `nexcommon`, a separate frontend without `nexcomponent`)
@@ -70,16 +79,27 @@ any house UI layer.
 - Wire Prometheus once on an internal listener with route-pattern labels and
   three business counters; publish only the frontend port, and keep `/metrics`
   off the public origin.
-- Keep the interface English-only, with every string in a message catalogue on
-  each side, and format money once, in the browser, as "Rp 12.500.000".
+- Store exactly one interface language per account — `en` or `id`, never empty —
+  set from the switcher at sign-up and changeable only by that signed-in
+  customer through `PUT /api/v1/auth/me/language`; every account that predates
+  the column is Indonesian by the migration's default, and a stored value that
+  is somehow not one of the two is coerced to Indonesian on read so it never
+  blocks a sign-in.
+- Render every customer-visible string in the frontend from one of two bundled
+  dictionaries, in the language the customer chose (account value, then the
+  device's `compzy.lang.v1`, then Indonesian), translating API refusals by
+  their stable `code`; the API keeps its English messages and gains no second
+  dictionary, no `Accept-Language` handling and no per-request translation.
+  Product, brand and model names and rupiah amounts read identically in both
+  languages, and money is formatted once, in the browser, as "Rp 12.500.000".
 
 ## Technology Stack
 
 | Area | Tool | Purpose |
 |---|---|---|
-| Backend language/runtime | Go 1.23 | Standard library `net/http` with ServeMux method/path patterns and one small JSON method dispatcher — seven routes do not justify a router dependency. |
+| Backend language/runtime | Go 1.23 | Standard library `net/http` with ServeMux method/path patterns and one small JSON method dispatcher — eight routes do not justify a router dependency. |
 | Shared libraries | none | `nexcommon` is deliberately excluded by the manager's decision; the service is self-contained. |
-| Frontend | React 18 + Vite (JavaScript) + Ant Design 5 | Five screens and a header; `react-router` 6, no state library (two contexts), no `nexcomponent`. |
+| Frontend | React 18 + Vite (JavaScript) + Ant Design 5 | Five screens and a header; `react-router` 6, no state library (four small contexts), no `nexcomponent`, no i18n library — two static dictionaries and a locale context are enough. |
 | Persistence | PostgreSQL 16 + `pgx` v5 | Parameterized queries only; no ORM. |
 | Migrations | Embedded SQL + a small Go runner | `embed.FS`, `schema_migrations`, one transaction per file, advisory lock at startup — no migration framework. |
 | Passwords | `golang.org/x/crypto/bcrypt`, cost 12, over a SHA-256 pre-hash | Removes bcrypt's 72-byte ceiling so the full 128 allowed characters matter. |
