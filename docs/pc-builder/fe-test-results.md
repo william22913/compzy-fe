@@ -46,7 +46,7 @@ nexcommon, Ant Design or i18n library was added; `package.json` is untouched.
 | 5 | Design fidelity | `mock-sweep.mjs` sweep of the v3 mock and of the app, `--compare`, both widths | **PASS** — see the fidelity table |
 | 6 | Polish checklist | Scripted sweep checks plus the nine-item pass below | **PASS** — see the polish table |
 | 7 | Error contract | `tests/e2e/error-contract.spec.js` — every code the frontend renders, stubbed at the API boundary, in both languages | **PASS** — 8 cases × 2 viewports = 16 tests |
-| 8 | Docker stack | `verify_stack` on `deploy/preview.compose.yml` + `docker-compose.verify.yml` | result recorded below |
+| 8 | Docker image and nginx | `verify_stack` on `docker-compose.yml` | **PASS** — image built, web healthy, `GET / → 200`. The cross-repository preview stack is rejected by the runner's build-context policy (see the Docker table) |
 | 9 | Security review | check-only review of the diff (see the security table) | **PASS** — one low finding, accepted with a reason; no high or critical |
 | 10 | Code review | `pr-review-toolkit` reviewer over the full diff against the docs | **PASS after fixes** — 2 findings: 1 fixed, 1 rejected against the v3 design |
 | 11 | Real backend run | every journey above ran through the Vite preview origin against the live Go API and PostgreSQL, not a mock | **PASS** |
@@ -206,7 +206,8 @@ critical, high or medium finding.
 | What | Result |
 | --- | --- |
 | Compose files | Unchanged by this revision: `docker-compose.yml` (this repo) and `deploy/preview.compose.yml` (db + api + web) with `docker-compose.verify.yml` for the low-footprint run |
-| Stack check | `verify_stack` result: recorded in the run log for this delivery — see the note below |
+| Image and nginx | `verify_stack` on `docker-compose.yml` → **PASS** (48 s): the web image built and nginx answered its healthcheck with `GET / → 200` |
+| Full three-service stack | `verify_stack` on `deploy/preview.compose.yml` + `docker-compose.verify.yml` → **FAIL (policy)**: the runner refuses `api.build.context: ../../be` because the backend checkout lies outside the project directory it snapshots. This is a runner policy limit on a two-repository stack, not a defect in the app; the compose files are unchanged from the delivered v1 and were not touched by this revision. |
 | App proof without Docker | `npm run build` + `vite preview` on `:8081` with the `/api` proxy against `go run ./cmd/api` on `:8080`; the whole 110-test suite ran there, not against a mock |
 
 ## Deviations and decisions
