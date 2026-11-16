@@ -1,0 +1,70 @@
+# The whole PC Builder on one machine: database, API and this frontend, wired
+# by compose service name. Meant for the verification runner and for a local
+# demo, which is why it is small. It expects compzy-be checked out next to
+# compzy-fe:
+#
+#   compzy/
+#     compzy-be/
+#     compzy-fe/
+#
+# From the folder that holds both:
+#   docker compose -f compzy-fe/deploy/preview.compose.yml \
+#                  -f compzy-fe/docker-compose.verify.yml up -d --build
+#
+# The shipped stack is docker-compose.yml (this repo) plus compzy-be's own
+# docker-compose.yml. This file only exists to run both together.
+name: compzy-preview
+
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: compzy
+      POSTGRES_PASSWORD: compzy
+      POSTGRES_DB: compzy
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U compzy -d compzy"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  api:
+    build: ../../compzy-be
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      APP_ENV: development
+      PORT: "8080"
+      DATABASE_URL: postgres://compzy:compzy@db:5432/compzy?sslmode=disable
+      DATABASE_MAX_CONNS: "5"
+      APP_ORIGIN: http://localhost:8081
+      COOKIE_SECURE: "false"
+      SESSION_TTL_HOURS: "720"
+      AUTH_RATE_LIMIT_PER_MIN: "60"
+      ORDER_RATE_LIMIT_PER_MIN: "30"
+      METRICS_ADDR: ":9090"
+      TRUST_PROXY: "false"
+      LOG_LEVEL: info
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:8080/healthz"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+      start_period: 10s
+
+  web:
+    build: ..
+    depends_on:
+      api:
+        condition: service_healthy
+    environment:
+      API_UPSTREAM: http://api:8080
+    expose:
+      - "80"
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1/"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+      start_period: 5s
