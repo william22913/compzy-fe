@@ -1,6 +1,7 @@
-import en from '../../locales';
+import { useT } from '../../store/LanguageContext';
 
 export function AuthLayout({ eyebrow, title, lede, notice, foot, caption, flip, children }) {
+  const t = useT();
   return (
     <main className="main">
       <div className="split">
@@ -13,7 +14,7 @@ export function AuthLayout({ eyebrow, title, lede, notice, foot, caption, flip, 
           <p className="form__foot">{foot}</p>
         </div>
         <figure className={`split__media${flip ? ' flip' : ''}`}>
-          <img src="/assets/img/auth.webp" alt={en.auth.imageAlt} width="960" height="640" />
+          <img src="/assets/img/auth.webp" alt={t.auth.imageAlt} width="960" height="640" />
           <figcaption>{caption}</figcaption>
         </figure>
       </div>

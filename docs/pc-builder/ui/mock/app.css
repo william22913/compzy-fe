@@ -270,6 +270,7 @@ table {
   font-size: var(--fs-label);
   letter-spacing: 0.18em;
   text-transform: uppercase;
+  white-space: nowrap;
   padding-block: 6px;
   border-bottom: 1px solid transparent;
 }
@@ -294,6 +295,81 @@ table {
   text-transform: uppercase;
   text-decoration: underline;
   text-underline-offset: 3px;
+}
+
+/* language switcher: the one control the language revision adds to the chrome.
+   Two labelled choices on a wide header; the same choices in a compact picker
+   where the header is narrow. Both sit in the header's right cluster, in the
+   same place signed in and signed out. */
+.lang {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  flex: none;
+}
+.lang__opt {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s2);
+  min-height: 32px;
+  padding-block: 6px;
+  font-size: var(--fs-label);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: inherit;
+  background: none;
+  border: 0;
+  border-bottom: var(--hair) solid transparent;
+  cursor: pointer;
+}
+.lang__opt:hover,
+.lang__opt[aria-pressed='true'] {
+  border-bottom-color: var(--ink);
+}
+.lang__opt[aria-pressed='true']::before {
+  content: '';
+  flex: none;
+  width: var(--s2);
+  height: var(--s2);
+  background: var(--accent);
+}
+.lang__sep {
+  width: var(--hair);
+  height: var(--s3);
+  background: var(--line-soft);
+}
+.lang__pick {
+  display: none;
+  position: relative;
+  flex: none;
+}
+.lang__pick select {
+  appearance: none;
+  min-height: 44px;
+  padding: 0 var(--s5) 0 var(--s2);
+  font: inherit;
+  font-size: var(--fs-label);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: inherit;
+  background: none;
+  border: 0;
+  /* the accent rule marks this as the language control, not another nav link */
+  border-bottom: var(--hair) solid var(--accent);
+  cursor: pointer;
+}
+.lang__pick::after {
+  content: '';
+  position: absolute;
+  right: var(--s3);
+  top: 50%;
+  width: var(--s2);
+  height: var(--s2);
+  border-right: var(--hair) solid currentColor;
+  border-bottom: var(--hair) solid currentColor;
+  transform: translateY(-70%) rotate(45deg);
+  pointer-events: none;
 }
 /* muted text on the night surface has to stay readable */
 .night .eyebrow,
@@ -324,6 +400,17 @@ table {
 .page.night .nav a:hover,
 .page.night .nav a[aria-current='page'] {
   border-bottom-color: var(--on-night);
+}
+.page.night .lang__opt:hover,
+.page.night .lang__opt[aria-pressed='true'] {
+  border-bottom-color: var(--on-night);
+}
+.page.night .lang__sep {
+  background: var(--line-on-night);
+}
+.page.night .lang__pick select {
+  /* the accent rule is the language control's mark on paper and on night alike */
+  border-bottom-color: var(--accent);
 }
 .page.night .ftr {
   border-top: var(--hair) solid var(--line-on-night);
@@ -1077,6 +1164,29 @@ table {
   grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
 }
 
+/* not found: the catch-all route. It sits on the page grid like every other page,
+   in a column wide enough that both languages break their headline in two lines. */
+.nf {
+  max-width: 44rem;
+  margin-inline: 0;
+  padding-block: var(--s9) var(--s10);
+}
+.nf .eyebrow {
+  display: block;
+}
+.nf h1 {
+  font-size: var(--fs-d1);
+  line-height: 0.95;
+  text-transform: uppercase;
+  margin-top: var(--s4);
+}
+.nf .lede {
+  margin-top: var(--s5);
+}
+.nf__actions {
+  margin-top: var(--s7);
+}
+
 /* review */
 .review {
   display: grid;
@@ -1101,7 +1211,7 @@ table {
 }
 .orow {
   display: grid;
-  grid-template-columns: 120px minmax(0, 1fr) auto;
+  grid-template-columns: 136px minmax(0, 1fr) auto;
   gap: var(--s4);
   align-items: baseline;
   padding: var(--s4) 0;
@@ -1114,6 +1224,10 @@ table {
   letter-spacing: 0.14em;
   color: var(--muted);
   margin-top: 2px;
+}
+/* a CSS-drawn label, so it switches language off the document's lang */
+html[lang='id'] .orow--optional .orow__cat::after {
+  content: 'opsional';
 }
 .orow__cat {
   font-size: var(--fs-nano);
@@ -1476,6 +1590,14 @@ table {
   :root {
     --aside: 330px;
   }
+  /* the header runs out of room for two language names before the page does */
+  .lang {
+    display: none;
+  }
+  .lang__pick {
+    display: inline-flex;
+    align-items: center;
+  }
   .builder,
   .review {
     gap: var(--s7);
@@ -1599,6 +1721,21 @@ table {
     max-width: 220px;
   }
 }
+@media (max-width: 768px) {
+  /* between the tablet header and the phone header the picker needs a little more
+     room: the header gap closes by one step and the picker drops to the nano size. */
+  .hdr__in {
+    gap: var(--s5);
+  }
+  .lang__pick select {
+    font-size: var(--fs-nano);
+    letter-spacing: 0.1em;
+    padding-right: var(--s4);
+  }
+  .lang__pick::after {
+    right: var(--s2);
+  }
+}
 @media (max-width: 720px) {
   :root {
     --fs-hero: clamp(2.75rem, 12vw, 4rem);
@@ -1624,6 +1761,18 @@ table {
   }
   .hdr .who {
     display: none;
+  }
+  /* the compact picker keeps the full two names in its list, the code on the bar */
+  .lang__pick select {
+    font-size: var(--fs-nano);
+    letter-spacing: 0.1em;
+    padding-right: var(--s5);
+  }
+  .lang__pick::after {
+    right: var(--s2);
+  }
+  .nf {
+    padding-block: var(--s7) var(--s8);
   }
   .hero__body {
     padding-block: var(--s7) var(--s8);
@@ -1734,9 +1883,32 @@ table {
 }
 
 @media (max-width: 430px) {
+  /* the phone header: the picker keeps the full two names in its list. */
+  .lang__pick select {
+    font-size: var(--fs-tiny);
+    letter-spacing: 0.06em;
+    padding-right: var(--s3);
+  }
+  .lang__pick::after {
+    right: 0;
+  }
   .order-total {
     display: grid;
     gap: var(--s2);
+  }
+}
+
+@media (max-width: 380px) {
+  /* narrowest phones: the header tightens rather than the picker leaving the gutter */
+  .hdr__in {
+    gap: var(--s2);
+  }
+  .lang__pick select {
+    letter-spacing: 0;
+    padding: 0 var(--s2) 0 0;
+  }
+  .lang__pick::after {
+    right: 0;
   }
 }
 

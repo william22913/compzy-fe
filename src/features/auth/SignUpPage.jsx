@@ -5,10 +5,11 @@ import { Notice } from '../../components/Notice';
 import { formatRupiah } from '../../helpers/money';
 import { safeReturn, signInHref } from '../../helpers/returnTo';
 import { validateSignUp } from '../../helpers/validation';
-import en, { fmt } from '../../locales';
+import { fmt, lookup } from '../../locales';
 import { useAuth } from '../../store/AuthContext';
 import { useBuild } from '../../store/BuildContext';
 import { useCatalogue } from '../../store/CatalogueContext';
+import { useLanguage, useT } from '../../store/LanguageContext';
 import { AuthLayout } from './AuthLayout';
 
 const FIELD_NAMES = { full_name: 'fullName', email: 'email', password: 'password' };
@@ -16,7 +17,9 @@ const FIELD_NAMES = { full_name: 'fullName', email: 'email', password: 'password
 export function SignUpPage() {
   const { status, register } = useAuth();
   const { status: catalogueStatus } = useCatalogue();
+  const { lang } = useLanguage();
   const build = useBuild();
+  const t = useT();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const returnTo = searchParams.get('return');
@@ -35,8 +38,10 @@ export function SignUpPage() {
 
   const showBuild = catalogueStatus === 'ready' && build.selectedCount > 0;
 
-  function errorText(value) {
-    return en.auth.fieldErrors[value] || value;
+  // The dictionary's own message, keyed by the API's stable `fields[].code`;
+  // the server's English sentence is never shown on an Indonesian page.
+  function errorText(key) {
+    return t.auth.fieldErrors[key] || t.auth.genericFieldError;
   }
 
   async function handleSubmit(event) {
@@ -48,7 +53,13 @@ export function SignUpPage() {
 
     setSubmitting(true);
     try {
-      await register({ fullName: fullName.trim(), email: email.trim(), password });
+      // The language on screen at this moment is the account's language.
+      await register({
+        fullName: fullName.trim(),
+        email: email.trim(),
+        password,
+        preferredLanguage: lang,
+      });
     } catch (error) {
       if (error.code === 'EMAIL_TAKEN') {
         setErrors({ email: 'duplicate' });
@@ -56,17 +67,28 @@ export function SignUpPage() {
         const mapped = {};
         for (const item of error.fields) {
           const key = FIELD_NAMES[item.field];
-          if (key) mapped[key] = item.message;
+          if (key) mapped[key] = item.code;
         }
         if (Object.keys(mapped).length > 0) setErrors(mapped);
-        else setFormError({ tone: 'error', title: en.auth.genericTitle, body: error.message });
+        else {
+          setFormError({
+            tone: 'error',
+            titleKey: 'auth.genericTitle',
+            bodyKey: 'auth.genericBody',
+            requestId: error.requestId,
+          });
+        }
       } else if (error.code === 'RATE_LIMITED') {
-        setFormError({ tone: 'error', title: en.auth.rateLimitedTitle, body: en.auth.rateLimitedBody });
+        setFormError({
+          tone: 'error',
+          titleKey: 'auth.rateLimitedTitle',
+          bodyKey: 'auth.rateLimitedBody',
+        });
       } else {
         setFormError({
           tone: 'error',
-          title: en.auth.genericTitle,
-          body: en.auth.genericBody,
+          titleKey: 'auth.genericTitle',
+          bodyKey: 'auth.genericBody',
           requestId: error.requestId,
         });
       }
@@ -77,17 +99,17 @@ export function SignUpPage() {
 
   return (
     <AuthLayout
-      eyebrow={en.auth.signUp.eyebrow}
-      title={en.auth.signUp.title}
-      lede={en.auth.signUp.lede}
-      caption={en.auth.signUp.caption}
+      eyebrow={t.auth.signUp.eyebrow}
+      title={t.auth.signUp.title}
+      lede={t.auth.signUp.lede}
+      caption={t.auth.signUp.caption}
       flip
       notice={
         <>
           {showBuild && (
-            <Notice tone="info" title={en.auth.buildSavedTitle}>
+            <Notice tone="info" title={t.auth.buildSavedTitle}>
               <p>
-                {fmt(en.auth.signUp.buildSavedBody, {
+                {fmt(t.auth.signUp.buildSavedBody, {
                   count: build.selectedCount,
                   total: formatRupiah(build.total),
                 })}
@@ -95,10 +117,10 @@ export function SignUpPage() {
             </Notice>
           )}
           {formError && (
-            <Notice tone={formError.tone} title={formError.title}>
-              <p>{formError.body}</p>
+            <Notice tone={formError.tone} title={lookup(t, formError.titleKey)}>
+              <p>{lookup(t, formError.bodyKey)}</p>
               {formError.requestId && (
-                <p>{fmt(en.auth.reference, { requestId: formError.requestId })}</p>
+                <p>{fmt(t.auth.reference, { requestId: formError.requestId })}</p>
               )}
             </Notice>
           )}
@@ -106,17 +128,22 @@ export function SignUpPage() {
       }
       foot={
         <>
-          {en.auth.signUp.foot}{' '}
+          {t.auth.signUp.foot}{' '}
           <Link className="textlink" to={signInTo}>
-            {en.auth.signUp.footAction}
+            {t.auth.signUp.footAction}
           </Link>
         </>
       }
     >
-      <form className="form" noValidate aria-busy={submitting ? 'true' : undefined} onSubmit={handleSubmit}>
+      <form
+        className="form"
+        noValidate
+        aria-busy={submitting ? 'true' : undefined}
+        onSubmit={handleSubmit}
+      >
         <div className={`field${errors.fullName ? ' is-invalid' : ''}`}>
           <label className="field__label" htmlFor="signup-name">
-            {en.auth.fullName}
+            {t.auth.fullName}
           </label>
           <input
             id="signup-name"
@@ -140,7 +167,7 @@ export function SignUpPage() {
 
         <div className={`field${errors.email ? ' is-invalid' : ''}`}>
           <label className="field__label" htmlFor="signup-email">
-            {en.auth.email}
+            {t.auth.email}
           </label>
           <input
             id="signup-email"
@@ -160,11 +187,11 @@ export function SignUpPage() {
               <span>
                 {errors.email === 'duplicate' ? (
                   <>
-                    {en.auth.signUp.duplicateLead}{' '}
+                    {t.auth.signUp.duplicateLead}{' '}
                     <Link className="textlink" to={signInTo}>
-                      {en.auth.signUp.duplicateAction}
+                      {t.auth.signUp.duplicateAction}
                     </Link>
-                    {en.auth.signUp.duplicateTail}
+                    {t.auth.signUp.duplicateTail}
                   </>
                 ) : (
                   errorText(errors.email)
@@ -176,7 +203,7 @@ export function SignUpPage() {
 
         <div className={`field${errors.password ? ' is-invalid' : ''}`}>
           <label className="field__label" htmlFor="signup-password">
-            {en.auth.password}
+            {t.auth.password}
           </label>
           <input
             id="signup-password"
@@ -199,14 +226,14 @@ export function SignUpPage() {
             </span>
           ) : (
             <span className="hint" id="signup-password-hint">
-              {en.auth.passwordHint}
+              {t.auth.passwordHint}
             </span>
           )}
         </div>
 
         <div className="form__actions">
           <button className="btn btn--block" type="submit" disabled={submitting}>
-            {submitting ? en.auth.signUp.submitting : en.auth.signUp.submit}
+            {submitting ? t.auth.signUp.submitting : t.auth.signUp.submit}
           </button>
         </div>
       </form>

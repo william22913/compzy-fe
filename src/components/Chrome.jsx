@@ -1,10 +1,13 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../store/AuthContext';
+import { useLanguage, useT } from '../store/LanguageContext';
 import { StarIcon } from './Icons';
-import en from '../locales';
+import { LanguageSwitcher } from './LanguageSwitcher';
 
 export function Header() {
   const { status, user, signOut } = useAuth();
+  const { saveError } = useLanguage();
+  const t = useT();
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const signed = status === 'member';
@@ -25,35 +28,35 @@ export function Header() {
   return (
     <header className="hdr">
       <div className="hdr__in">
-        <Link className="brand" to="/" aria-label={en.chrome.brandAria}>
+        <Link className="brand" to="/" aria-label={t.chrome.brandAria}>
           <span className="brand__disc">
             <StarIcon />
           </span>
-          <span className="brand__word">{en.chrome.brand}</span>
+          <span className="brand__word">{t.chrome.brand}</span>
         </Link>
 
-        <nav className="nav" aria-label={en.chrome.navLabel}>
+        <nav className="nav" aria-label={t.chrome.navLabel}>
           <Link to="/" aria-current={pathname === '/' ? 'page' : undefined}>
-            {en.chrome.build}
+            {t.chrome.build}
           </Link>
           {signed && !onConfirmation && (
             <Link
               to="/order-review"
               aria-current={pathname === '/order-review' ? 'page' : undefined}
             >
-              {en.chrome.review}
+              {t.chrome.review}
             </Link>
           )}
           {signed ? (
             <button type="button" onClick={handleSignOut}>
-              {en.chrome.signOut}
+              {t.chrome.signOut}
             </button>
           ) : (
             <Link
               to="/sign-in"
               aria-current={pathname === '/sign-in' ? 'page' : undefined}
             >
-              {en.chrome.signIn}
+              {t.chrome.signIn}
             </Link>
           )}
         </nav>
@@ -63,13 +66,21 @@ export function Header() {
             <span className="name">{user.fullName}</span>
           </span>
         )}
+
+        <LanguageSwitcher />
       </div>
+      {saveError && (
+        <p className="lang-warn wrap" role="status">
+          {t.language.saveFailed}
+        </p>
+      )}
     </header>
   );
 }
 
 export function Footer() {
   const { status } = useAuth();
+  const t = useT();
   const { pathname } = useLocation();
   // The confirmation page is a closed chapter: the footer offers the way back
   // in, not the member links, as the design has it.
@@ -83,18 +94,18 @@ export function Footer() {
             <span className="brand__disc">
               <StarIcon />
             </span>
-            <span className="brand__word">{en.chrome.brand}</span>
+            <span className="brand__word">{t.chrome.brand}</span>
           </p>
-          <p className="ftr__note">{en.chrome.footerNote}</p>
-          <span className="label">{en.chrome.footerQuickLinks}</span>
-          <nav className="ftr__links" aria-label={en.chrome.footerLinksLabel}>
-            <Link to="/">{en.chrome.footerBuild}</Link>
+          <p className="ftr__note">{t.chrome.footerNote}</p>
+          <span className="label">{t.chrome.footerQuickLinks}</span>
+          <nav className="ftr__links" aria-label={t.chrome.footerLinksLabel}>
+            <Link to="/">{t.chrome.footerBuild}</Link>
             {signed ? (
-              <Link to="/order-review">{en.chrome.footerReview}</Link>
+              <Link to="/order-review">{t.chrome.footerReview}</Link>
             ) : (
               <>
-                <Link to="/sign-in">{en.chrome.footerSignIn}</Link>
-                <Link to="/sign-up">{en.chrome.footerCreate}</Link>
+                <Link to="/sign-in">{t.chrome.footerSignIn}</Link>
+                <Link to="/sign-up">{t.chrome.footerCreate}</Link>
               </>
             )}
           </nav>
@@ -103,21 +114,21 @@ export function Footer() {
           <span className="ftr__star">
             <StarIcon />
           </span>
-          <h2>{en.chrome.footerHeading}</h2>
-          <p className="ftr__note">{en.chrome.footerBody}</p>
+          <h2>{t.chrome.footerHeading}</h2>
+          <p className="ftr__note">{t.chrome.footerBody}</p>
         </div>
         <div className="ftr__photo">
-          <img src="/assets/img/footer.webp" alt={en.chrome.footerPhotoAlt} />
+          <img src="/assets/img/footer.webp" alt={t.chrome.footerPhotoAlt} />
         </div>
       </div>
       <div className="ftr__bar">
-        <span>{en.chrome.footerBottom}</span>
-        <nav aria-label={en.chrome.footerBarLabel}>
-          <Link to="/">{en.chrome.footerBarBuild}</Link>
+        <span>{t.chrome.footerBottom}</span>
+        <nav aria-label={t.chrome.footerBarLabel}>
+          <Link to="/">{t.chrome.footerBarBuild}</Link>
           {signed ? (
-            <Link to="/order-review">{en.chrome.footerBarReview}</Link>
+            <Link to="/order-review">{t.chrome.footerBarReview}</Link>
           ) : (
-            <Link to="/sign-in">{en.chrome.footerBarSignIn}</Link>
+            <Link to="/sign-in">{t.chrome.footerBarSignIn}</Link>
           )}
         </nav>
       </div>

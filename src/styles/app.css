@@ -262,6 +262,8 @@ table {
   display: inline-flex;
   align-items: center;
   min-height: 32px;
+  /* The switcher sits beside these; a two-word label must not split. */
+  white-space: nowrap;
   font-size: var(--fs-label);
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -1700,6 +1702,192 @@ table {
   .order-total {
     display: grid;
     gap: var(--s2);
+  }
+}
+
+/* language switcher: the one control the language revision adds to the chrome.
+   Two labelled choices on a wide header, the same choices in a compact picker
+   where the header is narrow. Both sit in the header's right cluster, in the
+   same place signed in and signed out. */
+.lang {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  flex: none;
+}
+.lang__opt {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s2);
+  min-height: 32px;
+  padding-block: 6px;
+  font-size: var(--fs-label);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: inherit;
+  background: none;
+  border: 0;
+  border-bottom: var(--hair) solid transparent;
+  cursor: pointer;
+}
+.lang__opt:hover,
+.lang__opt[aria-pressed='true'] {
+  border-bottom-color: var(--ink);
+}
+.lang__opt[aria-pressed='true']::before {
+  content: '';
+  flex: none;
+  width: var(--s2);
+  height: var(--s2);
+  background: var(--accent);
+}
+.lang__sep {
+  width: var(--hair);
+  height: var(--s3);
+  background: var(--line-soft);
+}
+.lang__pick {
+  display: none;
+  position: relative;
+  flex: none;
+}
+.lang__pick select {
+  appearance: none;
+  min-height: 44px;
+  padding: 0 var(--s5) 0 var(--s2);
+  font: inherit;
+  font-size: var(--fs-label);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: inherit;
+  background: none;
+  border: 0;
+  /* the accent rule marks this as the language control, not another nav link */
+  border-bottom: var(--hair) solid var(--accent);
+  cursor: pointer;
+}
+.lang__pick::after {
+  content: '';
+  position: absolute;
+  right: var(--s3);
+  top: 50%;
+  width: var(--s2);
+  height: var(--s2);
+  border-right: var(--hair) solid currentColor;
+  border-bottom: var(--hair) solid currentColor;
+  transform: translateY(-70%) rotate(45deg);
+  pointer-events: none;
+}
+/* only ever drawn when a signed-in language change could not be saved */
+.lang-warn {
+  margin: 0 auto;
+  padding-block: 6px var(--s3);
+  font-size: var(--fs-label);
+  letter-spacing: 0.06em;
+  line-height: 1.5;
+  color: var(--accent-text);
+  border-top: var(--hair) solid var(--line-soft);
+}
+.page.night .lang-warn {
+  color: var(--on-night);
+  border-top-color: var(--line-on-night);
+}
+.page.night .lang__opt:hover,
+.page.night .lang__opt[aria-pressed='true'] {
+  border-bottom-color: var(--on-night);
+}
+.page.night .lang__sep {
+  background: var(--line-on-night);
+}
+.page.night .lang__pick select {
+  /* the accent rule is the language control's mark on paper and on night alike */
+  border-bottom-color: var(--accent);
+}
+
+/* not found: the catch-all route. It sits on the page grid like every other page,
+   in a column wide enough that both languages break their headline in two lines. */
+.nf {
+  max-width: 44rem;
+  margin-inline: 0;
+  padding-block: var(--s9) var(--s10);
+}
+.nf .eyebrow {
+  display: block;
+}
+.nf h1 {
+  font-size: var(--fs-d1);
+  line-height: 0.95;
+  text-transform: uppercase;
+  margin-top: var(--s4);
+}
+.nf .lede {
+  margin-top: var(--s5);
+}
+.nf__actions {
+  margin-top: var(--s7);
+}
+
+@media (max-width: 1180px) {
+  /* the header runs out of room for two language names before the page does */
+  .lang {
+    display: none;
+  }
+  .lang__pick {
+    display: inline-flex;
+    align-items: center;
+  }
+}
+@media (max-width: 768px) {
+  /* between the tablet header and the phone header the picker needs a little more
+     room: the header gap closes by one step and the picker drops to the nano size. */
+  .hdr__in {
+    gap: var(--s5);
+  }
+  .lang__pick select {
+    font-size: var(--fs-nano);
+    letter-spacing: 0.1em;
+    padding-right: var(--s4);
+  }
+  .lang__pick::after {
+    right: var(--s2);
+  }
+}
+@media (max-width: 720px) {
+  .lang__pick select {
+    font-size: var(--fs-nano);
+    letter-spacing: 0.1em;
+    padding-right: var(--s5);
+  }
+  .lang__pick::after {
+    right: var(--s2);
+  }
+  .nf {
+    padding-block: var(--s7) var(--s8);
+  }
+}
+@media (max-width: 430px) {
+  /* the phone header: the picker keeps the full two names in its list. */
+  .lang__pick select {
+    font-size: var(--fs-tiny);
+    letter-spacing: 0.06em;
+    padding-right: var(--s3);
+  }
+  .lang__pick::after {
+    right: 0;
+  }
+}
+@media (max-width: 380px) {
+  /* narrowest phones: the header tightens rather than the picker leaving the gutter */
+  .hdr__in {
+    gap: var(--s2);
+  }
+  .lang__pick select {
+    letter-spacing: 0;
+    padding: 0 var(--s2) 0 0;
+  }
+  .lang__pick::after {
+    right: 0;
   }
 }
 

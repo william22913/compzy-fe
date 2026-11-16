@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect, test } from './base';
 import { PASSWORD, registerThroughApi, signInThroughUi, uniqueEmail } from './helpers';
 
 test('sign-in shows its own errors before it calls the API', async ({ page }) => {

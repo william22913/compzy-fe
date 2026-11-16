@@ -5,16 +5,18 @@ import { Notice } from '../../components/Notice';
 import { formatRupiah } from '../../helpers/money';
 import { safeReturn, signUpHref } from '../../helpers/returnTo';
 import { validateSignIn } from '../../helpers/validation';
-import en, { fmt } from '../../locales';
+import { fmt, lookup } from '../../locales';
 import { useAuth } from '../../store/AuthContext';
 import { useBuild } from '../../store/BuildContext';
 import { useCatalogue } from '../../store/CatalogueContext';
+import { useT } from '../../store/LanguageContext';
 import { AuthLayout } from './AuthLayout';
 
 export function SignInPage() {
   const { status, signIn } = useAuth();
   const { status: catalogueStatus } = useCatalogue();
   const build = useBuild();
+  const t = useT();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const returnTo = searchParams.get('return');
@@ -32,6 +34,12 @@ export function SignInPage() {
 
   const showBuild = catalogueStatus === 'ready' && build.selectedCount > 0;
 
+  // Every message is the dictionary's own, keyed by the API's stable code —
+  // never the server's English sentence (REQ-049).
+  function fieldText(key) {
+    return t.auth.fieldErrors[key] || t.auth.genericFieldError;
+  }
+
   async function handleSubmit(event) {
     event.preventDefault();
     const nextErrors = validateSignIn({ email, password });
@@ -44,23 +52,44 @@ export function SignInPage() {
       await signIn({ email: email.trim(), password });
     } catch (error) {
       if (error.code === 'INVALID_CREDENTIALS') {
-        setFormError({ tone: 'error', title: en.auth.signIn.invalidTitle, body: en.auth.signIn.invalidBody });
+        setFormError({
+          tone: 'error',
+          titleKey: 'auth.signIn.invalidTitle',
+          bodyKey: 'auth.signIn.invalidBody',
+        });
         // Keep the address, ask for the password again, as the contract says.
         setPassword('');
-      } else if (error.code === 'VALIDATION_FAILED' && Array.isArray(error.fields) && error.fields.length > 0) {
+      } else if (
+        error.code === 'VALIDATION_FAILED' &&
+        Array.isArray(error.fields) &&
+        error.fields.length > 0
+      ) {
         const mapped = {};
         for (const item of error.fields) {
-          if (item.field === 'email' || item.field === 'password') mapped[item.field] = item.message;
+          if (item.field === 'email' || item.field === 'password') {
+            mapped[item.field] = item.code;
+          }
         }
         if (Object.keys(mapped).length > 0) setErrors(mapped);
-        else setFormError({ tone: 'error', title: en.auth.genericTitle, body: error.message });
+        else {
+          setFormError({
+            tone: 'error',
+            titleKey: 'auth.genericTitle',
+            bodyKey: 'auth.genericBody',
+            requestId: error.requestId,
+          });
+        }
       } else if (error.code === 'RATE_LIMITED') {
-        setFormError({ tone: 'error', title: en.auth.rateLimitedTitle, body: en.auth.rateLimitedBody });
+        setFormError({
+          tone: 'error',
+          titleKey: 'auth.rateLimitedTitle',
+          bodyKey: 'auth.rateLimitedBody',
+        });
       } else {
         setFormError({
           tone: 'error',
-          title: en.auth.genericTitle,
-          body: en.auth.genericBody,
+          titleKey: 'auth.genericTitle',
+          bodyKey: 'auth.genericBody',
           requestId: error.requestId,
         });
       }
@@ -71,16 +100,16 @@ export function SignInPage() {
 
   return (
     <AuthLayout
-      eyebrow={en.auth.signIn.eyebrow}
-      title={en.auth.signIn.title}
-      lede={en.auth.signIn.lede}
-      caption={en.auth.signIn.caption}
+      eyebrow={t.auth.signIn.eyebrow}
+      title={t.auth.signIn.title}
+      lede={t.auth.signIn.lede}
+      caption={t.auth.signIn.caption}
       notice={
         <>
           {showBuild && (
-            <Notice tone="info" title={en.auth.buildSavedTitle}>
+            <Notice tone="info" title={t.auth.buildSavedTitle}>
               <p>
-                {fmt(en.auth.signIn.buildSavedBody, {
+                {fmt(t.auth.signIn.buildSavedBody, {
                   count: build.selectedCount,
                   total: formatRupiah(build.total),
                 })}
@@ -88,15 +117,15 @@ export function SignInPage() {
             </Notice>
           )}
           {expired && (
-            <Notice tone="info" title={en.auth.signIn.sessionTitle}>
-              <p>{en.auth.signIn.sessionBody}</p>
+            <Notice tone="info" title={t.auth.signIn.sessionTitle}>
+              <p>{t.auth.signIn.sessionBody}</p>
             </Notice>
           )}
           {formError && (
-            <Notice tone={formError.tone} title={formError.title}>
-              <p>{formError.body}</p>
+            <Notice tone={formError.tone} title={lookup(t, formError.titleKey)}>
+              <p>{lookup(t, formError.bodyKey)}</p>
               {formError.requestId && (
-                <p>{fmt(en.auth.reference, { requestId: formError.requestId })}</p>
+                <p>{fmt(t.auth.reference, { requestId: formError.requestId })}</p>
               )}
             </Notice>
           )}
@@ -104,17 +133,22 @@ export function SignInPage() {
       }
       foot={
         <>
-          {en.auth.signIn.foot}{' '}
+          {t.auth.signIn.foot}{' '}
           <Link className="textlink" to={signUpHref(returnTo)}>
-            {en.auth.signIn.footAction}
+            {t.auth.signIn.footAction}
           </Link>
         </>
       }
     >
-      <form className="form" noValidate aria-busy={submitting ? 'true' : undefined} onSubmit={handleSubmit}>
+      <form
+        className="form"
+        noValidate
+        aria-busy={submitting ? 'true' : undefined}
+        onSubmit={handleSubmit}
+      >
         <div className={`field${errors.email ? ' is-invalid' : ''}`}>
           <label className="field__label" htmlFor="signin-email">
-            {en.auth.email}
+            {t.auth.email}
           </label>
           <input
             id="signin-email"
@@ -131,14 +165,14 @@ export function SignInPage() {
           {errors.email && (
             <span className="error" id="signin-email-err">
               <AlertIcon />
-              <span>{en.auth.fieldErrors[errors.email] || errors.email}</span>
+              <span>{fieldText(errors.email)}</span>
             </span>
           )}
         </div>
 
         <div className={`field${errors.password ? ' is-invalid' : ''}`}>
           <label className="field__label" htmlFor="signin-password">
-            {en.auth.password}
+            {t.auth.password}
           </label>
           <input
             id="signin-password"
@@ -155,14 +189,14 @@ export function SignInPage() {
           {errors.password && (
             <span className="error" id="signin-password-err">
               <AlertIcon />
-              <span>{en.auth.fieldErrors[errors.password] || errors.password}</span>
+              <span>{fieldText(errors.password)}</span>
             </span>
           )}
         </div>
 
         <div className="form__actions">
           <button className="btn btn--block" type="submit" disabled={submitting}>
-            {submitting ? en.auth.signIn.submitting : en.auth.signIn.submit}
+            {submitting ? t.auth.signIn.submitting : t.auth.signIn.submit}
           </button>
         </div>
       </form>

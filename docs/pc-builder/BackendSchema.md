@@ -1,7 +1,7 @@
 ---
 feature_code: pc-builder
 service: compzy
-locked_version: 1
+locked_version: 2
 last_updated: 2026-11-16
 ---
 
@@ -13,14 +13,20 @@ last_updated: 2026-11-16
 ## Overview
 
 Six domain tables and one infrastructure table, all created by this feature
-because both repositories are greenfield: `categories`, `parts`, `customers`,
+because both repositories were greenfield: `categories`, `parts`, `customers`,
 `sessions`, `orders`, `order_items` and the migration runner's
 `schema_migrations`. `compzy/ERD.md` shows the combined picture.
 
+The v2 revision changes one table: `customers` gains `preferred_language`
+(`text NOT NULL DEFAULT 'id'`, `CHECK` for exactly `en` or `id`) and an
+`updated_at` timestamp for its one new writer. It adds no table, no
+relationship, no index and no change to the four v1 migration batches — the
+new column arrives in one appended batch, `0005_customers_preferred_language.sql`.
+
 The model is deliberately small. There is no `builds` table, no order-history
-join table, no role or permission table and no third-party identity: a build
-belongs to a browser, an order belongs to a customer, and there are only two
-roles.
+join table, no role or permission table, no preferences table and no
+third-party identity: a build belongs to a browser, an order belongs to a
+customer, an account's language is one column, and there are only two roles.
 
 ## Data Model
 
@@ -37,6 +43,12 @@ roles.
   so case-insensitive uniqueness holds by construction rather than by a `citext`
   extension or a functional index. `password_hash` carries a `CHECK (length >
   0)`; the value is bcrypt (cost 12) over a SHA-256 of the password.
+  `preferred_language` is `text NOT NULL DEFAULT 'id'` with
+  `CONSTRAINT customers_preferred_language_check CHECK (preferred_language IN ('en','id'))`:
+  the two-value domain lives in the database, the constant default is also the
+  backfill for accounts created before the column existed (they are Indonesian),
+  and the column is never filtered or sorted on, so it carries no index.
+  `updated_at` is written by the one statement that changes the language.
 - `sessions` — one row per sign-in, keyed by the natural key `token_hash`
   (`bytea`, SHA-256 of the raw cookie token, CHECK `octet_length = 32`).
   `customer_id` is a real foreign key with `CASCADE`: deleting an account takes
@@ -62,10 +74,11 @@ roles.
   column and no business status column, because v1 has no workflow beyond
   "submitted".
 - Every foreign key and every filtered column is indexed, with explicit names:
-  `parts_category_code_idx`, `parts_category_name_key`, `customers_email_key`,
+  `parts_category_code_name_key` (also the FK child index), `customers_email_key`,
   `sessions_customer_id_idx`, `sessions_expires_at_idx`, `orders_customer_id_idx`,
-  `orders_created_at_idx`, `order_items_order_id_idx`, plus the primary keys.
-  There is no search, filter or sort in v1, so nothing else is indexed.
+  `order_items_part_id_idx`, plus the primary keys. There is no search, filter
+  or sort in v1, so nothing else is indexed — including `customers.preferred_language`
+  and `customers.updated_at`.
 
 ## Access Control
 
@@ -76,7 +89,7 @@ convenience only.
 | Table | Read | Write |
 |---|---|---|
 | `categories`, `parts` | public read through `GET /api/v1/catalogue` only | seed and migrations only; no runtime write route exists |
-| `customers` | the caller's own row only (`GET /api/v1/auth/me`) | self-registration only |
+| `customers` | the caller's own row only (`GET /api/v1/auth/me`) | self-registration, and the caller's own `preferred_language` afterwards (`PUT /api/v1/auth/me/language`) — always the session's own row, never an id from the request |
 | `sessions` | the caller's own session by `token_hash` | created at register/sign-in, deleted at sign-out |
 | `orders`, `order_items` | the caller's own orders only — `WHERE id = $1 AND customer_id = $2` in the SQL, `404` otherwise, never `403` | insert only, from one validated submission transaction |
 | `schema_migrations` | the runner | the runner |

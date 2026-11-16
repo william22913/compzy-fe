@@ -1,18 +1,18 @@
 {
- "featureDir": "/data/users/792eaa7e-c281-4b72-bcb5-2b5b9253e8a6/sessions/6a9531a0-91c7-409a-8865-1831f2ea2d4d/docs/compzy/feature/pc-builder",
- "mockDir": "/data/users/792eaa7e-c281-4b72-bcb5-2b5b9253e8a6/sessions/6a9531a0-91c7-409a-8865-1831f2ea2d4d/docs/compzy/feature/pc-builder/ui/mock",
+ "featureDir": "/data/users/792eaa7e-c281-4b72-bcb5-2b5b9253e8a6/sessions/83218f1b-84de-4268-8a36-cdbbb7bc989c/docs-wt/compzy/feature/pc-builder",
+ "mockDir": "/data/users/792eaa7e-c281-4b72-bcb5-2b5b9253e8a6/sessions/83218f1b-84de-4268-8a36-cdbbb7bc989c/docs-wt/compzy/feature/pc-builder/ui/mock",
  "ok": true,
  "summary": {
   "pages": {
-   "covered": 5,
-   "total": 5
+   "covered": 6,
+   "total": 6
   },
   "reqs": {
-   "covered": 40,
-   "total": 40
+   "covered": 55,
+   "total": 55
   },
   "deadLinks": 0,
-  "screens": 23
+  "screens": 24
  },
  "findings": []
 }

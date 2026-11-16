@@ -1,80 +1,93 @@
-# Design mock review — round 1
+# Design mock review — round 1, language revision
 
-Feature: `compzy / pc-builder`. Artifact: `ui/mock/` (23 screens). Reference: the manager's one
-Dribbble shot, used for visual language only. Two rounds in all: one full scan (three reviewer lanes
-started together — look on the builder screens, look on the auth/review/confirmation screens, docs)
+Feature: `compzy / pc-builder`. Artifact: `ui/mock/` (24 screens — the 23 of v1 plus the not-found
+page). Reference: the manager's one Dribbble shot, used for visual language only. Two rounds in all:
+one full scan of four reviewer lanes started together — look on the builder screens, look on the
+auth / review / confirmation / not-found screens, docs accuracy, Indonesian copy and i18n behaviour —
 and one re-check after the fix pass.
 
-## What round 1 found, and what changed
+The v1 look is approved and merged (PR #77). This pass changes two things only: a language switcher on
+every page, and Indonesian copy for every string. Everything the scan found is judged against that:
+a layout, colour, picture or component that moved is a defect, and so is Indonesian that reads like a
+translation rather than copy.
 
-### Builder lane
+## What the scan used
+
+- 72 full-page screenshots: all 24 screens at 1440 and 390 in Indonesian, and all 24 at 1440 in
+  English for comparison.
+- `mock-coverage.mjs`: 6/6 pages, 55/55 REQs, 0 dead links.
+- `mock-sweep.mjs`: 24 screens × 6 widths, reduced motion, 7 distinct findings — all the known
+  focus-ring probe artifact (Open design gaps #2).
+- The dictionary extracted entry by entry (142 entries: 135 `ID`, 1 `HTML_ID`, 6 `PAGE_ID`), plus a
+  browser walk of all 24 screens checking the ID→EN→ID round trip, the translated attributes, the
+  document title and `<html lang>`, and that a switch keeps a chosen part, the total and a half-typed
+  email.
+
+## Builder lane — 9 screens
 
 | Finding | Fix, and how it was checked |
 |---|---|
-| Two filled buttons competed in the hero and the panel, and the hero control pointed at `#cat-cpu`, which no longer existed once 23 screens began sharing one document | The hero control is now a bordered `Start choosing` / `Keep choosing` **button** that scrolls to the first category in script. `mock-sweep` reports no dead link; the control is 48 px tall with a 2 px ink ring |
-| On a short viewport the sticky panel ran past the fold and took `Checkout` with it | The panel is capped at `calc(100dvh - 128px)` with a pinned head, total, need line and `Checkout`; only the seven rows scroll. Probed at 1440 × 900: panel 772 px, rows 459 px in a 645 px box, Checkout at 1810 |
-| Between 721 and 1000 px the build had no usable home | The build bar and its sheet start at 1000 px; the sheet sits above the bar (`bottom: 68px`, z 50 over 45) and reports `aria-expanded`. Opened and closed at 1000 / 720 / 390 |
-| A chosen card said its state twice (inset frame plus an "In your build" label) | Label removed; the frame and the `Remove` control carry it. `mock.js` no longer touches a per-card data-state |
-| The order rows were `div`s inside a `div`; the gone row was set in uppercase micro type and was hard to read | The rows are a `ul` of `li`; the gone row keeps the struck part name and price in normal case with a `No longer available` tag |
-| The confirmation's reference read as a clipped heading | It is now a `Order` label above `CZ-1042` at `--fs-num`, in its own block. Element zooms at 3× show complete figures; nothing clips |
-| The seal's ring text overflowed its path (357 px on a 251 px path) | Ring text shortened to "Compzy · Built part by part ·", measured 218 px on a 251 px path, and made `aria-hidden` |
-| The submitting button was unreadable (~1.7:1) and was a fake disabled span | A real `disabled` button with a muted fill: paper on `#63605a` ≈ 5.6:1 |
-| The loading hero showed `Rp 0`, which read as a real total | Loading and error show `-`; the error adds `Try again` |
-| Tap targets below 24 px on phones | `.nav a`, `.textlink`, `.prow__remove` and the footer links take 32–44 px minimum height at ≤ 720 px |
+| The seventh category had no dictionary entry: `Motherboard` stayed English in the category head, the panel row and the review rows across 12 screens | `Motherboard` → `Papan Induk`. Re-read in the browser: all seven category heads, all seven panel rows and all seven review rows are Indonesian, in both the title and the attribute text |
+| The footer's rule-of-the-store paragraph ran to four lines and left `pengiriman.` alone on the last | Copy shortened to `Tujuh kategori, satu komponen tiap kategori, kartu grafis opsional. Harga dalam rupiah, tanpa pajak dan biaya kirim.` — now three full lines |
+| The panel's fine print wrapped with `Indonesia.` orphaned on a second line (English fits one) | `Tanpa pajak dan biaya pengiriman. Harga dalam rupiah.` — one line at 1440 |
+| The checkout-refusal notice doubled the obligation (`kategori wajib harus terisi`) and ended on a one-word line at 390 | `setiap kategori wajib berisi satu komponen`; the optional sentence shortened to `Kartu grafis opsional.` |
+| The facts strip's fourth cell ran to three lines at 390, ending on `lengkap` | `rakitan menengah lengkap` — two lines, matching its pair |
+| The footer bar's tagline broke with only `KOMPONEN` on its second line | `PC kustom, dirakit komponen demi komponen`, here and in the footer note |
+| Signing out said `masukkan kembali akun Anda` — not idiomatic | `Rakitan Anda masih tersimpan. Untuk melanjutkan pemesanan, silakan masuk kembali.` |
+| The hero and footer read `satu komponen di masing-masing` — translationese | `masing-masing satu komponen` |
 
-### Auth / review lane
+Confirmed and unchanged: the switcher is native on all nine — same 32 px baseline as the nav, 11 px
+Archivo uppercase with `.14em` tracking, the vermilion square and the ink underline on the active
+language, one hairline separator, no box. Photos, seal, ribbons, colours and rules are the v1 ones.
+
+## Auth / review / confirmation / not-found lane — 15 screens
 
 | Finding | Fix, and how it was checked |
 |---|---|
-| Create account stayed two columns at ≤ 1000 px: `.split:has(.flip)` outranked the media query | The flipped split is reset inside the 1000 px block. Page `scrollWidth` equals the viewport at 390 / 720 / 1000 for every auth screen |
-| The duplicate-email state lost its "Sign in instead" link and the error's flex row broke the sentence | The link is back inside the sentence, the message is wrapped in one flex item, and at ≤ 720 px the in-sentence link stays inline instead of taking a 44 px tap box |
-| The review's footnote, the aside's role and the confirmation's meta list did not match the built screens | Text and rows re-derived from `index.html`: the aside carries "This is the total that will be recorded with the order.", the seal is `aria-hidden`, the meta shows Placed and Parts, and the confirmation repeats the seven rows and the final total |
+| The order rows printed `OPTIONAL` under the graphics card in Indonesian: the label is drawn by CSS (`.orow--optional .orow__cat::after`), so the dictionary never saw it | An `html[lang='id']` rule supplies `opsional`. Measured on `#review-default` in both languages: `"optional"` / `"opsional"` |
+| `PENYIMPANAN (SSD)` wrapped to two lines in the review's 120 px category column, the only two-line label, nudging the row rhythm | Column widened to 136 px; all seven category labels now sit on one line at 1440 and 390 (the optional row's cell is 32 px tall at 1440 because it carries the `opsional` line under the name) |
+| The not-found page was a 62 ch column centred in the page, so it read as an accidental inset block, its Indonesian headline broke `HALAMAN / INI TIDAK / ADA` and the CTA said `perakit` where the nav says `Rakit` | The page now sits on the page grid in a 44 rem column (`margin-inline: 0`) and its headline breaks in two lines in both languages — `HALAMAN INI / TIDAK ADA`, `THIS PAGE / IS NOT HERE`, measured at 1440 and 390. The action is `Kembali ke Rakit PC`; the brand link's `aria-label` follows (`compzy, kembali ke Rakit PC`) |
+| The narrow picker's hairline rule was the same as the nav's current-page rule, so `BAHASA INDONESIA ▾` read as another link | The picker's rule takes the accent (paper, and on-night on the confirmation), the same mark the wide form gives the active language. Measured in both languages |
+| Sign-in said the build `kembali bersama Anda` — literal; the ended-session line was unclear; the confirmation said `Simpan referensi ini.` | `Rakitan Anda akan tersedia kembali setelah Anda masuk.` / `…setelah Anda membuat akun.`; `Masuk kembali untuk menyelesaikan pesanan ini. Rakitan Anda akan tersedia kembali dan tidak ada pesanan yang dibuat dua kali.`; `Simpan nomor pesanan ini.` |
+| The review's lede (`termasuk kartu grafis`) implied the graphics card was required | `Satu komponen di setiap kategori wajib, ditambah kartu grafis.` |
+| The confirmation's footnote used `diambil` and `detail` — literal | `Tidak ada pembayaran yang diproses dan tidak ada data pengiriman yang diminta. Pesanan sudah tercatat di toko.` |
 
-### Docs lane
+Confirmed and unchanged: the English screens still read as the approved v1 apart from the inserted
+switcher; the split layouts, the night confirmation and the footer are untouched by the revision.
+
+## Docs lane
 
 | Finding | Fix |
 |---|---|
-| The map and brief described `.rise` entrance motion (MO-001 / MO-008) that the mock no longer has | Both files now state the real motion set: two loops (ribbons 64 s, seal 40 s), 180 ms feedback, skeleton shimmer, and nothing entering or fading |
-| Tokens `--night-raised`, `--fs-d3` and `--dur-slow` were documented and no longer existed; three raw `50%` radii were not tokens | The unused tokens are deleted; the three circles became `--r-full: 50%`; the token tables list what `:root` holds |
-| Type claims were off: `--fs-d1` was credited with the category titles, `--fs-total` with the hero total, and the confirmation's reference with a 720 px drop | Measured on the built mock: hero 92.16 px at 1440 and 46.8 px at 390, page H1 77.76 px, category title 46.08 px (it is `--fs-d2`), hero total 38.88 px (`--fs-s2`), `--fs-total` only on the review's final total, reference 36 px at every width |
-| Evidence cited paths outside the feature and a stale finding count | The focus-ring evidence is `ui/review/focus-probe.txt`, generated from the built mock; the sweep's own output is `ui/review/sweep.json`; every path in the docs points into this feature |
-| The brief mirrored the split wrongly (both forms "form left, photo right") | Sign in is form left / photo right; Create account is the mirror. Confirmed in the markup (`flip-body` + `flip` on the sign-up screen only) |
+| The not-found action was described as bordered; the mock draws `.btn` (filled ink) | Both docs say filled `Back to the builder` |
+| The narrow picker was described as `nano` at 1180 px down; it is the label size to 769 px, nano from 768, tiny at 430 down | Corrected, with the accent rule and the chevron |
+| The active language's underline was called ink everywhere; on the night confirmation it is `--on-night` | Corrected |
+| “The mock redraws text nodes, not the DOM” understated the switch: the mock also rewrites `alt` / `aria-label` / `placeholder` / `title`, re-renders the hero and refreshes the panel rows | Corrected |
+| The control's form (two buttons above 1180, the platform picker below, the flip) was stated as fact; the spec asks only for a switcher with two choices | Now marked `assumed` in Open design gaps #8 and in **Language**, and the Indonesian wording likewise awaits `/ui-preview` |
+| Three rows v1 tagged `assumed` (REQ-011, REQ-030, REQ-041) were re-tagged `derived` without saying so | The mapping intro now says it and the reason: each is the state the spec makes visible, not a choice of this pass |
+| The sweep evidence in the docs did not match the stored run (23 screens × 4 widths, motion on) | Re-run on the final mock: 24 screens × 6 widths, reduced motion, stored in `ui/review/sweep.json`, and the paragraph quotes that run |
+| Assumption 19 still said `Motherboard` stayed in English; the docs never mentioned `.nav a { white-space: nowrap }` or the review row's 136 px column | All three corrected |
+| The polish review named `round-1.md` for v1's scorecard, which this revision now uses, and repeated its fidelity sentence | v1's is kept as `round-1-v1.md`, the fidelity sentence appears once, the evidence list names this revision's two scorecards |
 
-## Re-check (round 2, mechanical)
+## Copy lane
 
-| Check | Result |
-|---|---|
-| `mock-sweep.mjs`, 23 screens × 4 widths (1440 / 1000 / 720 / 390) | No console error, failed request, blank screen, overflow, broken image, contrast failure, dead link or DRIFT. 6 distinct findings, all focus-ring readings on links below the fold |
-| Focus rings, measured after scrolling into view (`focus-probe.txt`) | Footer links `rgb(243,242,238)` on `rgb(10,10,10)` = 17.67:1; form-foot, field-error and header links `rgb(20,20,20)` on `rgb(243,242,238)` = 16.45:1. The sweep's 1:1 readings are its probe landing above the element, not the ring |
-| `mock-coverage.mjs` | 5/5 pages, 40/40 mapped REQs, 0 dead links |
-| `fidelity-sheet.mjs` | `#builder-empty` ↔ `hero.png`: **PASS** — palette 0.207, textured area 76 % of the reference's, layout 0.21 |
-| Overflow and tap targets at 390 / 720 / 1000 / 1180 / 1440 | No screen scrolls sideways at any width. The only elements past the frame edge are the drifting ribbon tracks, which are wider than the page by design and clipped. One control measures 14 px tall: the in-sentence `Sign in instead` link inside the duplicate-email error, kept inline on purpose (WCAG 2.5.8's inline exception) |
+142 dictionary entries, 0 dead keys, 0 no-op keys. The one actionable gap (`Motherboard`) is fixed.
+The 24-screen round trip is lossless in both directions, the document title and `<html lang>` follow
+the switch, and a switch keeps a chosen part, the total and a half-typed email. The only strings that
+stay identical in both languages are the ones that must: product model names, `Rp` amounts, `CZ-1042`,
+`Total`, `RAM`, `compzy`.
 
-## Scorecard
+## Decisions this pass made, which the manager sees in `/ui-preview`
 
-| Category | Score | Basis |
-|---|---|---|
-| Reference fidelity | 92 | One anchor passes on colour, texture and layout; the disc behind a word, the tilted two-strip seam, the plate cards, the turning seal and the night footer are all present in the reference's arrangement |
-| Typography and hierarchy | 90 | One Didone display face, one sans, six-step display scale, tabular figures; measured sizes agree with the token table at every width |
-| State coverage | 95 | 23 screens cover every state the map names, including the part-gone recovery, loading and error |
-| Responsive behaviour | 91 | Four breakpoints exercised; hero, splits, panel and sheet verified at 1440 / 1000 / 720 / 390 with no overflow |
-| Accessibility | 89 | 16.45–17.67:1 focus rings on their real ground, AA text contrast, labelled fields, `aria-pressed` / `aria-expanded` / `role=status` where they belong; the in-sentence link is the one place a 44 px target is deliberately not applied |
-| Motion | 88 | Two loops on long, slow periods and one 180 ms feedback curve; a single reduced-motion query removes all of it; no entrance motion to misfire on a state change |
-| System consistency | 96 | Every colour, size, radius and shadow in a screen rule comes from the token block; no DRIFT reported |
-| Docs accuracy | 91 | Every claim in the map and brief re-derived from the built mock in this pass; the numbers quoted above are measured |
-| Source honesty | 93 | The reference is cited once, as visual language only; stock photography is licensed and credited; mock values (`CZ-1042`, the date, `Rina`) are marked as such |
-| Preview readiness | 95 | One document, one hash per screen, `screens.json` ordered, switcher hidden, no network request, 1.6 MB |
-
-All ten categories are above the 85 bar.
-
-## Still below the bar, named
-
-- **Product photography is stock.** The 21 parts use licensed stand-ins until the store supplies real
-  shots; the layout is built for them (4:3 plate, `object-fit: cover`).
-- **The focus-ring lines stay in `sweep.json`.** They are a probe artifact, documented and measured
-  against the real paint; silencing them would mean changing the mock for the checker.
-- **The 721–1000 px band has no sticky column.** It uses the bar and its sheet instead, which is a
-  deliberate layout choice, not a gap in the states.
-
-Verdict for the manager: the mock is ready to look at in `/ui-preview`. The look is the manager's
-call; this scorecard records what the three lanes checked, and what was fixed.
+- `Papan Induk` rather than the trade loanword `Motherboard`, to match `Kartu Grafis` and `Catu Daya`.
+- `Komponen 01` for the part plates: the item is a `komponen` everywhere else on the page.
+- The Indonesian hero keeps the v1 composition — the vermilion disc on `PC` — as `RAKIT ⓟC / ANDA /
+  SENDIRI` (2 lines at 1024 and 390, 3 at 1440; never more than the English). Moving `PC` to the last
+  line would have forced `Rakit sendiri PC`, which is not Indonesian.
+- The not-found page stays one quiet column with one action and no photograph or seal: it has nothing
+  to sell, and the dark footer closes it. Its grid alignment and its two-line headline are the fixes
+  the lane asked for.
+- The seal ring keeps `Compzy · Dirakit bertahap ·`: the phrase is shortened to fit a 251 px path, and
+  the full tagline is already in the footer and the document title.
+- The picker's group label stays `Bahasa` / `Language`; `Pilih bahasa` was suggested and rejected as
+  longer than the group it names.

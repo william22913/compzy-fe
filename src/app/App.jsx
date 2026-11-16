@@ -10,26 +10,29 @@ import { NotFoundPage } from '../features/errors/NotFoundPage';
 import { AuthProvider } from '../store/AuthContext';
 import { CatalogueProvider } from '../store/CatalogueContext';
 import { BuildProvider } from '../store/BuildContext';
-import en from '../locales';
+import { LanguageProvider, useLanguage, useT } from '../store/LanguageContext';
 
-function titleFor(pathname) {
-  if (pathname === '/') return en.meta.title;
-  if (pathname === '/sign-in') return en.meta.signInTitle;
-  if (pathname === '/sign-up') return en.meta.signUpTitle;
-  if (pathname === '/order-review') return en.meta.reviewTitle;
-  if (pathname.startsWith('/order-confirmation')) return en.meta.confirmationTitle;
-  return en.meta.notFoundTitle;
+function titleFor(t, pathname) {
+  if (pathname === '/') return t.meta.title;
+  if (pathname === '/sign-in') return t.meta.signInTitle;
+  if (pathname === '/sign-up') return t.meta.signUpTitle;
+  if (pathname === '/order-review') return t.meta.reviewTitle;
+  if (pathname.startsWith('/order-confirmation')) return t.meta.confirmationTitle;
+  return t.meta.notFoundTitle;
 }
 
 function Shell() {
   const { pathname, state } = useLocation();
+  const { lang } = useLanguage();
+  const t = useT();
   const night = pathname.startsWith('/order-confirmation');
   const noBar = pathname !== '/';
 
   useEffect(() => {
-    document.title = titleFor(pathname);
+    document.title = titleFor(t, pathname);
+    document.documentElement.lang = lang;
     if (!state || !state.focus) window.scrollTo(0, 0);
-  }, [pathname, state]);
+  }, [pathname, state, t, lang]);
 
   return (
     <div className={`page${night ? ' night' : ''}${noBar ? ' page--no-bar' : ''}`}>
@@ -51,11 +54,13 @@ export default function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
-        <CatalogueProvider>
-          <BuildProvider>
-            <Shell />
-          </BuildProvider>
-        </CatalogueProvider>
+        <LanguageProvider>
+          <CatalogueProvider>
+            <BuildProvider>
+              <Shell />
+            </BuildProvider>
+          </CatalogueProvider>
+        </LanguageProvider>
       </AuthProvider>
     </BrowserRouter>
   );

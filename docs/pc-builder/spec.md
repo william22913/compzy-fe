@@ -4,7 +4,7 @@ service: compzy
 ticket_url: null
 has_ui: true
 app_scale: small
-version: 1
+version: 2
 status: complete
 completeness:
   problem: covered
@@ -22,8 +22,13 @@ sources:
   - path: knowledge/design-reference.md
     source_version: unversioned
     note: Dribbble shot the manager supplied as the visual reference for the app; owned and read by /ui-preparation, recorded here only so later steps do not lose it.
-pr_history: []
-pr_url: https://github.com/william22913/sandbox-docs/pull/74
+pr_history:
+  - number: 74
+    url: https://github.com/william22913/sandbox-docs/pull/74
+    title: "[DOC] compzy/pc-builder: initial spec for the PC part picker and checkout"
+    state: merged
+    version: 1
+pr_url: https://github.com/william22913/sandbox-docs/pull/78
 last_updated: 2026-11-16
 ---
 
@@ -70,18 +75,22 @@ not serious. The app is built to this size, not to enterprise scale.
 ## Roles and Language
 
 - **Visitor (not signed in)**: may browse every part category, choose, swap,
-  remove and skip parts, and see the running total. May **not** check out. May
-  create an account or sign in at any point.
+  remove and skip parts, see the running total, and switch the interface
+  language. May **not** check out. May create an account or sign in at any
+  point.
 - **Signed-in customer**: everything a visitor may do, plus checkout — review
-  the build, see the final total and submit the order. Sees and acts on only
-  their own account; there is no data belonging to other customers that this
-  feature exposes.
+  the build, see the final total and submit the order — and their language kept
+  with their account. Sees and acts on only their own account; there is no data
+  belonging to other customers that this feature exposes.
 - Accounts are created by the customer on the site; there is no invitation or
   approval step.
-- The interface is in **English only** in v1 — page titles, buttons, messages
-  and the order confirmation — built so another language can be added later as
-  translation work rather than a rebuild. Prices stay in Indonesian rupiah.
-  (source: manager, 2026-11-16)
+- The interface is offered in **two languages, English and Indonesian**, with a
+  language switcher on every page that changes the whole page at once. A
+  first-time visitor sees Indonesian; any later visit on that device opens in
+  the language last chosen there; a signed-in customer sees the language stored
+  with their account. The rules are REQ-042 to REQ-060 below. Prices stay in
+  Indonesian rupiah and product names stay as product names in both languages.
+  (source: manager, revision brief, 2026-11-16)
 
 ## Primary Flow
 
@@ -138,7 +147,96 @@ not serious. The app is built to this size, not to enterprise scale.
   each, listed under "Sample Parts Catalogue" below — so the picker can be
   built and tested immediately without anyone entering data first.
 - **REQ-017**: The entire interface — labels, buttons, messages and errors — is
-  in English.
+  shown in one of the two offered languages, English or Indonesian, following
+  the customer's selection as described in REQ-042 to REQ-060. No page mixes
+  the two languages.
+
+## Language
+
+The manager's revision request, in their own words: "the app needs to switch
+language, English and Indonesian, on every page." These rules replace the v1
+"English only" scope; everything else about the app is unchanged and is listed
+under "What this revision does not change" below. (source: manager, revision
+brief, 2026-11-16)
+
+- **REQ-042**: Every page of the app offers a language switcher, with exactly
+  two choices — English and Indonesian. It is present on the builder, sign in,
+  create account, order review, order confirmation and the not-found page, and
+  in every loading, empty and error state of those pages. The two choices are
+  labelled in their own language, "English" and "Bahasa Indonesia", in both
+  languages. A visitor and a signed-in customer both see it.
+  (source: manager, revision brief, 2026-11-16)
+- **REQ-043**: Choosing a language changes every visible string on the page the
+  customer is on, at once, without a reload they have to trigger and without
+  losing anything: the chosen parts, the total, and anything typed into a form
+  stay exactly as they were. (source: manager, revision brief, 2026-11-16)
+- **REQ-044**: A first-time visitor — no language chosen on this device yet, not
+  signed in — sees the app in **Indonesian**. The app does not guess the
+  language from the browser or the country. (source: default taken for this
+  revision, 2026-11-16; the manager's review of this spec is its confirmation)
+- **REQ-045**: A visitor's language choice is remembered on that device: the
+  next visit to the app on the same device opens in the language last chosen
+  there, without asking again. (source: default taken for this revision,
+  2026-11-16; the manager's review of this spec is its confirmation)
+- **REQ-046**: A new account is created with the language selected in the
+  switcher at the moment of sign-up: if the customer creates the account while
+  the app is in Indonesian, the account's language is Indonesian, and likewise
+  for English. (source: default taken for this revision, 2026-11-16; the
+  manager's review of this spec is its confirmation)
+- **REQ-047**: A signed-in customer sees the app in the language stored with
+  their account, returned when they sign in, so the same account opens in the
+  same language on a different device or browser. (source: manager, revision
+  brief, 2026-11-16)
+- **REQ-048**: A signed-in customer can change their language from the switcher
+  on any page. The change is saved to their account there and then, applies on
+  the spot, and is the language they see on their next visit and on any device.
+  (source: manager, revision brief, 2026-11-16)
+- **REQ-049**: Every customer-visible string exists in both English and
+  Indonesian, and one language is shown at a time. This covers category names,
+  headings and page titles, buttons and links, form labels and placeholders,
+  validation messages, error messages, empty states, loading states, the order
+  review and order confirmation labels, and the order summary labels. No page
+  shows a string in the language the customer is not using, and no raw
+  translation key is ever shown. (source: manager, revision brief, 2026-11-16)
+- **REQ-050**: Product names stay as product names in both languages: part and
+  model names (for example "Intel Core i5-12400F", "ASUS TUF B550M-PLUS") and
+  brand names read exactly the same in English and Indonesian. Prices and the
+  total do too — "Rp 12.500.000" in both languages, with the same rupiah
+  separators and no decimals. (source: manager, revision brief, 2026-11-16)
+- **REQ-051**: Indonesian copy uses the formal register, addressing the
+  customer as "Anda", as is standard for Indonesian retail. The same register is
+  used everywhere: headings, buttons, messages, validation text, empty states
+  and the order summary. (source: default taken for this revision, 2026-11-16;
+  the manager's review of this spec is its confirmation)
+
+## What this revision does not change
+
+The manager's revision touches language only. These v1 decisions stay exactly
+as they are, and no requirement above relaxes them: (source: manager, revision
+brief, 2026-11-16)
+
+- **Seven fixed categories, six of them compulsory.** Processor (CPU),
+  Motherboard, RAM, Storage (SSD), Graphics Card, Power Supply and PC Case stay
+  the only categories; the first six are required for checkout and **Graphics
+  Card stays optional** (REQ-002, REQ-008, REQ-038).
+- **Live rupiah totals.** The running total keeps updating on every choice,
+  swap and removal, as the plain sum of the chosen parts, in rupiah with no
+  tax and no shipping (REQ-005, REQ-006, REQ-007).
+- **No order history.** The confirmation screen remains the end of the flow;
+  there is no list of past orders and no tracking (REQ-014).
+- **No admin.** There is still no staff or back-office screen — not for parts
+  and prices, and not for translations either (REQ-016).
+- **No compatibility checking** of any kind between parts. No warnings, no
+  blocks, no advice (Non-Goals).
+- **No payment, no delivery details, no quantities, no saved or shared builds,
+  no password reset** — all unchanged from v1 (Non-Goals).
+- **Account rules unchanged**: one account per email address, the same name,
+  email and password rules, and the same sign-in and sign-out behaviour
+  (REQ-009 to REQ-011, REQ-032 to REQ-036).
+- **The approved design stays as it is.** Only what the language needs is added
+  — a switcher in each page's own style, plus the Indonesian copy. Every other
+  screen, colour, layout and picture is unchanged; the screens themselves are
+  `/ui-preparation`'s record, not this spec's.
 
 ## Non-Goals
 
@@ -162,8 +260,16 @@ not serious. The app is built to this size, not to enterprise scale.
   page beyond signing in and out.
 - No password reset, email verification or account recovery in v1.
 - No stock or availability handling; every seeded part is always offered.
-- No languages other than English, and no native mobile app — a browser is the
-  only client.
+- No languages other than English and Indonesian. No third language, no
+  right-to-left language, no per-page or per-string language override.
+- No translation admin screen: nobody adds, edits or reviews translations in
+  the app. The English and Indonesian copies are both built in.
+- No automatic language detection from the browser, the country or the IP
+  address; the language is the one the customer chose, or Indonesian for a
+  first-time visitor.
+- No translated product names, brand names or model numbers: those stay as
+  written in both languages.
+- No native mobile app — a browser is the only client.
 
 ## Edge Cases
 
@@ -212,6 +318,31 @@ not serious. The app is built to this size, not to enterprise scale.
   part, the review and the total reflect the change when they return to it;
   nothing is ordered from an outdated build without the customer seeing the
   reviewed total first.
+- **REQ-052**: When a visitor who chose a language on the device signs in, the
+  language stored with their account takes over and the page switches to it.
+  The account's language is the one that applies from then on, on that device
+  and on any other. (source: manager, revision brief, 2026-11-16)
+- **REQ-053**: Signing out leaves the language last used on that device in
+  place: the customer stays in that language while browsing as a visitor, and
+  is not sent back to the first-time default.
+- **REQ-054**: An account created before this revision has no language yet. Every
+  such account is given Indonesian when the revision is deployed, and none is
+  left without one. If a stored language is ever missing or is not one of the
+  two allowed values, the app shows Indonesian and still signs the customer in
+  normally — the customer is never blocked from their account because of a
+  language value. (source: default taken for this revision, 2026-11-16; the
+  manager's review of this spec is its confirmation)
+- **REQ-055**: If a page cannot load the copy for the chosen language, it shows
+  the Indonesian copy — never a blank page, never raw keys or field names, and
+  never a half-filled page.
+- **REQ-056**: Switching the language never changes the build in any way: the
+  chosen parts, the total, the customer's signed-in state and anything typed
+  into a form stay as they were, and no order is submitted or changed by a
+  language change.
+- **REQ-057**: The confirmation page is shown in the language selected when it
+  is opened and re-rendered in the current language when the customer changes
+  it. What the order actually recorded — part and model names and the rupiah
+  amounts — is the same in both languages and never re-translated.
 
 ## Dependencies
 
@@ -232,24 +363,42 @@ not serious. The app is built to this size, not to enterprise scale.
 - **The manager's design reference** is the Dribbble shot linked in
   `knowledge/design-reference.md`; `/ui-preparation` owns its reading and the
   screen mapping. The link is recorded here so later steps do not lose it.
+- **Both language copies ship with the app.** The English and Indonesian
+  strings are part of the application itself; no translation service, no
+  third-party translator and no external content API is called at run time.
+  (source: manager, revision brief, 2026-11-16)
+- **The account language is stored with the customer's account**, so it needs
+  the accounts part of compzy (REQ-009) and is available wherever the account
+  is read, including at sign-in. Its shape belongs to `architecture.md`; this
+  spec only states the business rule (REQ-058 to REQ-060). (source: manager,
+  revision brief, 2026-11-16)
 
 ## Priority
 
-This pass (v1) covers the whole of Primary Flow and Edge Cases: browsing and
-building without an account (REQ-001 to REQ-007, REQ-012, REQ-016), the
-required-category rule (REQ-008), account creation, sign-in and sign-out
-(REQ-009 to REQ-011), the review-and-submit checkout (REQ-013 to REQ-015), the
-error and recovery behaviour (REQ-018 to REQ-031), and English-only interface
-text (REQ-017).
+The first pass covered the whole of Primary Flow and Edge Cases of the app
+itself: browsing and building without an account (REQ-001 to REQ-007, REQ-012,
+REQ-016), the required-category rule (REQ-008), account creation, sign-in and
+sign-out (REQ-009 to REQ-011), the review-and-submit checkout (REQ-013 to
+REQ-015), and the error and recovery behaviour (REQ-018 to REQ-031).
+
+The revision in this pass adds **English and Indonesian with a switcher on
+every page**, in full: the switcher and its behaviour on every page and state
+(REQ-042, REQ-043), Indonesian as the first-time default, the choice remembered
+on the device, the language stored with the account at sign-up and returned at
+sign-in, and changing it while signed in (REQ-044 to REQ-048), the copy rules
+for both languages including the formal register (REQ-049 to REQ-051), the
+language edge cases (REQ-052 to REQ-057) and the stored-language rules
+(REQ-058 to REQ-060). Nothing in this revision is deferred: the manager asked
+for the switch on every page, and every page gets it.
 
 Explicitly deferred to a later pass, if the manager ever asks for it:
 - Compatibility checking between parts.
 - Stock levels, discounts and vouchers.
 - Order history, order tracking and cancellation.
 - Payment online.
-- An admin screen for managing parts and prices.
+- An admin screen for managing parts and prices, or for managing translations.
 - Saved, named or shared builds.
-- Additional languages and a native mobile app.
+- Languages beyond English and Indonesian, and a native mobile app.
 
 This is the entire v1 app; there is no second feature code in this pass.
 
@@ -294,16 +443,45 @@ Each criterion is directly testable as a pass/fail case by
 - **SC-013** (REQ-016): All 21 seeded parts appear in their categories with
   names and prices, and every one of the seven categories offers at least three
   choices.
-- **SC-014** (REQ-017): Every label, button, message and error on the app is in
-  English.
+- **SC-014** (REQ-017): Every label, button, message and error appears in the
+  currently selected language — English or Indonesian — and never in a third
+  language, with no page mixing the two.
 - **SC-015** (REQ-021, REQ-022, REQ-023, REQ-024): Empty fields, a wrong
   password, an already-registered email address and a too-short password are
   each refused with a plain, distinct message, and none of them creates a
-  duplicate or unintended account.
+  duplicate or unintended account. The message is in the language the customer
+  is using.
 - **SC-016** (REQ-025): When the part list cannot be loaded, the app shows an
   error message with a retry action instead of a blank page or a spinner.
 - **SC-017** (REQ-029): The total on the review screen, the total stored with
   the submitted order and the total on the confirmation are identical.
+- **SC-018** (REQ-042): A switcher offering exactly "English" and "Bahasa
+  Indonesia" is visible and usable on the builder, sign in, create account,
+  order review, order confirmation and not-found page — and in the loading,
+  empty and error state of each — to both a visitor and a signed-in customer.
+- **SC-019** (REQ-043, REQ-044): A first-time visitor on a fresh device sees the
+  app in Indonesian. Choosing English changes every visible string on that page
+  immediately, while the chosen parts, the total and anything typed in a form
+  stay exactly as they were.
+- **SC-020** (REQ-045): A visitor who chooses English, then reloads and restarts
+  the browser, finds the app still in English without choosing again.
+- **SC-021** (REQ-046, REQ-047, REQ-048): Creating an account while the app is
+  in English stores English with that account; signing in on another browser or
+  device shows the app in English; changing the language while signed in applies
+  at once and is what that account shows after signing out and back in.
+- **SC-022** (REQ-049, REQ-050, REQ-051): Every customer-visible string on every
+  page has both an English and an Indonesian version; part and brand names read
+  identically in both; prices read "Rp 12.500.000" in both; the Indonesian copy
+  addresses the customer as "Anda" throughout.
+- **SC-023** (REQ-052, REQ-053, REQ-054): Signing in while the device is set to
+  English on an account stored as Indonesian switches the app to Indonesian;
+  signing out leaves Indonesian on that device; an account whose stored language
+  is missing or invalid is shown in Indonesian and still signs in normally.
+- **SC-024** (REQ-055, REQ-056, REQ-057): Switching the language never changes
+  the chosen parts, the total or the signed-in state and never submits an order;
+  if a language's copy cannot be loaded the page shows Indonesian rather than a
+  blank page or raw keys; the confirmation re-renders in the chosen language
+  while its recorded parts and amounts stay identical.
 
 Business metric: none, because the manager set no separate business goal (such
 as a conversion target) for v1 beyond these acceptance criteria.
@@ -349,13 +527,32 @@ the manager on 2026-11-16.
   confirmation — part name and the price each was shown at — so the
   confirmation and the store's record of the order never disagree with what the
   customer saw.
+- **REQ-058**: An account's preferred language is a two-value field: **English
+  (`en`)** or **Indonesian (`id`)**. Exactly those two values are accepted;
+  nothing else is a valid language, and the value is never empty for an account.
+  (source: manager, revision brief, 2026-11-16)
+- **REQ-059**: Every account carries a preferred language from the moment it is
+  created: a new account takes the language selected in the switcher at sign-up
+  (REQ-046), and an account can never be stored without one. Accounts that
+  existed before this revision are given Indonesian when it is deployed
+  (REQ-054). The language is returned with the account whenever the customer
+  signs in, so the app can show it without asking again. (source: manager,
+  revision brief, 2026-11-16)
+- **REQ-060**: An account's preferred language can be changed only by that
+  signed-in customer, for their own account, from the language switcher
+  (REQ-048). No one can change another customer's language and there is no
+  admin screen for it; a request to change someone else's language is refused.
+  (source: manager, revision brief, 2026-11-16)
 
 ## External Integrations
 
 None, because there is no other service and no third-party API in this feature.
-The parts catalogue, customer accounts, sessions and orders are all served by
-compzy's own backend, and the browser talks only to compzy. There is no
-contract to obtain, and nothing here is inferred from a service name.
+The parts catalogue, customer accounts, sessions and submitted orders are all
+served by compzy's own backend, and the browser talks only to compzy. The
+English and Indonesian copies are bundled with the application, so no
+translation service or external content API is called either (Dependencies).
+There is no contract to obtain, and nothing here is inferred from a service
+name.
 
 ## Sample Parts Catalogue
 
