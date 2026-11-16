@@ -1,0 +1,13 @@
+== focus rings, scrolled into view ==
+builder-empty footer quick link <a> "Build a PC": ring rgb(243, 242, 238) 2px, offset 2px, over rgb(10, 10, 10) = 17.67:1
+builder-signed-in footer bar link <a> "Build a PC": ring rgb(243, 242, 238) 2px, offset 2px, over rgb(10, 10, 10) = 17.67:1
+signin-default form foot link <a> "Create an account": ring rgb(20, 20, 20) 2px, offset 2px, over rgb(243, 242, 238) = 16.45:1
+signup-duplicate field error link <a> "Sign in instead": ring rgb(20, 20, 20) 2px, offset 2px, over rgb(243, 242, 238) = 16.45:1
+builder-empty header link <a> "Build": ring rgb(20, 20, 20) 2px, offset 2px, over rgb(243, 242, 238) = 16.45:1
+== type and tokens ==
+1440px hero h1 92.16px · category title 46.08px · --aside 372px · --fs-hero clamp(2.75rem, 6.4vw, 6.5rem)
+1000px hero h1 64px · category title 32px · --aside 330px · --fs-hero clamp(2.75rem, 6.4vw, 6.5rem)
+720px hero h1 64px · category title 30px · --aside 330px · --fs-hero clamp(2.75rem, 12vw, 4rem)
+390px hero h1 46.8px · category title 30px · --aside 330px · --fs-hero clamp(2.75rem, 12vw, 4rem)
+confirm ref at 390: 36px
+confirm ref at 1440: 36px

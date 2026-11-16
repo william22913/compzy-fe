@@ -1,0 +1,1178 @@
+{
+ "at": "2026-11-16T07:20:48.328Z",
+ "lastRun": {
+  "widths": [
+   1440,
+   1000,
+   720,
+   390
+  ],
+  "motion": false,
+  "seconds": 103.8,
+  "screens": 23
+ },
+ "results": [
+  {
+   "id": "builder-empty",
+   "page": "Builder",
+   "state": "Nothing chosen, visitor",
+   "width": 1440,
+   "file": "builder-empty-1440.png",
+   "hash": "0329df6769b36e18",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+   ]
+  },
+  {
+   "id": "builder-empty",
+   "page": "Builder",
+   "state": "Nothing chosen, visitor",
+   "width": 1000,
+   "file": "builder-empty-1000.png",
+   "hash": "b59ea460c00c359c",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1.12:1 (needs 3) on <a> \"Build a PC\""
+   ]
+  },
+  {
+   "id": "builder-empty",
+   "page": "Builder",
+   "state": "Nothing chosen, visitor",
+   "width": 720,
+   "file": "builder-empty-720.png",
+   "hash": "93acfd83c433d028",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1.12:1 (needs 3) on <a> \"Build a PC\""
+   ]
+  },
+  {
+   "id": "builder-empty",
+   "page": "Builder",
+   "state": "Nothing chosen, visitor",
+   "width": 390,
+   "file": "builder-empty-390.png",
+   "hash": "684d43858ecd90be",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1.12:1 (needs 3) on <a> \"Build a PC\""
+   ]
+  },
+  {
+   "id": "builder-partial",
+   "page": "Builder",
+   "state": "Three parts chosen, visitor",
+   "width": 1440,
+   "file": "builder-partial-1440.png",
+   "hash": "2d7a87cb3377e6d7",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1.53:1 (needs 3) on <a> \"Build a PC\""
+   ]
+  },
+  {
+   "id": "builder-partial",
+   "page": "Builder",
+   "state": "Three parts chosen, visitor",
+   "width": 1000,
+   "file": "builder-partial-1000.png",
+   "hash": "5cb285252758e1cc",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1.12:1 (needs 3) on <a> \"Build a PC\""
+   ]
+  },
+  {
+   "id": "builder-partial",
+   "page": "Builder",
+   "state": "Three parts chosen, visitor",
+   "width": 720,
+   "file": "builder-partial-720.png",
+   "hash": "d708f50c0306895a",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1.12:1 (needs 3) on <a> \"Build a PC\""
+   ]
+  },
+  {
+   "id": "builder-partial",
+   "page": "Builder",
+   "state": "Three parts chosen, visitor",
+   "width": 390,
+   "file": "builder-partial-390.png",
+   "hash": "af3a353f79b60e34",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1.12:1 (needs 3) on <a> \"Build a PC\""
+   ]
+  },
+  {
+   "id": "builder-complete",
+   "page": "Builder",
+   "state": "Complete build, visitor",
+   "width": 1440,
+   "file": "builder-complete-1440.png",
+   "hash": "40480f7c67a7e1c0",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1.53:1 (needs 3) on <a> \"Build a PC\""
+   ]
+  },
+  {
+   "id": "builder-complete",
+   "page": "Builder",
+   "state": "Complete build, visitor",
+   "width": 1000,
+   "file": "builder-complete-1000.png",
+   "hash": "a3f82453650b5959",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1.12:1 (needs 3) on <a> \"Build a PC\""
+   ]
+  },
+  {
+   "id": "builder-complete",
+   "page": "Builder",
+   "state": "Complete build, visitor",
+   "width": 720,
+   "file": "builder-complete-720.png",
+   "hash": "3c293ed015e6a6cb",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1.12:1 (needs 3) on <a> \"Build a PC\""
+   ]
+  },
+  {
+   "id": "builder-complete",
+   "page": "Builder",
+   "state": "Complete build, visitor",
+   "width": 390,
+   "file": "builder-complete-390.png",
+   "hash": "ad694d4f79a7b12e",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1.12:1 (needs 3) on <a> \"Build a PC\""
+   ]
+  },
+  {
+   "id": "builder-signed-in",
+   "page": "Builder",
+   "state": "Complete build, signed in",
+   "width": 1440,
+   "file": "builder-signed-in-1440.png",
+   "hash": "684eea196320e8c5",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1.53:1 (needs 3) on <a> \"Build a PC\""
+   ]
+  },
+  {
+   "id": "builder-signed-in",
+   "page": "Builder",
+   "state": "Complete build, signed in",
+   "width": 1000,
+   "file": "builder-signed-in-1000.png",
+   "hash": "d4cc15adb58cb2f2",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1.12:1 (needs 3) on <a> \"Build a PC\""
+   ]
+  },
+  {
+   "id": "builder-signed-in",
+   "page": "Builder",
+   "state": "Complete build, signed in",
+   "width": 720,
+   "file": "builder-signed-in-720.png",
+   "hash": "42cdc85f5565b9f7",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1.12:1 (needs 3) on <a> \"Build a PC\""
+   ]
+  },
+  {
+   "id": "builder-signed-in",
+   "page": "Builder",
+   "state": "Complete build, signed in",
+   "width": 390,
+   "file": "builder-signed-in-390.png",
+   "hash": "6b12f5a70795a48a",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1.12:1 (needs 3) on <a> \"Build a PC\""
+   ]
+  },
+  {
+   "id": "builder-signed-out",
+   "page": "Builder",
+   "state": "Signed out with the build kept",
+   "width": 1440,
+   "file": "builder-signed-out-1440.png",
+   "hash": "678ec483ee8bbb2d",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1.53:1 (needs 3) on <a> \"Build a PC\""
+   ]
+  },
+  {
+   "id": "builder-signed-out",
+   "page": "Builder",
+   "state": "Signed out with the build kept",
+   "width": 1000,
+   "file": "builder-signed-out-1000.png",
+   "hash": "68734631706c1652",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1.12:1 (needs 3) on <a> \"Build a PC\""
+   ]
+  },
+  {
+   "id": "builder-signed-out",
+   "page": "Builder",
+   "state": "Signed out with the build kept",
+   "width": 720,
+   "file": "builder-signed-out-720.png",
+   "hash": "3567bbf6b7c7246f",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1.12:1 (needs 3) on <a> \"Build a PC\""
+   ]
+  },
+  {
+   "id": "builder-signed-out",
+   "page": "Builder",
+   "state": "Signed out with the build kept",
+   "width": 390,
+   "file": "builder-signed-out-390.png",
+   "hash": "eb570d1bde77ffbd",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1.12:1 (needs 3) on <a> \"Build a PC\""
+   ]
+  },
+  {
+   "id": "builder-checkout-refused",
+   "page": "Builder",
+   "state": "Checkout refused, categories named",
+   "width": 1440,
+   "file": "builder-checkout-refused-1440.png",
+   "hash": "ef5d27601916c098",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1.53:1 (needs 3) on <a> \"Build a PC\""
+   ]
+  },
+  {
+   "id": "builder-checkout-refused",
+   "page": "Builder",
+   "state": "Checkout refused, categories named",
+   "width": 1000,
+   "file": "builder-checkout-refused-1000.png",
+   "hash": "4c5845a4b00044b3",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1.12:1 (needs 3) on <a> \"Build a PC\""
+   ]
+  },
+  {
+   "id": "builder-checkout-refused",
+   "page": "Builder",
+   "state": "Checkout refused, categories named",
+   "width": 720,
+   "file": "builder-checkout-refused-720.png",
+   "hash": "40f00787616a14ad",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1.12:1 (needs 3) on <a> \"Build a PC\""
+   ]
+  },
+  {
+   "id": "builder-checkout-refused",
+   "page": "Builder",
+   "state": "Checkout refused, categories named",
+   "width": 390,
+   "file": "builder-checkout-refused-390.png",
+   "hash": "e77ea80fbb46690c",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1.12:1 (needs 3) on <a> \"Build a PC\""
+   ]
+  },
+  {
+   "id": "builder-part-gone",
+   "page": "Builder",
+   "state": "A chosen part went away while signed in",
+   "width": 1440,
+   "file": "builder-part-gone-1440.png",
+   "hash": "40898e27d0afebf1",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1.53:1 (needs 3) on <a> \"Build a PC\""
+   ]
+  },
+  {
+   "id": "builder-part-gone",
+   "page": "Builder",
+   "state": "A chosen part went away while signed in",
+   "width": 1000,
+   "file": "builder-part-gone-1000.png",
+   "hash": "4daaa06cbd1ac0ff",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1.12:1 (needs 3) on <a> \"Build a PC\""
+   ]
+  },
+  {
+   "id": "builder-part-gone",
+   "page": "Builder",
+   "state": "A chosen part went away while signed in",
+   "width": 720,
+   "file": "builder-part-gone-720.png",
+   "hash": "f3f8475bd7c1b6d8",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1.12:1 (needs 3) on <a> \"Build a PC\""
+   ]
+  },
+  {
+   "id": "builder-part-gone",
+   "page": "Builder",
+   "state": "A chosen part went away while signed in",
+   "width": 390,
+   "file": "builder-part-gone-390.png",
+   "hash": "e5f9341be394552d",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1.12:1 (needs 3) on <a> \"Build a PC\""
+   ]
+  },
+  {
+   "id": "builder-loading",
+   "page": "Builder",
+   "state": "Catalogue loading",
+   "width": 1440,
+   "file": "builder-loading-1440.png",
+   "hash": "0f630a0242584f71",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+   ]
+  },
+  {
+   "id": "builder-loading",
+   "page": "Builder",
+   "state": "Catalogue loading",
+   "width": 1000,
+   "file": "builder-loading-1000.png",
+   "hash": "a6e7a2a1d979d294",
+   "changed": false,
+   "overImage": 1,
+   "findings": []
+  },
+  {
+   "id": "builder-loading",
+   "page": "Builder",
+   "state": "Catalogue loading",
+   "width": 720,
+   "file": "builder-loading-720.png",
+   "hash": "37071099196bf66c",
+   "changed": false,
+   "overImage": 1,
+   "findings": []
+  },
+  {
+   "id": "builder-loading",
+   "page": "Builder",
+   "state": "Catalogue loading",
+   "width": 390,
+   "file": "builder-loading-390.png",
+   "hash": "ba55d940b222fa9e",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+   ]
+  },
+  {
+   "id": "builder-error",
+   "page": "Builder",
+   "state": "Catalogue failed to load",
+   "width": 1440,
+   "file": "builder-error-1440.png",
+   "hash": "5bd973a8ad0c964c",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+   ]
+  },
+  {
+   "id": "builder-error",
+   "page": "Builder",
+   "state": "Catalogue failed to load",
+   "width": 1000,
+   "file": "builder-error-1000.png",
+   "hash": "41ea38e747813115",
+   "changed": false,
+   "overImage": 1,
+   "findings": []
+  },
+  {
+   "id": "builder-error",
+   "page": "Builder",
+   "state": "Catalogue failed to load",
+   "width": 720,
+   "file": "builder-error-720.png",
+   "hash": "45609f2e5d069f42",
+   "changed": false,
+   "overImage": 1,
+   "findings": []
+  },
+  {
+   "id": "builder-error",
+   "page": "Builder",
+   "state": "Catalogue failed to load",
+   "width": 390,
+   "file": "builder-error-390.png",
+   "hash": "7691a27611225da6",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+   ]
+  },
+  {
+   "id": "signin-default",
+   "page": "Sign in",
+   "state": "Ready",
+   "width": 1440,
+   "file": "signin-default-1440.png",
+   "hash": "c6121d6a4e457a0b",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+   ]
+  },
+  {
+   "id": "signin-default",
+   "page": "Sign in",
+   "state": "Ready",
+   "width": 1000,
+   "file": "signin-default-1000.png",
+   "hash": "1a458b12b952c50c",
+   "changed": false,
+   "overImage": 1,
+   "findings": []
+  },
+  {
+   "id": "signin-default",
+   "page": "Sign in",
+   "state": "Ready",
+   "width": 720,
+   "file": "signin-default-720.png",
+   "hash": "b031e1353b93f119",
+   "changed": false,
+   "overImage": 1,
+   "findings": []
+  },
+  {
+   "id": "signin-default",
+   "page": "Sign in",
+   "state": "Ready",
+   "width": 390,
+   "file": "signin-default-390.png",
+   "hash": "c72c4e36456c2f5d",
+   "changed": false,
+   "overImage": 1,
+   "findings": []
+  },
+  {
+   "id": "signin-validation",
+   "page": "Sign in",
+   "state": "Submitted empty",
+   "width": 1440,
+   "file": "signin-validation-1440.png",
+   "hash": "9f81144f38a9f56c",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+   ]
+  },
+  {
+   "id": "signin-validation",
+   "page": "Sign in",
+   "state": "Submitted empty",
+   "width": 1000,
+   "file": "signin-validation-1000.png",
+   "hash": "e2ad8a38b4a93ecf",
+   "changed": false,
+   "overImage": 1,
+   "findings": []
+  },
+  {
+   "id": "signin-validation",
+   "page": "Sign in",
+   "state": "Submitted empty",
+   "width": 720,
+   "file": "signin-validation-720.png",
+   "hash": "98a0bce7f2fae05e",
+   "changed": false,
+   "overImage": 1,
+   "findings": []
+  },
+  {
+   "id": "signin-validation",
+   "page": "Sign in",
+   "state": "Submitted empty",
+   "width": 390,
+   "file": "signin-validation-390.png",
+   "hash": "17ff776dbcdb65e3",
+   "changed": false,
+   "overImage": 1,
+   "findings": []
+  },
+  {
+   "id": "signin-invalid",
+   "page": "Sign in",
+   "state": "Wrong email or password",
+   "width": 1440,
+   "file": "signin-invalid-1440.png",
+   "hash": "f79756432b60e927",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+   ]
+  },
+  {
+   "id": "signin-invalid",
+   "page": "Sign in",
+   "state": "Wrong email or password",
+   "width": 1000,
+   "file": "signin-invalid-1000.png",
+   "hash": "cfbfc86adaaf23a2",
+   "changed": false,
+   "overImage": 1,
+   "findings": []
+  },
+  {
+   "id": "signin-invalid",
+   "page": "Sign in",
+   "state": "Wrong email or password",
+   "width": 720,
+   "file": "signin-invalid-720.png",
+   "hash": "f4855bb08f715578",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+   ]
+  },
+  {
+   "id": "signin-invalid",
+   "page": "Sign in",
+   "state": "Wrong email or password",
+   "width": 390,
+   "file": "signin-invalid-390.png",
+   "hash": "ba2879d506c28303",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+   ]
+  },
+  {
+   "id": "signin-loading",
+   "page": "Sign in",
+   "state": "Submitting",
+   "width": 1440,
+   "file": "signin-loading-1440.png",
+   "hash": "337e92c2df1602f6",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+   ]
+  },
+  {
+   "id": "signin-loading",
+   "page": "Sign in",
+   "state": "Submitting",
+   "width": 1000,
+   "file": "signin-loading-1000.png",
+   "hash": "3e3a2e95a80bcb18",
+   "changed": false,
+   "overImage": 1,
+   "findings": []
+  },
+  {
+   "id": "signin-loading",
+   "page": "Sign in",
+   "state": "Submitting",
+   "width": 720,
+   "file": "signin-loading-720.png",
+   "hash": "c47be5df80892fa2",
+   "changed": false,
+   "overImage": 1,
+   "findings": []
+  },
+  {
+   "id": "signin-loading",
+   "page": "Sign in",
+   "state": "Submitting",
+   "width": 390,
+   "file": "signin-loading-390.png",
+   "hash": "210a543e04a91466",
+   "changed": false,
+   "overImage": 1,
+   "findings": []
+  },
+  {
+   "id": "signin-session-expired",
+   "page": "Sign in",
+   "state": "Session ended at confirmation",
+   "width": 1440,
+   "file": "signin-session-expired-1440.png",
+   "hash": "90c1d0c98c575ddc",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a.textlink> \"Create an account\""
+   ]
+  },
+  {
+   "id": "signin-session-expired",
+   "page": "Sign in",
+   "state": "Session ended at confirmation",
+   "width": 1000,
+   "file": "signin-session-expired-1000.png",
+   "hash": "fd5eeabc42502098",
+   "changed": false,
+   "overImage": 1,
+   "findings": []
+  },
+  {
+   "id": "signin-session-expired",
+   "page": "Sign in",
+   "state": "Session ended at confirmation",
+   "width": 720,
+   "file": "signin-session-expired-720.png",
+   "hash": "45f640f72bd9fef9",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+   ]
+  },
+  {
+   "id": "signin-session-expired",
+   "page": "Sign in",
+   "state": "Session ended at confirmation",
+   "width": 390,
+   "file": "signin-session-expired-390.png",
+   "hash": "096ae15fceecb838",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+   ]
+  },
+  {
+   "id": "signup-default",
+   "page": "Create account",
+   "state": "Ready",
+   "width": 1440,
+   "file": "signup-default-1440.png",
+   "hash": "1d09177a84f78284",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"BUILD A PC\""
+   ]
+  },
+  {
+   "id": "signup-default",
+   "page": "Create account",
+   "state": "Ready",
+   "width": 1000,
+   "file": "signup-default-1000.png",
+   "hash": "32e0aafe4dd9af9e",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+   ]
+  },
+  {
+   "id": "signup-default",
+   "page": "Create account",
+   "state": "Ready",
+   "width": 720,
+   "file": "signup-default-720.png",
+   "hash": "f9e8d76bfd59ab9d",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+   ]
+  },
+  {
+   "id": "signup-default",
+   "page": "Create account",
+   "state": "Ready",
+   "width": 390,
+   "file": "signup-default-390.png",
+   "hash": "eee91c118b26fb7d",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+   ]
+  },
+  {
+   "id": "signup-validation",
+   "page": "Create account",
+   "state": "Submitted empty",
+   "width": 1440,
+   "file": "signup-validation-1440.png",
+   "hash": "47613eb0bbd9733f",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"BUILD A PC\""
+   ]
+  },
+  {
+   "id": "signup-validation",
+   "page": "Create account",
+   "state": "Submitted empty",
+   "width": 1000,
+   "file": "signup-validation-1000.png",
+   "hash": "aa85eee8a90d76e5",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a.textlink> \"Sign in\"",
+    "focus ring 1:1 (needs 3) on <a> \"BUILD A PC\""
+   ]
+  },
+  {
+   "id": "signup-validation",
+   "page": "Create account",
+   "state": "Submitted empty",
+   "width": 720,
+   "file": "signup-validation-720.png",
+   "hash": "ddf8d7ea60322fef",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a.textlink> \"Sign in\"",
+    "focus ring 1:1 (needs 3) on <a> \"BUILD A PC\""
+   ]
+  },
+  {
+   "id": "signup-validation",
+   "page": "Create account",
+   "state": "Submitted empty",
+   "width": 390,
+   "file": "signup-validation-390.png",
+   "hash": "8bed8b5e08a4fee7",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a.textlink> \"Sign in\""
+   ]
+  },
+  {
+   "id": "signup-password",
+   "page": "Create account",
+   "state": "Password does not meet the rule",
+   "width": 1440,
+   "file": "signup-password-1440.png",
+   "hash": "da6311186c71df51",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"BUILD A PC\""
+   ]
+  },
+  {
+   "id": "signup-password",
+   "page": "Create account",
+   "state": "Password does not meet the rule",
+   "width": 1000,
+   "file": "signup-password-1000.png",
+   "hash": "418e834d79e860bf",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+   ]
+  },
+  {
+   "id": "signup-password",
+   "page": "Create account",
+   "state": "Password does not meet the rule",
+   "width": 720,
+   "file": "signup-password-720.png",
+   "hash": "dea5da5da1c41d59",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+   ]
+  },
+  {
+   "id": "signup-password",
+   "page": "Create account",
+   "state": "Password does not meet the rule",
+   "width": 390,
+   "file": "signup-password-390.png",
+   "hash": "36e54a7e94d327e2",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a.textlink> \"Sign in\""
+   ]
+  },
+  {
+   "id": "signup-duplicate",
+   "page": "Create account",
+   "state": "Email already has an account",
+   "width": 1440,
+   "file": "signup-duplicate-1440.png",
+   "hash": "9b3171ad34769577",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"BUILD A PC\""
+   ]
+  },
+  {
+   "id": "signup-duplicate",
+   "page": "Create account",
+   "state": "Email already has an account",
+   "width": 1000,
+   "file": "signup-duplicate-1000.png",
+   "hash": "bb1f8202d3f61f61",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a.textlink> \"Sign in\"",
+    "focus ring 1:1 (needs 3) on <a> \"BUILD A PC\""
+   ]
+  },
+  {
+   "id": "signup-duplicate",
+   "page": "Create account",
+   "state": "Email already has an account",
+   "width": 720,
+   "file": "signup-duplicate-720.png",
+   "hash": "d7da3db8f31741b2",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a.textlink> \"Sign in\"",
+    "focus ring 1:1 (needs 3) on <a> \"BUILD A PC\""
+   ]
+  },
+  {
+   "id": "signup-duplicate",
+   "page": "Create account",
+   "state": "Email already has an account",
+   "width": 390,
+   "file": "signup-duplicate-390.png",
+   "hash": "6f61104571c34779",
+   "changed": false,
+   "overImage": 1,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a.textlink> \"Sign in\""
+   ]
+  },
+  {
+   "id": "review-default",
+   "page": "Order review",
+   "state": "Complete build, ready to place",
+   "width": 1440,
+   "file": "review-default-1440.png",
+   "hash": "d6c96ecb00b0866b",
+   "changed": false,
+   "overImage": 0,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+   ]
+  },
+  {
+   "id": "review-default",
+   "page": "Order review",
+   "state": "Complete build, ready to place",
+   "width": 1000,
+   "file": "review-default-1000.png",
+   "hash": "40b5684924612e81",
+   "changed": false,
+   "overImage": 0,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+   ]
+  },
+  {
+   "id": "review-default",
+   "page": "Order review",
+   "state": "Complete build, ready to place",
+   "width": 720,
+   "file": "review-default-720.png",
+   "hash": "d6484b77c667a0e2",
+   "changed": false,
+   "overImage": 0,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+   ]
+  },
+  {
+   "id": "review-default",
+   "page": "Order review",
+   "state": "Complete build, ready to place",
+   "width": 390,
+   "file": "review-default-390.png",
+   "hash": "c59d4f42b018733d",
+   "changed": false,
+   "overImage": 0,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+   ]
+  },
+  {
+   "id": "review-submitting",
+   "page": "Order review",
+   "state": "Placing the order",
+   "width": 1440,
+   "file": "review-submitting-1440.png",
+   "hash": "afbf100269b50644",
+   "changed": false,
+   "overImage": 0,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+   ]
+  },
+  {
+   "id": "review-submitting",
+   "page": "Order review",
+   "state": "Placing the order",
+   "width": 1000,
+   "file": "review-submitting-1000.png",
+   "hash": "8645166312e9d392",
+   "changed": false,
+   "overImage": 0,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+   ]
+  },
+  {
+   "id": "review-submitting",
+   "page": "Order review",
+   "state": "Placing the order",
+   "width": 720,
+   "file": "review-submitting-720.png",
+   "hash": "2cf14cbabd8f74c8",
+   "changed": false,
+   "overImage": 0,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+   ]
+  },
+  {
+   "id": "review-submitting",
+   "page": "Order review",
+   "state": "Placing the order",
+   "width": 390,
+   "file": "review-submitting-390.png",
+   "hash": "fbb4ea673be5b648",
+   "changed": false,
+   "overImage": 0,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+   ]
+  },
+  {
+   "id": "review-part-gone",
+   "page": "Order review",
+   "state": "A chosen part is gone at submit",
+   "width": 1440,
+   "file": "review-part-gone-1440.png",
+   "hash": "a143af69029a75f1",
+   "changed": false,
+   "overImage": 0,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+   ]
+  },
+  {
+   "id": "review-part-gone",
+   "page": "Order review",
+   "state": "A chosen part is gone at submit",
+   "width": 1000,
+   "file": "review-part-gone-1000.png",
+   "hash": "32c026941bc12963",
+   "changed": false,
+   "overImage": 0,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+   ]
+  },
+  {
+   "id": "review-part-gone",
+   "page": "Order review",
+   "state": "A chosen part is gone at submit",
+   "width": 720,
+   "file": "review-part-gone-720.png",
+   "hash": "74f922a6e6f9a410",
+   "changed": false,
+   "overImage": 0,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+   ]
+  },
+  {
+   "id": "review-part-gone",
+   "page": "Order review",
+   "state": "A chosen part is gone at submit",
+   "width": 390,
+   "file": "review-part-gone-390.png",
+   "hash": "e726b822c27e6693",
+   "changed": false,
+   "overImage": 0,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+   ]
+  },
+  {
+   "id": "review-session-expired",
+   "page": "Order review",
+   "state": "Session ended at confirm",
+   "width": 1440,
+   "file": "review-session-expired-1440.png",
+   "hash": "39d7dc025b5bc55e",
+   "changed": false,
+   "overImage": 0,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+   ]
+  },
+  {
+   "id": "review-session-expired",
+   "page": "Order review",
+   "state": "Session ended at confirm",
+   "width": 1000,
+   "file": "review-session-expired-1000.png",
+   "hash": "77b42973508b9d3c",
+   "changed": false,
+   "overImage": 0,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+   ]
+  },
+  {
+   "id": "review-session-expired",
+   "page": "Order review",
+   "state": "Session ended at confirm",
+   "width": 720,
+   "file": "review-session-expired-720.png",
+   "hash": "982fb90f28fb528b",
+   "changed": false,
+   "overImage": 0,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+   ]
+  },
+  {
+   "id": "review-session-expired",
+   "page": "Order review",
+   "state": "Session ended at confirm",
+   "width": 390,
+   "file": "review-session-expired-390.png",
+   "hash": "62ae18ad37375bbe",
+   "changed": false,
+   "overImage": 0,
+   "findings": [
+    "focus ring 1:1 (needs 3) on <a> \"Build a PC\""
+   ]
+  },
+  {
+   "id": "confirm-default",
+   "page": "Order confirmation",
+   "state": "Order placed",
+   "width": 1440,
+   "file": "confirm-default-1440.png",
+   "hash": "bd4dfebffdc654ff",
+   "changed": false,
+   "overImage": 0,
+   "findings": []
+  },
+  {
+   "id": "confirm-default",
+   "page": "Order confirmation",
+   "state": "Order placed",
+   "width": 1000,
+   "file": "confirm-default-1000.png",
+   "hash": "d75e78b3b737dc7b",
+   "changed": false,
+   "overImage": 0,
+   "findings": []
+  },
+  {
+   "id": "confirm-default",
+   "page": "Order confirmation",
+   "state": "Order placed",
+   "width": 720,
+   "file": "confirm-default-720.png",
+   "hash": "7364f18876ede4b7",
+   "changed": false,
+   "overImage": 0,
+   "findings": []
+  },
+  {
+   "id": "confirm-default",
+   "page": "Order confirmation",
+   "state": "Order placed",
+   "width": 390,
+   "file": "confirm-default-390.png",
+   "hash": "c4043ac5e2b4e707",
+   "changed": false,
+   "overImage": 0,
+   "findings": []
+  }
+ ]
+}

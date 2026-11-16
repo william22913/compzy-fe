@@ -1,0 +1,179 @@
+{
+  "reference": {
+    "kind": "image",
+    "url": "https://cdn.dribbble.com/userupload/43403242/file/original-708542cd685749a65c7cc57e6bcc4888.jpg?resize=1504x4649&vertical=center",
+    "note": "The manager supplied this shot as the look to match: warm paper canvas, Didone display type, one vermilion accent, square corners, hairlines, a tilted ribbon seam, a turning seal, a dark footer."
+  },
+  "hide": [
+    ".switcher"
+  ],
+  "screens": [
+    {
+      "id": "builder-empty",
+      "page": "Builder",
+      "state": "Nothing chosen, visitor",
+      "route": "/",
+      "user": "guest"
+    },
+    {
+      "id": "builder-partial",
+      "page": "Builder",
+      "state": "Three parts chosen, visitor",
+      "route": "/",
+      "user": "guest"
+    },
+    {
+      "id": "builder-complete",
+      "page": "Builder",
+      "state": "Complete build, visitor",
+      "route": "/",
+      "user": "guest"
+    },
+    {
+      "id": "builder-signed-in",
+      "page": "Builder",
+      "state": "Complete build, signed in",
+      "route": "/",
+      "user": "in"
+    },
+    {
+      "id": "builder-signed-out",
+      "page": "Builder",
+      "state": "Signed out with the build kept",
+      "route": "/",
+      "user": "guest"
+    },
+    {
+      "id": "builder-checkout-refused",
+      "page": "Builder",
+      "state": "Checkout refused, categories named",
+      "route": "/",
+      "user": "guest"
+    },
+    {
+      "id": "builder-part-gone",
+      "page": "Builder",
+      "state": "A chosen part went away while signed in",
+      "route": "/",
+      "user": "in"
+    },
+    {
+      "id": "builder-loading",
+      "page": "Builder",
+      "state": "Catalogue loading",
+      "route": "/",
+      "user": "guest"
+    },
+    {
+      "id": "builder-error",
+      "page": "Builder",
+      "state": "Catalogue failed to load",
+      "route": "/",
+      "user": "guest"
+    },
+    {
+      "id": "signin-default",
+      "page": "Sign in",
+      "state": "Ready",
+      "route": "/sign-in",
+      "user": "guest"
+    },
+    {
+      "id": "signin-validation",
+      "page": "Sign in",
+      "state": "Submitted empty",
+      "route": "/sign-in",
+      "user": "guest"
+    },
+    {
+      "id": "signin-invalid",
+      "page": "Sign in",
+      "state": "Wrong email or password",
+      "route": "/sign-in",
+      "user": "guest"
+    },
+    {
+      "id": "signin-loading",
+      "page": "Sign in",
+      "state": "Submitting",
+      "route": "/sign-in",
+      "user": "guest"
+    },
+    {
+      "id": "signin-session-expired",
+      "page": "Sign in",
+      "state": "Session ended at confirmation",
+      "route": "/sign-in",
+      "user": "guest"
+    },
+    {
+      "id": "signup-default",
+      "page": "Create account",
+      "state": "Ready",
+      "route": "/sign-up",
+      "user": "guest"
+    },
+    {
+      "id": "signup-validation",
+      "page": "Create account",
+      "state": "Submitted empty",
+      "route": "/sign-up",
+      "user": "guest"
+    },
+    {
+      "id": "signup-password",
+      "page": "Create account",
+      "state": "Password does not meet the rule",
+      "route": "/sign-up",
+      "user": "guest"
+    },
+    {
+      "id": "signup-duplicate",
+      "page": "Create account",
+      "state": "Email already has an account",
+      "route": "/sign-up",
+      "user": "guest"
+    },
+    {
+      "id": "review-default",
+      "page": "Order review",
+      "state": "Complete build, ready to place",
+      "route": "/order-review",
+      "user": "in"
+    },
+    {
+      "id": "review-submitting",
+      "page": "Order review",
+      "state": "Placing the order",
+      "route": "/order-review",
+      "user": "in"
+    },
+    {
+      "id": "review-part-gone",
+      "page": "Order review",
+      "state": "A chosen part is gone at submit",
+      "route": "/order-review",
+      "user": "in"
+    },
+    {
+      "id": "review-session-expired",
+      "page": "Order review",
+      "state": "Session ended at confirm",
+      "route": "/order-review",
+      "user": "in"
+    },
+    {
+      "id": "confirm-default",
+      "page": "Order confirmation",
+      "state": "Order placed",
+      "route": "/order-confirmation",
+      "user": "in"
+    }
+  ],
+  "anchors": [
+    {
+      "screen": "builder-empty",
+      "frame": "hero.png"
+    }
+  ]
+}
