@@ -66,6 +66,10 @@ export function BuildProvider({ children }) {
     clearBuild();
   }, []);
 
+  // The review sends a customer whose part vanished back here; the builder
+  // then tells them which category lost a part.
+  const markRemoved = useCallback((entry) => setRemoved(entry), []);
+
   const rows = useMemo(
     () =>
       categories.map((category) => ({
@@ -91,9 +95,10 @@ export function BuildProvider({ children }) {
       choose,
       removePart,
       clear,
+      markRemoved,
       removed,
     }),
-    [rows, selectedRows, missing, total, choose, removePart, clear, removed],
+    [rows, selectedRows, missing, total, choose, removePart, clear, markRemoved, removed],
   );
 
   return <BuildContext.Provider value={value}>{children}</BuildContext.Provider>;

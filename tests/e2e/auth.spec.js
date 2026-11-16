@@ -88,5 +88,21 @@ test('signing out returns you to the builder as a guest', async ({ page, request
   await page.getByRole('button', { name: 'Sign out' }).click();
 
   await expect(page).toHaveURL('/');
+  await expect(page.getByText('You are signed out.')).toBeVisible();
   await expect(page.getByRole('link', { name: 'Sign in' }).first()).toBeVisible();
+});
+
+test('a crafted return path lands on the builder, not somewhere else', async ({
+  page,
+  request,
+  baseURL,
+}) => {
+  const email = uniqueEmail('redirect');
+  await registerThroughApi(request, baseURL, { email });
+
+  await page.goto('/sign-in?return=%2F%2Fevil.example');
+  await signInThroughUi(page, { email });
+
+  await expect(page).toHaveURL('/');
+  await expect(page).not.toHaveURL(/evil\.example/);
 });

@@ -140,6 +140,10 @@ export function ReviewPage() {
 
   function chooseAnother() {
     if (!firstGone) return;
+    build.markRemoved({
+      categoryCode: firstGone.categoryCode,
+      categoryName: firstGone.categoryName,
+    });
     navigate('/', { state: { focus: firstGone.categoryCode } });
   }
 
@@ -233,9 +237,12 @@ export function ReviewPage() {
                 >
                   {submitting ? en.review.placing : en.review.placeOrder}
                 </button>
-                <Link className="btn btn--ghost" to="/">
-                  {en.review.changePart}
-                </Link>
+                {/* The design offers no way out of the review while it submits. */}
+                {!submitting && (
+                  <Link className="btn btn--ghost" to="/">
+                    {en.review.changePart}
+                  </Link>
+                )}
               </>
             )}
           </div>

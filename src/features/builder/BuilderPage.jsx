@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { Notice } from '../../components/Notice';
 import { Ribbons } from '../../components/Ribbons';
 import { formatRupiah } from '../../helpers/money';
@@ -36,6 +36,7 @@ export function BuilderPage() {
   }, [location.state, status]);
 
   const ready = status === 'ready';
+  const signedOut = Boolean(location.state && location.state.signedOut);
   const totalLabel = ready ? formatRupiah(build.total) : '-';
 
   function jumpToParts() {
@@ -125,6 +126,17 @@ export function BuilderPage() {
                 <button className="btn btn--ghost" type="button" onClick={reload}>
                   {en.builder.tryAgain}
                 </button>
+              </p>
+            </Notice>
+          )}
+
+          {ready && signedOut && (
+            <Notice tone="info" title={en.builder.signedOutTitle}>
+              <p>
+                {en.builder.signedOutBody}{' '}
+                <Link className="textlink" to="/sign-in">
+                  {en.builder.signedOutAction}
+                </Link>
               </p>
             </Notice>
           )}

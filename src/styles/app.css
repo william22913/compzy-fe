@@ -1265,6 +1265,8 @@ table {
   line-height: 1;
   letter-spacing: 0.02em;
   font-variant-numeric: tabular-nums;
+  /* The reference is a 36-character order id, not the mock's short one. */
+  overflow-wrap: anywhere;
 }
 .night .orow {
   border-bottom-color: var(--line-on-night);

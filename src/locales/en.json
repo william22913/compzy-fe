@@ -10,6 +10,7 @@
   "chrome": {
     "brand": "compzy",
     "brandAria": "compzy, back to the builder",
+    "sealText": "Compzy · Built part by part ·",
     "navLabel": "Main",
     "build": "Build",
     "review": "Order review",
@@ -73,6 +74,9 @@
     "loadingTotal": "The total appears once the catalogue has loaded.",
     "loadErrorTitle": "We could not load the parts catalogue.",
     "loadErrorBody": "The store could not be reached just now. Nothing was lost: try again in a moment.",
+    "signedOutTitle": "You are signed out.",
+    "signedOutBody": "Your build is still here. Checkout now asks you to sign in again.",
+    "signedOutAction": "Sign in",
     "checkoutRefusedTitle": "Checkout needs one part in every required category.",
     "checkoutRefusedBody": "Still empty: {list}. The graphics card is optional.",
     "partGoneTitle": "The part you chose for {category} is no longer offered.",
@@ -190,7 +194,10 @@
     "loading": "Loading your order",
     "notFoundTitle": "We could not find that order.",
     "notFoundBody": "It may belong to another account, or this link may be wrong. Nothing is lost: your build is still here.",
-    "notFoundAction": "Back to the builder"
+    "notFoundAction": "Back to the builder",
+    "sessionTitle": "Your session has ended.",
+    "sessionBody": "Sign in again to see this order. Nothing is lost: the order is already placed.",
+    "sessionAction": "Sign in again"
   },
   "notFound": {
     "eyebrow": "Not found",

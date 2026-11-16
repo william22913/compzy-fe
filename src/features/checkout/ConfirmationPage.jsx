@@ -5,6 +5,7 @@ import { formatDate } from '../../helpers/date';
 import { formatRupiah } from '../../helpers/money';
 import en from '../../locales';
 import { fetchOrder } from '../../core/services/orderService';
+import { signInHref } from '../../helpers/returnTo';
 
 export function ConfirmationPage() {
   const { orderId } = useParams();
@@ -18,8 +19,10 @@ export function ConfirmationPage() {
       .then((order) => {
         if (active) setState({ status: order ? 'ready' : 'error', order });
       })
-      .catch(() => {
-        if (active) setState({ status: 'error', order: null });
+      .catch((failure) => {
+        // A missing session is not a missing order: say so, and offer the way
+        // back in rather than hinting the order belongs to someone else.
+        if (active) setState({ status: 'error', order: null, code: failure && failure.code });
       });
 
     return () => {
@@ -43,17 +46,31 @@ export function ConfirmationPage() {
   }
 
   if (state.status === 'error') {
+    const signedOut = state.code === 'UNAUTHENTICATED';
     return (
       <main className="main night">
         <div className="confirm">
           <div>
             <span className="eyebrow">{en.confirmation.eyebrow}</span>
-            <h1 className="display">{en.confirmation.notFoundTitle}</h1>
-            <p className="lede">{en.confirmation.notFoundBody}</p>
+            <h1 className="display">
+              {signedOut ? en.confirmation.sessionTitle : en.confirmation.notFoundTitle}
+            </h1>
+            <p className="lede">
+              {signedOut ? en.confirmation.sessionBody : en.confirmation.notFoundBody}
+            </p>
             <div className="confirm__actions">
-              <Link className="btn btn--on-night" to="/">
-                {en.confirmation.notFoundAction}
-              </Link>
+              {signedOut ? (
+                <Link
+                  className="btn btn--on-night"
+                  to={signInHref(`/order-confirmation/${orderId}`)}
+                >
+                  {en.confirmation.sessionAction}
+                </Link>
+              ) : (
+                <Link className="btn btn--on-night" to="/">
+                  {en.confirmation.notFoundAction}
+                </Link>
+              )}
             </div>
           </div>
         </div>

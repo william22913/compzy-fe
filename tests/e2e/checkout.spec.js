@@ -78,7 +78,29 @@ test('the review page says so when there is nothing to review', async ({ page })
   await expect(page.getByRole('link', { name: 'Choose parts' })).toBeVisible();
 });
 
-test('an order that does not exist is reported, not faked', async ({ page }) => {
+test('a signed-out visitor opening a confirmation is asked to sign in, not told it is missing', async ({
+  page,
+}) => {
+  await page.goto('/order-confirmation/00000000-0000-4000-8000-000000000000');
+
+  await expect(page.getByText('Your session has ended.')).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Sign in again' })).toBeVisible();
+  await expect(page.getByText('We could not find that order.')).toHaveCount(0);
+});
+
+test('an order that does not exist is reported, not faked', async ({
+  page,
+  request,
+  baseURL,
+}) => {
+  const email = uniqueEmail('missing');
+  await registerThroughApi(request, baseURL, { email });
+
+  await page.goto('/sign-in');
+  await signInThroughUi(page, { email });
+  await expect(page).toHaveURL('/');
+
+  // Signed in, the order is simply not there — and not someone else's either.
   await page.goto('/order-confirmation/00000000-0000-4000-8000-000000000000');
 
   await expect(page.getByText('We could not find that order.')).toBeVisible();

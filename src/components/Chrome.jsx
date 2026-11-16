@@ -13,7 +13,8 @@ export function Header() {
   async function handleSignOut() {
     try {
       await signOut();
-      navigate('/');
+      // The builder says the customer is signed out; REQ-028 keeps the build.
+      navigate('/', { state: { signedOut: true } });
     } catch {
       // The session is still live on the server: show it, do not claim a
       // sign-out the app did not perform.

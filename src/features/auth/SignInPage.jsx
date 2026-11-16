@@ -45,6 +45,15 @@ export function SignInPage() {
     } catch (error) {
       if (error.code === 'INVALID_CREDENTIALS') {
         setFormError({ tone: 'error', title: en.auth.signIn.invalidTitle, body: en.auth.signIn.invalidBody });
+        // Keep the address, ask for the password again, as the contract says.
+        setPassword('');
+      } else if (error.code === 'VALIDATION_FAILED' && Array.isArray(error.fields) && error.fields.length > 0) {
+        const mapped = {};
+        for (const item of error.fields) {
+          if (item.field === 'email' || item.field === 'password') mapped[item.field] = item.message;
+        }
+        if (Object.keys(mapped).length > 0) setErrors(mapped);
+        else setFormError({ tone: 'error', title: en.auth.genericTitle, body: error.message });
       } else if (error.code === 'RATE_LIMITED') {
         setFormError({ tone: 'error', title: en.auth.rateLimitedTitle, body: en.auth.rateLimitedBody });
       } else {
