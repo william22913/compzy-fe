@@ -1,6 +1,7 @@
-import en from '../locales';
+import { useT } from '../store/LanguageContext';
 
 export function Seal({ id = 'seal' }) {
+  const t = useT();
   const pathId = `${id}-path`;
   return (
     <div className="seal">
@@ -15,7 +16,7 @@ export function Seal({ id = 'seal' }) {
         <circle cx="55" cy="55" r="33" fill="none" stroke="currentColor" strokeWidth="0.8" />
         <text>
           <textPath href={`#${pathId}`} startOffset="0">
-            {en.chrome.sealText}{' '}
+            {t.chrome.sealText}{' '}
           </textPath>
         </text>
         <path

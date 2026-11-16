@@ -5,6 +5,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { AuthProvider } from '../../store/AuthContext';
 import { CatalogueProvider } from '../../store/CatalogueContext';
 import { BuildProvider } from '../../store/BuildContext';
+import { LanguageProvider } from '../../store/LanguageContext';
 import { BUILD_STORAGE_KEY } from '../../helpers/buildStorage';
 import { BuilderPage } from './BuilderPage';
 import { cataloguePayload, jsonResponse } from '../../test/fixtures';
@@ -13,11 +14,13 @@ function renderBuilder() {
   return render(
     <MemoryRouter>
       <AuthProvider>
-        <CatalogueProvider>
-          <BuildProvider>
-            <BuilderPage />
-          </BuildProvider>
-        </CatalogueProvider>
+        <LanguageProvider>
+          <CatalogueProvider>
+            <BuildProvider>
+              <BuilderPage />
+            </BuildProvider>
+          </CatalogueProvider>
+        </LanguageProvider>
       </AuthProvider>
     </MemoryRouter>,
   );
@@ -28,6 +31,8 @@ function heroTotal() {
 }
 
 beforeEach(() => {
+  // These cases assert the English copy; the language cases live below.
+  window.localStorage.setItem('compzy.lang.v1', 'en');
   vi.stubGlobal(
     'fetch',
     vi.fn(async (url) => {

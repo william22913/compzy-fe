@@ -1,12 +1,14 @@
 import { formatRupiah } from '../../helpers/money';
-import en, { fmt } from '../../locales';
+import { fmt } from '../../locales';
+import { useT } from '../../store/LanguageContext';
 
 export function PartCard({ part, lot, chosen, onChoose }) {
+  const t = useT();
   return (
     <article className={`part${chosen ? ' is-chosen' : ''}`}>
       <div className="part__body">
         <span className="part__lot" aria-hidden="true">
-          {fmt(en.builder.partLot, { number: String(lot).padStart(2, '0') })}
+          {fmt(t.builder.partLot, { number: String(lot).padStart(2, '0') })}
         </span>
         <h3 className="part__name">{part.name}</h3>
         <div className="part__row">
@@ -19,7 +21,7 @@ export function PartCard({ part, lot, chosen, onChoose }) {
         aria-pressed={chosen}
         onClick={() => onChoose(part.id)}
       >
-        {chosen ? en.builder.remove : en.builder.choose}
+        {chosen ? t.builder.remove : t.builder.choose}
       </button>
     </article>
   );

@@ -5,7 +5,8 @@ import reactHooks from 'eslint-plugin-react-hooks';
 
 export default [
   {
-    ignores: ['dist', 'node_modules', 'playwright-report', 'test-results'],
+    // `docs` is the byte-exact handoff mirror from the docs repository, not app source.
+    ignores: ['dist', 'node_modules', 'playwright-report', 'test-results', 'docs'],
   },
   js.configs.recommended,
   {

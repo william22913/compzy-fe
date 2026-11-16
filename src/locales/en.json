@@ -7,6 +7,19 @@
     "confirmationTitle": "Order confirmed · compzy PC Builder",
     "notFoundTitle": "Page not found · compzy PC Builder"
   },
+  "language": {
+    "label": "Language",
+    "saveFailed": "The language could not be saved to your account. It stays on this device; try again later."
+  },
+  "categories": {
+    "cpu": "Processor (CPU)",
+    "motherboard": "Motherboard",
+    "ram": "RAM",
+    "storage": "Storage (SSD)",
+    "gpu": "Graphics Card",
+    "psu": "Power Supply",
+    "case": "PC Case"
+  },
   "chrome": {
     "brand": "compzy",
     "brandAria": "compzy, back to the builder",
@@ -34,8 +47,7 @@
   },
   "builder": {
     "eyebrow": "Custom PCs, built part by part",
-    "titleLine": "Build your own",
-    "titleDisc": "PC",
+    "title": [["Build your own"], [{ "disc": "PC" }]],
     "sub": "Seven categories, one part in each. Pick what you want, watch the total move, and check out when it looks right.",
     "totalSoFar": "Total so far",
     "startChoosing": "Start choosing",
@@ -137,8 +149,11 @@
       "field.email.invalid": "Enter a valid email address.",
       "field.email.length": "Use at most 254 characters.",
       "field.password.required": "Enter a password.",
-      "field.password.rule": "Use 8 to 128 characters, with at least one letter and one number."
+      "field.password.rule": "Use 8 to 128 characters, with at least one letter and one number.",
+      "field.preferred_language.required": "Choose a language.",
+      "field.preferred_language.invalid": "Choose English or Bahasa Indonesia."
     },
+    "genericFieldError": "Check this field and try again.",
     "genericTitle": "We could not sign you in.",
     "genericBody": "Nothing changed. Try again in a moment.",
     "rateLimitedTitle": "Too many attempts.",
@@ -200,9 +215,9 @@
     "sessionAction": "Sign in again"
   },
   "notFound": {
-    "eyebrow": "Not found",
-    "title": "This page does not exist",
-    "body": "The address may be mistyped, or the page has moved. The builder is still here.",
+    "eyebrow": "Page not found · 404",
+    "title": "This page is not here",
+    "body": "The address you followed does not match any page in the store. Your build is safe; head back and carry on.",
     "action": "Back to the builder"
   }
 }

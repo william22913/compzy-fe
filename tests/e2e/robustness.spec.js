@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect, test } from './base';
 import {
   PASSWORD,
   chooseRequired,
@@ -11,8 +11,8 @@ import {
 test('a mistyped address lands on the not-found page', async ({ page }) => {
   await page.goto('/no-such-page');
 
-  await expect(page.getByText('Not found')).toBeVisible();
-  await expect(page.getByRole('heading', { name: 'This page does not exist' })).toBeVisible();
+  await expect(page.getByText('Page not found · 404')).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'This page is not here' })).toBeVisible();
   await page.getByRole('link', { name: 'Back to the builder', exact: true }).click();
   await expect(page).toHaveURL('/');
 });

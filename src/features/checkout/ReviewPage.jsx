@@ -5,14 +5,17 @@ import { OrderRows } from '../../components/OrderRows';
 import { Seal } from '../../components/Seal';
 import { formatRupiah } from '../../helpers/money';
 import { signInHref } from '../../helpers/returnTo';
-import en, { fmt } from '../../locales';
+import { categoryLabel } from '../../helpers/categoryLabel';
+import { fmt } from '../../locales';
 import { useAuth } from '../../store/AuthContext';
 import { useBuild } from '../../store/BuildContext';
 import { useCatalogue } from '../../store/CatalogueContext';
+import { useT } from '../../store/LanguageContext';
 import { placeOrder } from '../../core/services/orderService';
 
 export function ReviewPage() {
   const { status: authStatus, expireSession } = useAuth();
+  const t = useT();
   const { status: catalogueStatus, reload } = useCatalogue();
   const build = useBuild();
   const navigate = useNavigate();
@@ -28,7 +31,7 @@ export function ReviewPage() {
       return {
         key: category.code,
         categoryCode: category.code,
-        categoryName: category.name,
+        categoryName: categoryLabel(t, category.code, category.name),
         optional: !category.required,
         gone: Boolean(goneEntry),
         partName: goneEntry ? goneEntry.partName : part && part.name,
@@ -56,12 +59,7 @@ export function ReviewPage() {
       switch (failure.code) {
         case 'UNAUTHENTICATED':
           expireSession();
-          setError({
-            code: 'UNAUTHENTICATED',
-            tone: 'info',
-            title: en.review.sessionTitle,
-            body: en.review.sessionBody,
-          });
+          setError({ code: 'UNAUTHENTICATED' });
           break;
         case 'PART_UNAVAILABLE': {
           const unavailable = Array.isArray(failure.details.unavailable_part_ids)
@@ -77,64 +75,70 @@ export function ReviewPage() {
             }));
           for (const entry of lost) build.removePart(entry.categoryCode);
           setGone(lost);
-          setError({
-            code: 'PART_UNAVAILABLE',
-            tone: 'error',
-            title:
-              lost.length > 1
-                ? en.review.partGoneManyTitle
-                : fmt(en.review.partGoneTitle, {
-                    name: lost.length === 1 ? lost[0].partName : '',
-                  }),
-            body:
-              lost.length > 1
-                ? en.review.partGoneManyBody
-                : fmt(en.review.partGoneBody, {
-                    category: lost.length === 1 ? lost[0].categoryName : '',
-                  }),
-          });
+          setError({ code: 'PART_UNAVAILABLE' });
           break;
         }
         case 'TOTAL_CHANGED':
           await reload();
-          setError({
-            code: 'TOTAL_CHANGED',
-            tone: 'error',
-            title: en.review.totalChangedTitle,
-            body: en.review.totalChangedBody,
-          });
+          setError({ code: 'TOTAL_CHANGED' });
           break;
         case 'BUILD_INCOMPLETE':
           setError({
             code: 'BUILD_INCOMPLETE',
-            tone: 'error',
-            title: en.review.incompleteTitle,
-            body: fmt(en.review.incompleteBody, {
-              list: Array.isArray(failure.details.missing_categories)
-                ? failure.details.missing_categories.map((item) => item.name).join(', ')
-                : '',
-            }),
+            missing: Array.isArray(failure.details.missing_categories)
+              ? failure.details.missing_categories
+              : [],
           });
           break;
         case 'RATE_LIMITED':
-          setError({
-            code: 'RATE_LIMITED',
-            tone: 'error',
-            title: en.review.rateLimitedTitle,
-            body: en.review.rateLimitedBody,
-          });
+          setError({ code: 'RATE_LIMITED' });
           break;
         default:
-          setError({
-            code: 'GENERIC',
-            tone: 'error',
-            title: en.review.errorTitle,
-            body: en.review.errorBody,
-            requestId: failure.requestId,
-          });
+          setError({ code: 'GENERIC', requestId: failure.requestId });
       }
     } finally {
       setSubmitting(false);
+    }
+  }
+
+  // The notice keeps the failure and is written out at render time, so it
+  // follows the language when the customer switches (REQ-043).
+  function noticeFor(failure) {
+    if (!failure) return null;
+    const first = gone[0];
+    switch (failure.code) {
+      case 'UNAUTHENTICATED':
+        return { tone: 'info', title: t.review.sessionTitle, body: t.review.sessionBody };
+      case 'PART_UNAVAILABLE':
+        return gone.length > 1
+          ? { tone: 'error', title: t.review.partGoneManyTitle, body: t.review.partGoneManyBody }
+          : {
+              tone: 'error',
+              title: fmt(t.review.partGoneTitle, { name: first ? first.partName : '' }),
+              body: fmt(t.review.partGoneBody, {
+                category: first ? categoryLabel(t, first.categoryCode, first.categoryName) : '',
+              }),
+            };
+      case 'TOTAL_CHANGED':
+        return { tone: 'error', title: t.review.totalChangedTitle, body: t.review.totalChangedBody };
+      case 'BUILD_INCOMPLETE':
+        return {
+          tone: 'error',
+          title: t.review.incompleteTitle,
+          body: fmt(t.review.incompleteBody, {
+            list: (failure.missing || [])
+              .map((item) => categoryLabel(t, item.code, item.name))
+              .join(', '),
+          }),
+        };
+      case 'RATE_LIMITED':
+        return {
+          tone: 'error',
+          title: t.review.rateLimitedTitle,
+          body: t.review.rateLimitedBody,
+        };
+      default:
+        return { tone: 'error', title: t.review.errorTitle, body: t.review.errorBody };
     }
   }
 
@@ -153,16 +157,16 @@ export function ReviewPage() {
         <div className="wrap review">
           <div>
             <div className="review__head">
-              <span className="eyebrow">{en.review.eyebrow}</span>
-              <h1 className="display">{en.review.title}</h1>
-              <p className="lede">{en.review.lede}</p>
+              <span className="eyebrow">{t.review.eyebrow}</span>
+              <h1 className="display">{t.review.title}</h1>
+              <p className="lede">{t.review.lede}</p>
             </div>
             <div style={{ marginTop: 'var(--s5)' }}>
-              <Notice tone="info" title={en.review.emptyTitle}>
-                <p>{en.review.emptyBody}</p>
+              <Notice tone="info" title={t.review.emptyTitle}>
+                <p>{t.review.emptyBody}</p>
                 <p style={{ marginTop: 'var(--s4)' }}>
                   <Link className="btn btn--ghost" to="/">
-                    {en.review.emptyAction}
+                    {t.review.emptyAction}
                   </Link>
                 </p>
               </Notice>
@@ -175,23 +179,24 @@ export function ReviewPage() {
   }
 
   const signedOut = authStatus === 'guest';
+  const notice = noticeFor(error);
 
   return (
     <main className="main">
       <div className="wrap review">
         <div>
           <div className="review__head">
-            <span className="eyebrow">{en.review.eyebrow}</span>
-            <h1 className="display">{en.review.title}</h1>
-            <p className="lede">{en.review.lede}</p>
+            <span className="eyebrow">{t.review.eyebrow}</span>
+            <h1 className="display">{t.review.title}</h1>
+            <p className="lede">{t.review.lede}</p>
           </div>
 
-          {error && (
+          {notice && (
             <div style={{ marginTop: 'var(--s5)' }}>
-              <Notice tone={error.tone} title={error.title}>
-                <p>{error.body}</p>
+              <Notice tone={notice.tone} title={notice.title}>
+                <p>{notice.body}</p>
                 {error.requestId && (
-                  <p>{fmt(en.review.reference, { requestId: error.requestId })}</p>
+                  <p>{fmt(t.review.reference, { requestId: error.requestId })}</p>
                 )}
               </Notice>
             </div>
@@ -200,7 +205,7 @@ export function ReviewPage() {
           <OrderRows rows={rows} />
 
           <div className="order-total">
-            <span className="label">{en.review.finalTotal}</span>
+            <span className="label">{t.review.finalTotal}</span>
             <span className="amount num">{formatRupiah(build.total)}</span>
           </div>
 
@@ -210,22 +215,24 @@ export function ReviewPage() {
                 className="btn"
                 to={`${signInHref('/order-review')}&expired=1`}
               >
-                {en.review.signInAgain}
+                {t.review.signInAgain}
               </Link>
             ) : error && error.code === 'UNAUTHENTICATED' ? (
               <Link
                 className="btn"
                 to={`${signInHref('/order-review')}&expired=1`}
               >
-                {en.review.signInAgain}
+                {t.review.signInAgain}
               </Link>
             ) : error && error.code === 'PART_UNAVAILABLE' && gone.length > 0 ? (
               <button className="btn" type="button" onClick={chooseAnother}>
-                {fmt(en.review.chooseAnother, { category: firstGone.categoryName })}
+                {fmt(t.review.chooseAnother, {
+                  category: categoryLabel(t, firstGone.categoryCode, firstGone.categoryName),
+                })}
               </button>
             ) : error && error.code === 'BUILD_INCOMPLETE' ? (
               <Link className="btn" to="/">
-                {en.review.changePart}
+                {t.review.changePart}
               </Link>
             ) : (
               <>
@@ -235,12 +242,12 @@ export function ReviewPage() {
                   onClick={handleSubmit}
                   disabled={submitting || !build.complete || catalogueStatus !== 'ready'}
                 >
-                  {submitting ? en.review.placing : en.review.placeOrder}
+                  {submitting ? t.review.placing : t.review.placeOrder}
                 </button>
                 {/* The design offers no way out of the review while it submits. */}
                 {!submitting && (
                   <Link className="btn btn--ghost" to="/">
-                    {en.review.changePart}
+                    {t.review.changePart}
                   </Link>
                 )}
               </>
@@ -255,6 +262,7 @@ export function ReviewPage() {
 }
 
 function ReviewAside({ total }) {
+  const t = useT();
   return (
     <aside className="summary">
       <figure className="summary__figure">
@@ -262,11 +270,11 @@ function ReviewAside({ total }) {
       </figure>
       <Seal id="review-seal" />
       <div className="summary__total">
-        <span className="label">{en.review.summaryTotal}</span>
+        <span className="label">{t.review.summaryTotal}</span>
         <span className="amount num">{formatRupiah(total)}</span>
       </div>
       <div className="summary__rules">
-        {en.review.rules.map((rule) => (
+        {t.review.rules.map((rule) => (
           <p key={rule}>{rule}</p>
         ))}
       </div>

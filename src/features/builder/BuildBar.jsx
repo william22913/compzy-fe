@@ -1,14 +1,15 @@
 import { formatRupiah } from '../../helpers/money';
-import en from '../../locales';
+import { useT } from '../../store/LanguageContext';
 import { useBuild } from '../../store/BuildContext';
 
 export function BuildBar({ open, onToggle }) {
   const { total } = useBuild();
+  const t = useT();
 
   return (
     <div className="build-bar">
       <div>
-        <span className="label">{en.builder.total}</span>
+        <span className="label">{t.builder.total}</span>
         <span className="amount num">{formatRupiah(total)}</span>
       </div>
       <button
@@ -18,7 +19,7 @@ export function BuildBar({ open, onToggle }) {
         aria-controls="build-panel"
         onClick={onToggle}
       >
-        {open ? en.builder.buildBarClose : en.builder.buildBarToggle}
+        {open ? t.builder.buildBarClose : t.builder.buildBarToggle}
       </button>
     </div>
   );

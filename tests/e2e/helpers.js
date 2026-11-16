@@ -46,9 +46,16 @@ export async function signInThroughUi(page, { email, password = PASSWORD }) {
   await page.getByRole('button', { name: 'Sign in', exact: true }).click();
 }
 
-export async function registerThroughApi(request, baseURL, { email, fullName = 'E2E Buyer' }) {
+// `language` is the account's own language: the English journeys pin English on
+// the device, so their accounts are English too; the language journey passes the
+// language it is testing.
+export async function registerThroughApi(
+  request,
+  baseURL,
+  { email, fullName = 'E2E Buyer', language = 'en' },
+) {
   const response = await request.post(`${baseURL}/api/v1/auth/register`, {
-    data: { full_name: fullName, email, password: PASSWORD },
+    data: { full_name: fullName, email, password: PASSWORD, preferred_language: language },
   });
   expect(response.status()).toBe(201);
 }

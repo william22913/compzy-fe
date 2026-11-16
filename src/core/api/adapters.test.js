@@ -24,10 +24,27 @@ describe('adaptCategories', () => {
 });
 
 describe('adaptUser', () => {
-  it('maps full_name to fullName', () => {
+  it('maps full_name to fullName and passes the language through', () => {
     expect(
-      adaptUser({ id: 'u1', full_name: 'Rina Prasetyo', email: 'rina@example.com' }),
-    ).toEqual({ id: 'u1', fullName: 'Rina Prasetyo', email: 'rina@example.com' });
+      adaptUser({
+        id: 'u1',
+        full_name: 'Rina Prasetyo',
+        email: 'rina@example.com',
+        preferred_language: 'en',
+      }),
+    ).toEqual({
+      id: 'u1',
+      fullName: 'Rina Prasetyo',
+      email: 'rina@example.com',
+      preferredLanguage: 'en',
+    });
+  });
+
+  it('reads a missing or unexpected language as Indonesian', () => {
+    const base = { id: 'u1', full_name: 'Rina', email: 'rina@example.com' };
+    expect(adaptUser(base).preferredLanguage).toBe('id');
+    expect(adaptUser({ ...base, preferred_language: 'fr' }).preferredLanguage).toBe('id');
+    expect(adaptUser({ ...base, preferred_language: 'EN' }).preferredLanguage).toBe('id');
   });
 });
 

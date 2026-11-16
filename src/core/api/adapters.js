@@ -19,10 +19,17 @@ export function adaptCategories(data) {
 }
 
 export function adaptUser(user) {
+  // The API serves exactly "en" or "id"; anything else reads as Indonesian so
+  // a legacy or hand-edited value never reaches the screen or blocks signing in.
+  const preferredLanguage =
+    user && (user.preferred_language === 'en' || user.preferred_language === 'id')
+      ? user.preferred_language
+      : 'id';
   return {
     id: user.id,
     fullName: user.full_name,
     email: user.email,
+    preferredLanguage,
   };
 }
 
