@@ -6,7 +6,7 @@
 | Repository | `compzy-fe` (this repository) |
 | Branch tested | `feat/pc-builder-dev-builder-checkout-ui` → PR into `feat/pc-builder` |
 | Tested code commit | `2b33fb6` |
-| FE PR | `PENDING` |
+| FE PR | [#1](https://github.com/william22913/compzy-fe/pull/1) into `feat/pc-builder` |
 | Date | 2026-11-16 |
 
 ## Environment used for every check
