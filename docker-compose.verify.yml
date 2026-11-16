@@ -1,0 +1,48 @@
+# Low-footprint tuning for deploy/preview.compose.yml only — it names the
+# services of that file, so it must not be used with any other compose file.
+#
+#   docker compose -f compzy-fe/deploy/preview.compose.yml \
+#                  -f compzy-fe/docker-compose.verify.yml up -d --build
+#
+# One replica of each service, small memory limits, a tuned database and rate
+# limits high enough that a test run cannot trip them. Compose resolves build
+# paths against the directory of the base file (deploy/), so `../../be` is the
+# backend directory next to this repository; drop the `api.build.context`
+# entry when the backend is the sibling `compzy-be` the base file names.
+name: compzy-preview
+
+services:
+  db:
+    command:
+      - postgres
+      - -c
+      - max_connections=20
+      - -c
+      - shared_buffers=64MB
+      - -c
+      - work_mem=2MB
+      - -c
+      - maintenance_work_mem=32MB
+    deploy:
+      resources:
+        limits:
+          memory: 192M
+
+  api:
+    build:
+      context: ../../be
+    environment:
+      AUTH_RATE_LIMIT_PER_MIN: "1000"
+      ORDER_RATE_LIMIT_PER_MIN: "1000"
+    deploy:
+      resources:
+        limits:
+          memory: 320M
+
+  web:
+    build:
+      context: ..
+    deploy:
+      resources:
+        limits:
+          memory: 64M

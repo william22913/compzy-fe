@@ -1,0 +1,31 @@
+# The frontend on its own: nginx serves the built app and proxies /api to the
+# API service named by API_UPSTREAM. The API itself lives in the compzy-be
+# repository.
+#
+#   docker compose up -d --build              # API reachable on this host:8080
+#   API_UPSTREAM=http://api:8080 docker compose up -d --build   # API on the same network
+#
+# For the full stack (database, API, this app) see deploy/preview.compose.yml.
+name: compzy-fe
+
+services:
+  web:
+    build: .
+    image: compzy-fe:latest
+    ports:
+      # Loopback only: this is a local stack, not a deployment. The API must
+      # have APP_ORIGIN=http://localhost:8081 for this bind.
+      - "127.0.0.1:8081:80"
+    environment:
+      API_UPSTREAM: ${API_UPSTREAM:-http://host.docker.internal:8080}
+    extra_hosts:
+      # host.docker.internal on Linux: the API running as a host process
+      # (`go run ./cmd/api`) is reachable this way.
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1/"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+      start_period: 5s

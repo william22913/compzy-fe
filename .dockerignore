@@ -1,0 +1,16 @@
+node_modules
+dist
+coverage
+playwright-report
+test-results
+.git
+.gitignore
+.env
+.env.*
+!.env.example
+tests
+docs
+*.md
+.eslintrc*
+eslint.config.js
+playwright.config.js
