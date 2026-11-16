@@ -7,7 +7,7 @@
 | Repository | `compzy-fe` (this repository) |
 | Branch tested | `feat/pc-builder-dev-language-switcher` → PR into `feat/pc-builder` |
 | Tested code commit | `e3303cd` — the code commit under test (this file is committed on top of it) |
-| FE PR | pending — filled when the pull request is opened into `feat/pc-builder` |
+| FE PR | [#2](https://github.com/william22913/compzy-fe/pull/2) into `feat/pc-builder` |
 | Docs | spec v2 · testcase v2 · architecture v2 · database v2 (`docs/pc-builder/VERSION.md`); design v3, 24 mock screens |
 | API contract | `compzy-be` `api/openapi.yaml` at `feat/pc-builder` `da1925a` — 896 lines, SHA-256 `9cacc6d21a716648994fa391669da1fa6f8968b61c13ec5dcfe3be4cb3c94a62` |
 | Date | 2026-11-16 |
