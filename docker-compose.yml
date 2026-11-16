@@ -13,8 +13,9 @@ services:
     build: .
     image: compzy-fe:latest
     ports:
-      # The API must have APP_ORIGIN=http://localhost:8081 for this bind.
-      - "8081:80"
+      # Loopback only: this is a local stack, not a deployment. The API must
+      # have APP_ORIGIN=http://localhost:8081 for this bind.
+      - "127.0.0.1:8081:80"
     environment:
       API_UPSTREAM: ${API_UPSTREAM:-http://host.docker.internal:8080}
     extra_hosts:

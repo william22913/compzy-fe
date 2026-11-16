@@ -13,10 +13,12 @@ export function Header() {
   async function handleSignOut() {
     try {
       await signOut();
+      navigate('/');
     } catch {
-      // The local session is cleared either way; the cookie expires on its own.
+      // The session is still live on the server: show it, do not claim a
+      // sign-out the app did not perform.
+      window.location.reload();
     }
-    navigate('/');
   }
 
   return (

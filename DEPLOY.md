@@ -32,7 +32,7 @@ npm run preview    # http://localhost:4173, same /api proxy
 | Setting | Default | Meaning |
 | --- | --- | --- |
 | `API_UPSTREAM` | `http://api:8080` | Base URL of compzy-be as seen from the container. nginx forwards `/api/...` here unchanged. |
-| published port | `8081:80` in `docker-compose.yml` | Host port for the app. |
+| published port | `127.0.0.1:8081:80` in `docker-compose.yml` | Host port for the app, loopback only. |
 | `VITE_API_PROXY` | `http://localhost:8080` | Build-time only; dev and preview proxy target. Not used by the image. |
 
 The upstream must know this app's origin: set the API's `APP_ORIGIN` to the
@@ -69,7 +69,7 @@ This app alone, against an API you already run:
 docker compose up -d --build          # API on this host at :8080
 ```
 
-compose publishes `8081:80` and sets `API_UPSTREAM` to
+compose publishes `127.0.0.1:8081:80` and sets `API_UPSTREAM` to
 `http://host.docker.internal:8080`. Point `API_UPSTREAM` at another address
 when the API is elsewhere, e.g. a service on the same compose network.
 

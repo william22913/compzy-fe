@@ -5,10 +5,10 @@
 #                  -f compzy-fe/docker-compose.verify.yml up -d --build
 #
 # One replica of each service, small memory limits, a tuned database and rate
-# limits high enough that a test run cannot trip them. Paths here are relative
-# to this file. The API context is spelled for a checkout where the backend
-# directory is named `be`; drop the `api.build.context` entry when the backend
-# is the sibling directory `compzy-be` that the base file already names.
+# limits high enough that a test run cannot trip them. Compose resolves build
+# paths against the directory of the base file (deploy/), so `../../be` is the
+# backend directory next to this repository; drop the `api.build.context`
+# entry when the backend is the sibling `compzy-be` the base file names.
 name: compzy-preview
 
 services:
@@ -30,7 +30,7 @@ services:
 
   api:
     build:
-      context: ../be
+      context: ../../be
     environment:
       AUTH_RATE_LIMIT_PER_MIN: "1000"
       ORDER_RATE_LIMIT_PER_MIN: "1000"

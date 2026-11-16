@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 import { AuthProvider } from '../../store/AuthContext';
@@ -106,7 +106,10 @@ describe('BuilderPage', () => {
       screen.getByText('The part you chose for Processor (CPU) is no longer offered.'),
     ).toBeInTheDocument();
     expect(heroTotal()).toHaveTextContent('Rp 0');
-    expect(JSON.parse(window.localStorage.getItem(BUILD_STORAGE_KEY))).toEqual({});
+    // The drop is written back on the next render, not during the first one.
+    await waitFor(() =>
+      expect(JSON.parse(window.localStorage.getItem(BUILD_STORAGE_KEY))).toEqual({}),
+    );
   });
 
   it('shows the catalogue error with a retry when the API cannot be reached', async () => {

@@ -44,11 +44,10 @@ export function AuthProvider({ children }) {
   }, []);
 
   const signOut = useCallback(async () => {
-    try {
-      await signOutRequest();
-    } finally {
-      setState({ status: 'guest', user: null });
-    }
+    // Only drop the local session once the server has dropped its own: the
+    // cookie is HttpOnly, so a failed call leaves a session that still works.
+    await signOutRequest();
+    setState({ status: 'guest', user: null });
   }, []);
 
   const expireSession = useCallback(() => {
