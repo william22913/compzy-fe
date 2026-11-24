@@ -247,3 +247,166 @@ npx eslint .
 npx vitest run
 APP_URL='http://localhost:8081' CHROMIUM_PATH="$NEXAI_CHROMIUM_PATH" npx playwright test
 ```
+
+## v3 — deploy fix: the app must open under any sub-path (2026-11-24)
+
+| | |
+| --- | --- |
+| Service / feature | `compzy` / `pc-builder` |
+| Revision | v3 — deployment fix only: the same app, mounted under the preview gateway's sub-path |
+| Repository | `compzy-fe` |
+| Branch tested | `feat/pc-builder-dev-subpath-mount` → PR into `feat/pc-builder` |
+| Tested code commit | `b882814` — the code commit under test (this section is committed on top of it) |
+| FE PR | (filled once the pull request is opened) |
+| Date | 2026-11-24 |
+
+### What this revision changes
+
+The v2 app opened at the site root only. This revision makes the same app open
+at the NexAI preview link `<frontend>/stack/<token>/app/`, under whatever
+sub-path the gateway mounts it.
+
+- **Symptom:** the merged v2 app started healthy in the preview compose stack
+  but did not open at that address: it answered with the app's own 404 route,
+  the header links were root-absolute (`/`, `/sign-in`), the API was called at
+  the origin root (`http://localhost:3000/api/v1/catalogue`, blocked
+  cross-origin), and the fonts were fetched from `/assets/fonts/...`.
+- **Fix:** `src/core/base.js` derives the mount once — from the gateway's
+  `<base href>` (accepted only when it is the same origin and a path the
+  document is served under) or, without a base, from the document path with the
+  app's own route stripped; the router's basename is that mount and keeps its
+  trailing slash; images go through `appUrl()` (which refuses anything outside
+  the mount); the woff2 fonts moved to `src/assets/fonts` and the CSS asks for
+  them relatively; the API is called at `<mount>api/v1`; `vite.config.js` builds
+  with `base: './'`; nginx proxies `/api` with `^~` and serves nested
+  `/…/assets/` paths; `deploy/preview.compose.yml` takes `APP_ORIGIN` from the
+  environment.
+- **Unchanged:** routes, layout, type, colour, copy, behaviour at the site
+  root, and the package list — `package.json` and the lock file are untouched;
+  no nexcomponent, nexcommon or Ant Design.
+
+### Checks
+
+| # | Check | Command / tool | Result |
+| --- | --- | --- | --- |
+| 1 | Lint | `npx eslint .` | **PASS** — 0 errors, 0 warnings |
+| 2 | Unit tests | `npx vitest run` | **PASS** — **65 tests** in 9 files, 0 failed (adds the mount derivation: root, `<base>` mount, document served without a trailing slash, a foreign-origin base ignored, a base the document is not served under ignored, the route-suffix stripping, and `appUrl` refusing an absolute, protocol-relative or climbing path; and the API URL at the root and under a mount, read and write) |
+| 3 | Build | `npm run build` | **PASS** — `index-*.css` 29.14 kB (gzip 6.09), `index-*.js` 223.67 kB (gzip 69.61); `dist/index.html` loads `./assets/…`, the CSS asks for `url(./*.woff2)` |
+| 4 | E2E at the site root, real backend | `APP_URL=http://127.0.0.1:45631 npx playwright test <spec files>` | **PASS** — 120 tests: 117 passed, 3 skipped (viewport-gated), 0 failed. Run in two commands because this session's runner limits full-suite reruns: (a) `builder.spec.js auth.spec.js checkout.spec.js error-contract.spec.js` → 56 passed (2.6 min); (b) `language.spec.js robustness.spec.js subpath.spec.js` → 60 passed, 3 skipped, **1 failed**: `language.spec.js:591` TC-081/TC-083 hit the 30 s default timeout with four workers (it creates two accounts through the UI and signs both in on a fresh device; it takes ~23 s alone). Fixed the test set-up, not product code: `test.slow()` on that test with a comment; re-run on both projects → 2 passed (22.7 s). The failing test is the only test that differs between run (b) and the final files. |
+| 5 | Sub-path mount, stub API | `npx playwright test tests/e2e/subpath.spec.js` | **PASS** — 10 passed (5 tests × desktop/phone) |
+| 6 | Sub-path mount, real API | `MOUNT_API=http://127.0.0.1:8080 npx playwright test tests/e2e/subpath.spec.js` | **PASS** — 10 passed (18.3 s) |
+| 7 | Preview link (Docker/nginx, gateway) | `preview_stack` on `deploy/preview.compose.yml` + `docker-compose.verify.yml`, then `node scratch/preview-link-check.mjs <link>` | **PASS** — api/db/web healthy; link `http://localhost:3000/stack/bRYo_fQgSKkLfAXSQa5gy6RzAazS9eG-/app/`; see the preview-link table |
+| 8 | Security review | check-only review of the diff | **PASS** — no high or critical left open; see the table |
+| 9 | Code review | independent reviewer over the full diff | **PASS after fixes** — see the table |
+| 10 | Error contract | `error-contract.spec.js` | **PASS** — 8 cases × 2 viewports = 16 tests, unchanged from v2 |
+
+### Sub-path mount
+
+| What | What the spec proves |
+| --- | --- |
+| Home page inside the mount | no off-mount request, no 4xx on a static asset, no console error, all three woff2 under the mount, `document.fonts.check('16px Archivo')` true, every `a[href]` under the mount |
+| A second route | `/sign-up` loads under the mount, with the brand link at the mount |
+| The brand link is the mount itself | a reload there still renders the app (this is the URL React Router generates for home; the basename keeps the trailing slash so it is never the slash-less form a relative build cannot serve) |
+| A two-level deep link | `/order-confirmation/<id>` reloads the app's own route, assets 200, font loaded |
+| A crafted asset path | `/assets/..%2f..%2fpackage.json` answers 404 |
+
+### Preview link (Docker stack, gateway `<base href>`, sandboxed page)
+
+| What | Result |
+| --- | --- |
+| Home page | 7 categories from `<link>/api/v1/catalogue`, title `compzy · Perakit PC` |
+| Fonts | 3 woff2, all under the link; `Archivo` loaded |
+| Requests | no request outside the link (0 escapes), no 4xx on a static asset, no console error |
+| Links | 8, all under the link |
+| Second route | `/sign-up` → `Buat akun · compzy Perakit PC`, create-account button visible |
+| Deep link | `/order-confirmation/00000000-…` → `Konfirmasi pesanan · compzy Perakit PC`, the app's own "not found" copy, no asset failure |
+| Sign-in through the UI | with an account created on the preview stack (`preview.check@example.com`) → lands on the mount root, sign-out control visible; the link was signed out again afterwards |
+| Screenshots | `scratch/preview-home.png`, `scratch/preview-deep.png` (1440×900) |
+
+The link stays up ~15 minutes idle, and the checks were run against it as a
+browser would, not against a mock.
+
+### Design fidelity
+
+| Screen | Width | Reference | Result |
+| --- | --- | --- | --- |
+| Home | 1440 | approved v3 mock | unchanged |
+| Home | 390 | approved v3 mock | unchanged |
+| Deep-link confirmation | 1440 | approved v3 mock | unchanged |
+| Deep-link confirmation | 390 | approved v3 mock | unchanged |
+
+The only style edit is the three `@font-face` URLs, and the preview screenshot
+matches the approved design.
+
+### Polish checklist
+
+Unchanged from the v2 table (nine items). This revision touches no layout, copy,
+focus or contrast; the checks that could move — font loading, images, links,
+console cleanliness — were re-verified in both widths at the root and under the
+mount.
+
+### Security
+
+| Finding | Where | Resolution |
+| --- | --- | --- |
+| `<base href>` trusted with no origin or path check (high, reviewer) | mount derivation | **Fixed** — the base is used only when it is the same origin and the document is served under it, with tests; this also closes the CSP `base-uri` bypass. |
+| CSP `base-uri 'none'` → `'self'` (defence-in-depth downgrade) | `deploy/nginx.conf.template` | **Kept** at `'self'` because the gateway injects `<base>` for the mounted build, and the module now validates the base itself; `script-src 'self'`, no inline script, no HTML-injection sink in the app (grep for `innerHTML`/`dangerouslySetInnerHTML`/`document.write`: none). |
+| `appUrl()` open URL (low) | `src/core/base.js` | **Fixed** — rejects absolute, protocol-relative and climbing inputs, unit-tested. |
+| nginx regex could capture `/api/…` (low) | nginx | **Fixed** — `location ^~ /api/`; traversal impossible (nginx normalises before matching) and asserted with the `..%2f` case above. |
+| Test-only mount server forwards client headers (low) | test harness | **Accepted** — loopback only, never shipped (the Dockerfile copies only `dist`). |
+
+### Code review
+
+| # | Finding | Resolution |
+| --- | --- | --- |
+| 1 | `appUrl('../x.webp')` not rejected at a site root | test moved to the mount-scoped case where it must throw (and it does); guard unit-tested. |
+| 2 | Home link is the slash-less mount, and a reload there loses the mount | **Fixed** by keeping the trailing slash in the basename (React Router 6.26 supports it); the new sub-path test clicks the brand and reloads; verified in the preview too. |
+| 3 | nginx comment claimed gateway mounts while only `/api` was proxied | comment corrected; the gateway strips the prefix (proven by the preview): the deployed path is `<link>/api/v1/…` → nginx `/api/` → api. |
+| 4 | e2e never built `dist`, so the sub-path spec could test a stale build | **Fixed** — Playwright `globalSetup` runs `vite build` once per run. |
+| 5 | Production fallback read `document.baseURI`, which re-applies a base the guard had just rejected | **Fixed** — the fallback reads the document location. |
+| 6 | `mountFromPath` hard-codes the route list (duplicates `App.jsx`) | kept, with the comment pointing at `src/app/App.jsx` and unit tests for each route; a new nested route needs a line there. |
+| 7 | The test server re-implements the nginx asset rule | accepted for a test harness; the real rule is exercised by the preview stack above. |
+
+### Deviations and decisions
+
+1. **The basename keeps its trailing slash.** React Router generates the mount
+   root without one; a relative build cannot serve that form, so the trailing
+   slash is part of the basename.
+2. **`base-uri 'self'` is kept** because the gateway injects `<base>` for the
+   mounted build; the app validates the base itself rather than removing the
+   directive.
+
+### Real backend
+
+Every e2e run above used the live Go API and PostgreSQL — the backend at its
+merged `feat/pc-builder` state, migrations and seed — and the preview stack ran
+its own api+db containers. Nothing was checked against a mock except the
+stub-API sub-path run, which is labelled as such.
+
+**Last full green:** `builder + auth + checkout + error-contract` → 56 passed and
+`language + robustness + subpath` → 60 passed, 3 skipped with the one timeout
+fixed and re-run green (2 passed); 120 tests in total, 117 passed, 3 skipped,
+0 failed, at code commit `b882814`.
+
+### Reproduce locally
+
+```sh
+# backend (compzy-be at feat/pc-builder)
+DATABASE_URL='postgres://[REDACTED]@127.0.0.1:5432/compzy?sslmode=disable' \
+APP_ORIGIN='http://localhost:8081' COOKIE_SECURE=false go run ./cmd/api
+
+# frontend
+npm ci
+npm run build
+VITE_API_PROXY='http://localhost:8080' npx vite preview --port 8081 --strictPort
+
+# checks
+npx eslint .
+npx vitest run
+APP_URL='http://localhost:8081' CHROMIUM_PATH="$NEXAI_CHROMIUM_PATH" npx playwright test
+npx playwright test tests/e2e/subpath.spec.js
+MOUNT_API='http://127.0.0.1:8080' npx playwright test tests/e2e/subpath.spec.js
+```
+
+The Playwright run builds `dist` itself (`globalSetup` runs `vite build` once per
+run).
