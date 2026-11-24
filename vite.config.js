@@ -14,8 +14,28 @@ const apiProxy = {
   },
 };
 
+// The build asks for its assets relatively, so a reload on a nested route asks
+// for /order-confirmation/<id>/assets/... . Production nginx answers that from
+// /assets (deploy/nginx.conf.template); the preview server does the same here.
+function nestedAssets() {
+  return {
+    name: 'nested-assets',
+    configurePreviewServer(server) {
+      server.middlewares.use((request, _response, next) => {
+        const nested = /^\/.+\/assets\/(.+)$/.exec(request.url || '');
+        if (nested) request.url = `/assets/${nested[1]}`;
+        next();
+      });
+    },
+  };
+}
+
 export default defineConfig({
-  plugins: [react()],
+  // Relative asset URLs: the same build runs at a site root and under the
+  // preview gateway's /stack/<token>/<name>/ mount, resolved against the
+  // document's base. Runtime URLs are built in src/core/base.js.
+  base: './',
+  plugins: [react(), nestedAssets()],
   server: {
     port: 5173,
     proxy: apiProxy,

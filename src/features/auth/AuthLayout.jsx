@@ -1,4 +1,5 @@
 import { useT } from '../../store/LanguageContext';
+import { appUrl } from '../../core/base';
 
 export function AuthLayout({ eyebrow, title, lede, notice, foot, caption, flip, children }) {
   const t = useT();
@@ -14,7 +15,7 @@ export function AuthLayout({ eyebrow, title, lede, notice, foot, caption, flip, 
           <p className="form__foot">{foot}</p>
         </div>
         <figure className={`split__media${flip ? ' flip' : ''}`}>
-          <img src="/assets/img/auth.webp" alt={t.auth.imageAlt} width="960" height="640" />
+          <img src={appUrl('assets/img/auth.webp')} alt={t.auth.imageAlt} width="960" height="640" />
           <figcaption>{caption}</figcaption>
         </figure>
       </div>

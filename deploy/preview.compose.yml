@@ -38,7 +38,10 @@ services:
       PORT: "8080"
       DATABASE_URL: postgres://compzy:compzy@db:5432/compzy?sslmode=disable
       DATABASE_MAX_CONNS: "5"
-      APP_ORIGIN: http://localhost:8081
+      # The origin the browser opens the app on. The API refuses a write from
+      # any other origin, and a preview gateway serves the app on its own
+      # origin, so this has to be settable per stack.
+      APP_ORIGIN: ${APP_ORIGIN:-http://localhost:8081}
       COOKIE_SECURE: "false"
       SESSION_TTL_HOURS: "720"
       AUTH_RATE_LIMIT_PER_MIN: "60"
