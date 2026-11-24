@@ -257,7 +257,7 @@ APP_URL='http://localhost:8081' CHROMIUM_PATH="$NEXAI_CHROMIUM_PATH" npx playwri
 | Repository | `compzy-fe` |
 | Branch tested | `feat/pc-builder-dev-subpath-mount` → PR into `feat/pc-builder` |
 | Tested code commit | `b882814` — the code commit under test (this section is committed on top of it) |
-| FE PR | (filled once the pull request is opened) |
+| FE PR | [#3](https://github.com/william22913/compzy-fe/pull/3) into `feat/pc-builder` |
 | Date | 2026-11-24 |
 
 ### What this revision changes
