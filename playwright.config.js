@@ -7,6 +7,7 @@ const executablePath = process.env.CHROMIUM_PATH;
 
 export default defineConfig({
   testDir: './tests/e2e',
+  globalSetup: './tests/e2e/global-setup.js',
   fullyParallel: true,
   workers: 4,
   forbidOnly: Boolean(process.env.CI),

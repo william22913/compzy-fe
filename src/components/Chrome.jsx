@@ -1,6 +1,7 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../store/AuthContext';
 import { useLanguage, useT } from '../store/LanguageContext';
+import { appUrl } from '../core/base';
 import { StarIcon } from './Icons';
 import { LanguageSwitcher } from './LanguageSwitcher';
 
@@ -118,7 +119,7 @@ export function Footer() {
           <p className="ftr__note">{t.chrome.footerBody}</p>
         </div>
         <div className="ftr__photo">
-          <img src="/assets/img/footer.webp" alt={t.chrome.footerPhotoAlt} />
+          <img src={appUrl('assets/img/footer.webp')} alt={t.chrome.footerPhotoAlt} />
         </div>
       </div>
       <div className="ftr__bar">

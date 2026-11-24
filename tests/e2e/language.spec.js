@@ -593,6 +593,10 @@ test('TC-081/TC-083 an account keeps the language it was created in, on any devi
   browser,
   baseURL,
 }) => {
+  // Two accounts created through the UI plus two fresh-device sign-ins; with
+  // four workers on one machine the default 30s does not hold.
+  test.slow();
+
   const englishEmail = uniqueEmail('lang.en');
   const indonesianEmail = uniqueEmail('lang.id');
 

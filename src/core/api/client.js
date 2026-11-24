@@ -1,4 +1,9 @@
-const API_BASE = '/api/v1';
+import { APP_BASE } from '../base';
+
+// The API sits under the same mount as the app: nginx (and the dev server)
+// proxy `<mount>/api/` to the service, so a request never leaves the path the
+// build is served from.
+const API_BASE = new URL('api/v1', APP_BASE).toString();
 
 export class ApiError extends Error {
   constructor(status, body) {

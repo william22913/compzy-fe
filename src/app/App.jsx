@@ -11,6 +11,7 @@ import { AuthProvider } from '../store/AuthContext';
 import { CatalogueProvider } from '../store/CatalogueContext';
 import { BuildProvider } from '../store/BuildContext';
 import { LanguageProvider, useLanguage, useT } from '../store/LanguageContext';
+import { APP_BASE_PATH } from '../core/base';
 
 function titleFor(t, pathname) {
   if (pathname === '/') return t.meta.title;
@@ -52,7 +53,7 @@ function Shell() {
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={APP_BASE_PATH}>
       <AuthProvider>
         <LanguageProvider>
           <CatalogueProvider>

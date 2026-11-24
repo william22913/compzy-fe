@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Notice } from '../../components/Notice';
+import { appUrl } from '../../core/base';
 import { OrderRows } from '../../components/OrderRows';
 import { Seal } from '../../components/Seal';
 import { formatRupiah } from '../../helpers/money';
@@ -266,7 +267,7 @@ function ReviewAside({ total }) {
   return (
     <aside className="summary">
       <figure className="summary__figure">
-        <img src="/assets/img/gpu-1.webp" alt="" width="1023" height="686" />
+        <img src={appUrl('assets/img/gpu-1.webp')} alt="" width="1023" height="686" />
       </figure>
       <Seal id="review-seal" />
       <div className="summary__total">

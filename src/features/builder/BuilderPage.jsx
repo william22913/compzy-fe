@@ -1,6 +1,7 @@
 import { Fragment, useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { Notice } from '../../components/Notice';
+import { appUrl } from '../../core/base';
 import { Ribbons } from '../../components/Ribbons';
 import { formatRupiah } from '../../helpers/money';
 import { signInHref } from '../../helpers/returnTo';
@@ -106,7 +107,7 @@ export function BuilderPage() {
         </div>
         <figure className="hero__media">
           <img
-            src="/assets/img/review.webp"
+            src={appUrl('assets/img/review.webp')}
             alt={t.builder.heroImageAlt}
             width="1920"
             height="1260"

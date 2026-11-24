@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { OrderRows } from '../../components/OrderRows';
+import { appUrl } from '../../core/base';
 import { formatDate } from '../../helpers/date';
 import { formatRupiah } from '../../helpers/money';
 import { useLanguage, useT } from '../../store/LanguageContext';
@@ -124,7 +125,7 @@ export function ConfirmationPage() {
         </div>
         <aside className="confirm__aside">
           <figure className="confirm__figure">
-            <img src="/assets/img/confirm.webp" alt="" width="684" height="1024" />
+            <img src={appUrl('assets/img/confirm.webp')} alt="" width="684" height="1024" />
           </figure>
           <p className="summary__rules">{t.confirmation.aside}</p>
         </aside>
